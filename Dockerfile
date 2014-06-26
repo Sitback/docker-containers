@@ -4,7 +4,8 @@ RUN yum update -y
 RUN yum install wget which htop nano tar git -y
 RUN wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-RUN rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
+RUN wget http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+RUN rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm nginx-release-centos-6-0.el6.ngx.noarch.rpm
 RUN yum clean all
 
 #RUN curl -sSL https://get.rvm.io | bash -s stable
