@@ -37,13 +37,13 @@ RUN cp -rv ./php-fpm-example-config/fpm/pool.d /etc/php5/fpm
 RUN service php-fpm restart
 
 RUN git clone https://github.com/perusio/nginx_ensite.git nginx_ensite
-RUN cp ./nginx_ensite/nginx_* /usr/bin
-RUN ls -la ./nginx_ensite
-RUN ls -la ./nginx_ensite/bash_completion.d
-RUN cd ./nginx_ensite/bash_completion.d && source nginx-ensite
-RUN nginx_ensite mysite.com
+RUN cp ./nginx_ensite/nginx_* /usr/sbin
+#RUN ls -la ./nginx_ensite
+#RUN ls -la ./nginx_ensite/bash_completion.d
+#RUN cd ./nginx_ensite/bash_completion.d && source nginx-ensite
+#RUN ./nginx_ensite/bash_completion.d/nginx_ensite mysite.com
 
-#CMD nginx_ensite mysite.com
+CMD nginx_ensite mysite.com
 
 RUN nginx -t
 RUN service nginx restart
