@@ -24,7 +24,7 @@ COPY httpd.conf /etc/httpd/httpd.conf
 
 # Perusio Nginx
 RUN git clone https://github.com/paulhudson/drupal-with-nginx.git drupal-with-nginx
-RUN cp -prv ./drupal-with-nginx /etc/nginx
+RUN cp -prv ./drupal-with-nginx/* /etc/nginx/
 
 RUN cp /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-available/mysite.com.conf
 
