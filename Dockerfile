@@ -34,10 +34,10 @@ RUN cp -pv ./php-fpm-example-config/fpm/php5-fpm.conf /etc/php5/fpm
 RUN cp -rv ./php-fpm-example-config/fpm/pool.d /etc/php5/fpm
 RUN service php-fpm restart
 
-#RUN git clone https://github.com/perusio/nginx_ensite.git nginx_ensite
-#RUN cp ./nginx_ensite/nginx_* /usr/sbin
+RUN git clone https://github.com/perusio/nginx_ensite.git nginx_ensite
+RUN cp ./nginx_ensite/nginx_* /usr/sbin
 
-#RUN nginx_ensite mysite.com
+RUN nginx_ensite mysite.com
 
 #CMD nginx_ensite mysite.com
 
