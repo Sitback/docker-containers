@@ -12,7 +12,7 @@ RUN yum clean all
 #RUN rvm install 1.9.3
 #RUN rvm use 1.9.3 --default
 
-#RUN yum install httpd php php-devel nginx php-fpm -y
+RUN yum install httpd php php-devel nginx php-fpm -y
 
 
 #RUN git clone https://github.com/paulhudson/puppet-drupalstack.git && ~/puppet-drupalstack/lib/deploy.sh
