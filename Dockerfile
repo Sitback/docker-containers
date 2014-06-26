@@ -1,22 +1,19 @@
 FROM centos
 MAINTAINER Paul Hudson
 RUN yum update -y
-RUN yum install wget which htop nano tar -y
+RUN yum install wget which htop nano tar git -y
 RUN wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 RUN rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
 RUN yum clean all
-RUN yum install git -y
 
 #RUN curl -sSL https://get.rvm.io | bash -s stable
 #RUN source /etc/profile.d/rvm.sh
 #RUN rvm install 1.9.3
 #RUN rvm use 1.9.3 --default
 
-#RUN yum install httpd -y
-RUN yum install php php-devel -y
-RUN yum install php-devel -y
-RUN yum install nginx php-fpm -y
+#RUN yum install httpd php php-devel nginx php-fpm -y
+
 
 #RUN git clone https://github.com/paulhudson/puppet-drupalstack.git && ~/puppet-drupalstack/lib/deploy.sh
 
