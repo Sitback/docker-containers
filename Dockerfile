@@ -38,6 +38,8 @@ RUN service php-fpm restart
 
 RUN git clone https://github.com/perusio/nginx_ensite.git nginx_ensite
 RUN cp ./nginx_ensite/nginx_* /usr/bin
+RUN ls -la ./nginx_ensite
+RUN ls -la ./nginx_ensite/bash_completion.d
 RUN cd ./nginx_ensite/bash_completion.d && source nginx-ensite
 RUN nginx_ensite mysite.com
 
