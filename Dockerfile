@@ -68,8 +68,8 @@ RUN cp ./nginx_ensite/nginx_* /usr/sbin
 RUN nginx_ensite mysite.com.conf
 
 RUN nginx -t
-RUN service nginx restart && chkconfig nginx on
 RUN service nginx restart
+RUN chkconfig nginx on
 
 RUN yum -y install supervisor
 RUN chkconfig supervisord on
