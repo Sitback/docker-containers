@@ -17,6 +17,8 @@ RUN yum update -y
 #RUN rvm use 1.9.3 --default
 
 RUN yum install which htop nano tar git mod_ssl openssl httpd php php-devel php-fpm monit mysql-server mysql php-mysql -y
+# Nginx dependency requires install after above batch
+RUN ldconfig
 RUN yum install nginx -y
 
 #RUN chkconfig httpd on
