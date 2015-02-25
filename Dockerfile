@@ -40,9 +40,9 @@ RUN cp ca.csr /etc/httpd/ssl/ca.csr
 
 #VOLUME ["/Users/huders2000/Documents/sites/hudsondigital/html_site"]
 
-#COPY site /var/www/vhosts/mysite.com/
-#COPY httpd.conf /etc/httpd/conf/httpd.conf
-#COPY vhost-mysite.com.conf /etc/httpd/conf.d/vhost-mysite.com.conf
+COPY site /var/www/vhosts/mysite.com/
+COPY httpd.conf /etc/httpd/conf/httpd.conf
+COPY vhost-mysite.com.conf /etc/httpd/conf.d/vhost-mysite.com.conf
 
 # Monit config
 COPY monit.conf /etc/monit/monit.conf
