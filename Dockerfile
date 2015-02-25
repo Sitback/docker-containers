@@ -24,15 +24,17 @@ RUN chkconfig httpd on
 RUN openssl genrsa -out ca.key 2048
 
 # Generate CSR
-RUN openssl req -new -key ca.key -out ca.csr
+COPY openssl.conf openssl.conf
+RUN openssl req -new -config openssl.conf -out ca.csr
 
 # Generate Self Signed Key
 RUN openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt
 
-# Copy the files to the correct locations
-RUN cp ca.crt /etc/pki/tls/certs
-RUN cp ca.key /etc/pki/tls/private/ca.key
-RUN cp ca.csr /etc/pki/tls/private/ca.csr
+# Copy certs to Apache
+RUN mkdir /etc/httpd/ssl
+RUN cp ca.crt /etc/httpd/ssl/ca.crt
+RUN cp ca.key /etc/httpd/ssl/ca.key
+RUN cp ca.csr /etc/httpd/ssl/ca.csr
 
 #RUN git clone https://github.com/paulhudson/puppet-drupalstack.git && ~/puppet-drupalstack/lib/deploy.sh
 
