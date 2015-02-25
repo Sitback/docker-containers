@@ -34,3 +34,9 @@ docker run -i -t paulh/web /bin/bash
 #### Connect to Container
 Determine IP
 boot2docker ip
+
+#### @todo
+- variablize:
+  - {{-DOMAIN-}} (openssl.conf)
+  - ServerAdmin, ServerName (httpd.conf)
+  - VOLUME (Dockerfile)
