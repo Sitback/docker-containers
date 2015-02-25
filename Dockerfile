@@ -16,9 +16,13 @@ RUN yum update -y
 #RUN rvm install 1.9.3
 #RUN rvm use 1.9.3 --default
 
-RUN yum install pcre which htop nano tar git mod_ssl openssl httpd nginx php php-devel php-fpm monit php-mysql -y
+RUN yum install pcre which htop nano tar git mod_ssl openssl httpd nginx php php-devel php-fpm monit mysql php-mysql php-pear -y
 
 RUN chkconfig httpd on
+
+# Install drush
+pear channel-discover pear.drush.org 
+pear install drush/drush
 
 # Generate private key
 RUN openssl genrsa -out ca.key 2048
@@ -40,7 +44,7 @@ RUN cp ca.csr /etc/httpd/ssl/ca.csr
 
 #VOLUME ["/Users/huders2000/Documents/sites/hudsondigital/html_site"]
 
-COPY site /var/www/vhosts/mysite.com/
+#COPY site /var/www/vhosts/mysite.com/
 COPY httpd.conf /etc/httpd/conf/httpd.conf
 COPY vhost-mysite.com.conf /etc/httpd/conf.d/vhost-mysite.com.conf
 
@@ -63,5 +67,5 @@ EXPOSE 2812
 
 # default command
 #CMD ["monit", "-d 10 -Ic /etc/monit.conf"]
-CMD ["monit", "-I"]
+CMD ["/usr/bin/monit", "-I"]
 
