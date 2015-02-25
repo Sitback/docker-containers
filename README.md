@@ -34,9 +34,14 @@ docker run -d -p 8080:80 paulh/web
 #### Run in docker
 docker run -i -t paulh/web /bin/bash
 
-#### Connect to Container
-Determine IP
-boot2docker ip
+#### Connect to Container (boot2docker)
+Determine boot2docker IP to point your domain to:
+
+$ boot2docker ip
+
+You could do something like:
+echo "$(boot2docker ip) mysite.com" >> /etc/hosts
+
 
 #### @todo
 - variablize:
