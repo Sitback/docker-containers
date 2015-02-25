@@ -15,6 +15,9 @@ chkconfig docker on
 docker stop $(docker ps -q)
 docker rm $(docker ps -aq)
 
+*remove unused images*
+docker rmi $(docker images --filter dangling=true --quiet)
+
 ####Remove images
 docker rmi ID  (you probalby want to keep base images like CentOS)
 
@@ -26,7 +29,7 @@ docker build -t web .
 
 #### Run
 
-docker run -p 80:80 paulh/web
+docker run -d -p 8080:80 paulh/web
 
 #### Run in docker
 docker run -i -t paulh/web /bin/bash
