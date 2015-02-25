@@ -13,9 +13,11 @@ chkconfig docker on
 ####Remove containers
 
 docker stop $(docker ps -q)
+
 docker rm $(docker ps -aq)
 
 *remove unused images*
+
 docker rmi $(docker images --filter dangling=true --quiet)
 
 ####Remove images
@@ -48,3 +50,10 @@ echo "$(boot2docker ip) mysite.com" >> /etc/hosts
   - {{-DOMAIN-}} (openssl.conf)
   - ServerAdmin, ServerName (httpd.conf)
   - VOLUME (Dockerfile)
+
+- MySQL & DocRoot
+  - current need to run docker with: docker run -i --add-host=localbox:$(boot2docker ip) -p 8080:80 -v /Users/huders2000/Documents/sites/sitback/woolies/dev:/var/www/vhosts/mysite.com -t wow /bin/bash
+  	- Will want to variablise docroot
+  	- need to add mysql hostname 'localbox' to my.conf bind-address and grant access to host mysql
+
+ 
