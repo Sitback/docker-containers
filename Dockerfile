@@ -8,6 +8,8 @@ RUN rpm -Uvh epel-release-6*.rpm
 RUN rpm -Uvh remi-release-6*.rpm
 RUN rpm -Uvh nginx-release-centos-6-0.el6.ngx.noarch.rpm
 
+ENV STI_SCRIPTS_URL sti
+
 RUN yum clean all
 RUN yum update -y
 
