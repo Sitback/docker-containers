@@ -18,13 +18,24 @@ RUN yum update -y
 #RUN rvm install 1.9.3
 #RUN rvm use 1.9.3 --default
 
-RUN yum install pcre which htop nano tar git mod_ssl openssl httpd nginx php php-devel php-fpm monit mysql php-mysql php-pear -y
+RUN yum install gcc gcc-c++ autoconf automake gd -y
+
+RUN yum install pcre which htop nano tar git mod_ssl openssl httpd nginx php php-devel php-fpm monit mysql php-mysql php-mcrypt php-gd php-pear --enablerepo=remi,remi-php55 -y
 
 RUN chkconfig httpd on
 
+# Install xdebug
+RUN pecl install Xdebug
+
+# 
+RUN echo -e "[xdebug] \n\
+zend_extension=\"/usr/lib64/php/modules/xdebug.so\" \n\
+xdebug.remote_enable = 1 \n\
+xdebug.max_nesting_level = 1000" >> $(php --ini | grep 'Scan for additional .ini files in:' | awk '{ print $7 }')/xdebug.ini
+
 # Install drush
-pear channel-discover pear.drush.org 
-pear install drush/drush
+RUN pear channel-discover pear.drush.org 
+RUN pear install drush/drush
 
 # Generate private key
 RUN openssl genrsa -out ca.key 2048
