@@ -56,4 +56,7 @@ echo "$(boot2docker ip) mysite.com" >> /etc/hosts
   	- Will want to variablise docroot
   	- need to add mysql hostname 'localbox' to my.conf bind-address and grant access to host mysql
 
+ - work out MySQL port fowarding
+ VBoxManage controlvm boot2docker-vm natpf1 "rails-server,tcp,127.0.0.1,4567,,4567"
  
+ - Get Xdebug working
