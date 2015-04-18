@@ -31,6 +31,9 @@ RUN pecl install Xdebug
 RUN echo -e "[xdebug] \n\
 zend_extension=\"/usr/lib64/php/modules/xdebug.so\" \n\
 xdebug.remote_enable = 1 \n\
+xdebug.remote_autostart = 0 \n\
+xdebug.remote_connect_back = 1 \n\
+xdebug.remote_port = 9000 \n\
 xdebug.max_nesting_level = 1000" >> $(php --ini | grep 'Scan for additional .ini files in:' | awk '{ print $7 }')/xdebug.ini
 
 # Install drush
@@ -79,6 +82,6 @@ EXPOSE 443
 EXPOSE 2812
 
 # default command
-#CMD ["monit", "-d 10 -Ic /etc/monit.conf"]
-CMD ["/usr/bin/monit", "-I"]
+CMD ["monit", "-d 10 -Ic /etc/monit.conf"]
+#CMD ["/usr/bin/monit", "-I"]
 
