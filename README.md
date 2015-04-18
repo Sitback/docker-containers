@@ -31,10 +31,10 @@ docker build -t web .
 
 #### Run
 
-docker run -d -p 8080:80 paulh/web
+docker run -d -p 8080:80 docker/web
 
 #### Run in docker
-docker run -i -t paulh/web /bin/bash
+docker run -i -t docker/web /bin/bash
 
 #### Connect to Container (boot2docker)
 Determine boot2docker IP to point your domain to:
@@ -44,6 +44,35 @@ $ boot2docker ip
 You could do something like:
 echo "$(boot2docker ip) mysite.com" >> /etc/hosts
 
+#### Using Xdebug
+Port forward:
+VBoxManage controlvm boot2docker-vm natpf1 "xdebug,tcp,127.0.0.1,9000,,9000"
+
+#### MySQL
+
+Symlink you mysql data dir:
+
+$ ln -s /usr/local/var/mysql /Users/huders2000/mysql
+
+
+Create a data only container, mounting your simlink
+
+$ docker create --name mysql_data -v /Users/huders2000/mysql mysql
+$ docker create --name mysql_data -v /usr/local/var/mysql/ mysql:5.5
+
+
+Pull and run the MySQL container mounting the volume fromt the mysql_data container
+
+$ docker run --name mysql --volumes-from mysql_data -v /var/lib/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=goldcat99 -d -p 3306:3306 mysql:5.5
+
+
+Run web container, linking it to the MySQL container
+
+Run docker with:
+
+$ docker run -i --link mysql:mysql -p 8080:80 -v /Users/huders2000/Documents/sites/sitback/woolies/dev:/var/www/vhosts/mysite.com -t docker/web /bin/bash
+
+
 
 #### @todo
 - variablize:
@@ -52,11 +81,21 @@ echo "$(boot2docker ip) mysite.com" >> /etc/hosts
   - VOLUME (Dockerfile)
 
 - MySQL & DocRoot
-  - current need to run docker with: docker run -i --add-host=localbox:$(boot2docker ip) -p 8080:80 -v /Users/huders2000/Documents/sites/sitback/woolies/dev:/var/www/vhosts/mysite.com -t wow /bin/bash
+  - current need to run docker with: docker run -i --add-host=localbox:$(boot2docker ip) -p 8080:80 -v /Users/huders2000/Documents/sites/sitback/woolies/dev:/var/www/vhosts/mysite.com -t docker/web /bin/bash
   	- Will want to variablise docroot
   	- need to add mysql hostname 'localbox' to my.conf bind-address and grant access to host mysql
 
- - work out MySQL port fowarding
- VBoxManage controlvm boot2docker-vm natpf1 "rails-server,tcp,127.0.0.1,4567,,4567"
+ - work out MySQL port fowarding:
+
+Port forward:
+
+$ VBoxManage controlvm boot2docker-vm natpf1 "mysql,tcp,127.0.0.1,3306,,3306"
+
+
+Remove Port Foward:
  
- - Get Xdebug working
+$ VBoxManage modifyvm "boot2docker-vm" --natpf1 delete "mysql"
+ 
+ 
+ 
+ - 
