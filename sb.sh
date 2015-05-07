@@ -31,11 +31,20 @@ fi
 # Run project in docker
 if [ $run == 'true' ]; then
 
-	 docker run -d \
+  # Run image and mount current dir as doc root
+	 ID=$(docker run -d \
 	   --net=host \
 	   -v `pwd`:/var/www/vhosts/mysite.com \
-	   -t docker/web
+	   -t docker/web)
 
+  echo 'container ID:'
+  echo $ID
+
+  # Add correct localbox host record for MySQL
+  IP=$(ifconfig vboxnet0 | grep inet | awk '{ print $2 }')
+
+  docker exec -d $ID sh -c "echo '$IP localbox' >> /etc/hosts"
+  
   # docker run -d \
   #   --add-host=localbox:$(ifconfig vboxnet0 | grep inet | awk '{ print $2 }') \
   #   -v `pwd`:/var/www/vhosts/mysite.com \
