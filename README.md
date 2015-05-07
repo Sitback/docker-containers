@@ -1,6 +1,23 @@
 docker-web
 ==========
 
+##### Usage
+
+Before you start, add a host record on your Mac for the MySQL host:
+
+$ echo "$(ifconfig vboxnet0 | grep inet | awk '{ print $2 }') localbox" >> /etc/hosts
+
+
+The sb.sh is the start of a CLI wrapper for common tasks when running a web project in docker.
+
+Current functionality:
+ - Run a prodject in a container:
+ 	-- cd /myproduct/dir
+ 	-- sb.sh -r (will run a container and mount your site doc-root)
+ 	-- project should be avalible at mysite.com
+
+
+
 ##### Install Docker
 rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
@@ -78,14 +95,10 @@ $ docker run -i --link mysql:mysql -p 8080:80 -v /Users/huders2000/Documents/sit
 - variablize:
   - {{-DOMAIN-}} (openssl.conf)
   - ServerAdmin, ServerName (httpd.conf)
-  - VOLUME (Dockerfile)
 
-- MySQL & DocRoot
-  - current need to run docker with: docker run -i --add-host=localbox:$(boot2docker ip) -p 8080:80 -v /Users/huders2000/Documents/sites/sitback/woolies/dev:/var/www/vhosts/mysite.com -t docker/web /bin/bash
-  	- Will want to variablise docroot
-  	- need to add mysql hostname 'localbox' to my.conf bind-address and grant access to host mysql
 
- - work out MySQL port fowarding:
+#### boot2docket stuff
+
 
 Port forward:
 
