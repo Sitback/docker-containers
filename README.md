@@ -21,7 +21,7 @@ Current functionality:
 
 You're vbox only needs the default vboxnet0 network and the setting should look like this:
 
-![alt tag](https://raw.github.com/paulhudson/docker-web/dev/Docs/img/vbox-network-settings.png)
+![alt tag](https://raw.github.com/paulhudson/docker-web/master/Docs/img/vbox-network-settings.png)
 
 ##### Install Docker
 rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
