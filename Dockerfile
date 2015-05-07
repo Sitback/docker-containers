@@ -18,9 +18,9 @@ RUN yum update -y
 #RUN rvm install 1.9.3
 #RUN rvm use 1.9.3 --default
 
-RUN yum install gcc gcc-c++ autoconf automake gd -y
+RUN yum install gcc gcc-c++ autoconf automake gd telnet -y
 
-RUN yum install pcre which htop nano tar git mod_ssl openssl httpd nginx php php-devel php-fpm monit mysql php-mysql php-mcrypt php-gd php-pear --enablerepo=remi,remi-php55 -y
+RUN yum install pcre which htop nano tar git mod_ssl openssl httpd nginx php php-devel curl curl-devel php-common php-curl php-soap php-fpm monit mysql php-mysql php-mcrypt php-gd php-pear --enablerepo=remi,remi-php55 -y
 
 RUN chkconfig httpd on
 
@@ -66,6 +66,7 @@ COPY vhost-mysite.com.conf /etc/httpd/conf.d/vhost-mysite.com.conf
 
 # Monit config
 COPY monit.conf /etc/monit/monit.conf
+RUN chmod 700 /etc/monit/monit.conf
 COPY monit-services.conf /etc/monit.d/monit-services.conf
 
 # Perusio PHP-FPM
@@ -82,6 +83,6 @@ EXPOSE 443
 EXPOSE 2812
 
 # default command
-CMD ["monit", "-d 10 -Ic /etc/monit.conf"]
+CMD monit -d 10 -Ic /etc/monit/monit.conf
 #CMD ["/usr/bin/monit", "-I"]
 
