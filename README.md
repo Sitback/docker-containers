@@ -1,19 +1,27 @@
 docker-web
 ==========
 
-##### Usage
+##### Host setup
 
 Before you start, add a host record on your Mac for the MySQL host:
 
 $ echo "$(ifconfig vboxnet0 | grep inet | awk '{ print $2 }') localbox" >> /etc/hosts
 
 
+##### Usage
+
+####### SB Wrapper
+
 The sb.sh is the start of a CLI wrapper for common tasks when running a web project in docker.
 
 Current functionality:
+
  - Run a prodject in a container:
+
  	-- cd /myproduct/dir
+
  	-- sb.sh -r (will run a container and mount your site doc-root)
+
  	-- project should be avalible at mysite.com
 
 
