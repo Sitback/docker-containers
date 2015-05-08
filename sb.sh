@@ -18,15 +18,9 @@ C_NAME=$1
 # Options
 ##
 helpflag='false'
-run='false'
-stop='false'
-execom=''
 
-while getopts 'rhse:' flag; do
+while getopts 'h' flag; do
   case "${flag}" in
-    r) run="true" ;;
-    s) stop="true" ;;
-    e) execom="" ;;
     h) helpflag='true' ;;
     *) error "Unexpected option ${flag}" ;;
   esac
@@ -37,10 +31,12 @@ if [ $helpflag == 'true' ]; then
   echo "SB Docker Tool"
   echo " "
   echo "options:"
-  echo "-h, --help                show this help"
-  echo "-r                        Run project in docker"
-  echo "-s                        Stop the project's docker container"
-  echo "-e [command]              execute a command in the project container"
+  echo "-h, --help                    show this help"
+  echo "sb [name] run                 run project in docker"
+  echo "sb [name] stop                stop the project's docker container"
+  echo "sb [name] restart             restart the project's docker container"
+  echo "sb [name] exec [command]      execute a command in the project container tty"
+  echo "-e [command]              "
 
   exit 0
 fi
