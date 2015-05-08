@@ -3,26 +3,43 @@ docker-web
 
 ##### Host setup
 
-Before you start, add a host record on your Mac for the MySQL host:
+Before you start:
+
+Add a host record on your Mac for the MySQL host:
 
 $ echo "$(ifconfig vboxnet0 | grep inet | awk '{ print $2 }') localbox" >> /etc/hosts
+
+Add alias for the sb.sh wrapper tools
+
+echo 'alias sb="`pwd`/sb.sh"' >> ~/.bash_profile
 
 
 ##### Usage
 
 ####### SB Wrapper
 
-The sb.sh is the start of a CLI wrapper for common tasks when running a web project in docker.
+The sb.sh is very simple CLI wrapper for common docker tasks. 
+
+It is not an orchastration tool, other projects do that. sb.sh should only be:
+
+- a 'time saver'
+- intutive set of limited commands
+- easy to use for non 'backend' or fullstack devs
+- optional... docker cli is good anyway right :-)
 
 Current functionality:
 
  - Run a prodject in a container:
 
- 	-- cd /myproduct/dir
+ 	$ cd my-product/doc-root
 
- 	-- sb.sh -r (will run a container and mount your site doc-root)
+ 	$ sb [name] start (will run a container and mount your site doc-root)
 
- 	-- project should be avalible at mysite.com
+ 	$ sb [name] stop
+
+ 	$ sb [name] restart (stops, kills an old container and start a new one)
+
+ 	$ sb [name] exec [command] (exec a commain interactively in the container)
 
 
 ##### Networking
@@ -31,7 +48,8 @@ You're vbox only needs the default vboxnet0 network and the setting should look 
 
 ![alt tag](https://raw.github.com/paulhudson/docker-web/master/Docs/img/vbox-network-settings.png)
 
-##### Install Docker
+
+##### Install Docker on adult versions of linux
 rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
 yum install docker-io
@@ -39,6 +57,12 @@ yum install docker-io
 service docker start
 
 chkconfig docker on
+
+
+##### Install Docker on Windows
+
+I think you're mad... if you want some love speak to @PierreJoye 
+
 
 ####Remove containers
 
@@ -49,6 +73,10 @@ docker rm $(docker ps -aq)
 *remove unused images*
 
 docker rmi $(docker images --filter dangling=true --quiet)
+
+
+### Advanced
+###### Rambling notes, wishfully hoping I might help future incarnations of me
 
 ####Remove images
 docker rmi ID  (you probalby want to keep base images like CentOS)
