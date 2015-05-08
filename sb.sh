@@ -59,9 +59,9 @@ start() {
     # Run image and mount current dir as doc root
      ID=$(docker run -d \
        --net=host \
-       -v `pwd`:/var/www/vhosts/mysite.com \
+       -v `pwd`:/var/www \
        --name="$C_NAME" \
-       -t docker/web) 
+       -t ubuntu/web) 
        
     if [[ -n $ID ]]; then
 
@@ -73,6 +73,8 @@ start() {
 
       docker exec -d $ID sh -c "echo '$IP localbox' >> /etc/hosts"
 
+    else 
+      echo "ERROR: Failed to start $C_NAME"
     fi
   fi
 
@@ -92,18 +94,19 @@ stop() {
 }
 
 execcommand() {
-  docker exec -d $C_NAME $execom
+  docker exec -it $C_NAME $3
 
   echo "Executed: $ $3 in $C_NAME"
 }
 
 exists() {
   
-  if ! [[ -n $(docker inspect $C_NAME) ]]; then
-    echo "ERROR: Docker project doesn't exist"
+  if ! [[ "/$C_NAME" == $(docker inspect --format="{{ .Name }}" $C_NAME) ]]; then
+    # Exists
     return 1
   fi
 
+  # Default, Not exits
   return 0
 }
 
