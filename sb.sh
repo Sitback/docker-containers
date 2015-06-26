@@ -57,7 +57,7 @@ start() {
        --net=host \
        -v `pwd`:/var/www \
        --name="$C_NAME" \
-       -t ubuntu/web) 
+       -t sitback/web) 
        
     if [[ -n $ID ]]; then
 
@@ -90,9 +90,10 @@ stop() {
 }
 
 execcommand() {
-  docker exec -it $C_NAME $3
 
-  echo "Executed: $ $3 in $C_NAME"
+  docker exec -it $C_NAME $1
+
+  echo "Executed: $1 in $C_NAME"
 }
 
 exists() {
@@ -131,7 +132,7 @@ fi
 # Exec in current project
 if [ $2 == 'exec' ]; then
 
-  execcommand
+  execcommand $3
   
 fi
 
