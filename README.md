@@ -1,17 +1,25 @@
 docker-web
 ==========
 
-##### Host setup
+##### Host Setup and Install
 
-Before you start:
+Clone this project, cd into the project dir and then:
 
-Add a host record on your Mac for the MySQL host:
+###### 1. Add a host record on your Mac for the MySQL host:
 
 $ echo "$(ifconfig vboxnet0 | grep inet | awk '{ print $2 }') localbox" >> /etc/hosts
 
-Add alias for the sb.sh wrapper tools
+###### 2. Add alias for the sb.sh wrapper tools
 
-echo 'alias sb="`pwd`/sb.sh"' >> ~/.bash_profile
+$ echo 'alias sb="`pwd`/sb.sh"' >> ~/.bash_profile
+
+###### 3. Build Docker Image
+
+$ docker build -t sitback/web .
+
+###### 4. Expose local MySQL Host
+
+Change your DB hosting in settings.php (or equvilant) from 127.0.0.1|localhost to localbox
 
 
 ##### Usage
