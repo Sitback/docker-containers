@@ -4,7 +4,7 @@ MAINTAINER Jonathan Rhodes <jonathan.rhodes@sitback.com.au>
 
 # update repositories
 RUN apt-get -y update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+#RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
 # Update /usr/sbin/policy-rc.d
 COPY ./root/policy-rc.d /usr/sbin/policy-rc.d
