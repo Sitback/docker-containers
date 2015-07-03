@@ -36,7 +36,6 @@ if [ $helpflag == 'true' ]; then
   echo "sb [name] stop                stop the project's docker container"
   echo "sb [name] restart             restart the project's docker container"
   echo "sb [name] exec [command]      execute a command in the project container tty"
-  echo "-e [command]              "
 
   exit 0
 fi
@@ -61,11 +60,9 @@ start() {
        
     if [[ -n $ID ]]; then
 
-      #echo 'container ID:'
       echo "$C_NAME running in container $ID"
 
       # Add correct localbox host record for MySQL
-      #IP=$(ifconfig vboxnet0 | grep inet | awk '{ print $2 }')
       IP=$(ifconfig $(VBoxManage showvminfo boot2docker-vm --machinereadable | grep hostonlyadapter | cut -d '"' -f 2) | grep inet | cut -d ' ' -f 2)
 
       docker exec -d $ID sh -c "echo '$IP localbox' >> /etc/hosts"
@@ -140,6 +137,3 @@ if [ $2 == 'exec' ]; then
   execcommand $3
   
 fi
-
-
-
