@@ -23,18 +23,6 @@ address=/.dev/127.0.0.1 \n\
 COPY ./root/etc/resolv.conf /etc/resolv.conf
 #RUN /etc/init.d/dnsmasq restart
 
-# Install xdebug
-RUN pecl install Xdebug
-
-# PHP
-RUN echo -e "[xdebug] \n \
-zend_extension=\"/usr/lib/php5/20121212/xdebug.so\" \n \
-xdebug.remote_enable = 1 \n \
-xdebug.remote_autostart = 0 \n \
-xdebug.remote_connect_back = 1 \n \
-xdebug.remote_port = 9000 \n \
-xdebug.max_nesting_level = 1000" > $(php --ini | grep 'Scan for additional .ini files in:' | awk '{ print $7 }')/xdebug.ini
-
 # Install drush
 RUN pear channel-discover pear.drush.org
 RUN pear install drush/drush
