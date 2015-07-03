@@ -48,7 +48,7 @@ start() {
 
   if exists ; then
 
-    echo "ERROR: $C_NAME already exits"
+    echo "ERROR: $C_NAME already exists"
     echo "       - try 'sb $C_NAME (restart|stop) instead"
 
   else
@@ -66,7 +66,7 @@ start() {
 
       # Add correct localbox host record for MySQL
       #IP=$(ifconfig vboxnet0 | grep inet | awk '{ print $2 }')
-      IP=$(ifconfig $(VBoxManage showvminfo boot2docker-vm --machinereadable | grep hostonlyadapter | cut -d '"' -f 2) | grep inet | cut -d ' ' -f 2`)
+      IP=$(ifconfig $(VBoxManage showvminfo boot2docker-vm --machinereadable | grep hostonlyadapter | cut -d '"' -f 2) | grep inet | cut -d ' ' -f 2)
 
       docker exec -d $ID sh -c "echo '$IP localbox' >> /etc/hosts"
 
