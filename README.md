@@ -7,7 +7,7 @@ Clone this project, cd into the project dir and then:
 
 ###### 1. Add a host record on your Mac for the MySQL host:
 
-$ echo "$(ifconfig vboxnet0 | grep inet | awk '{ print $2 }') localbox" >> /etc/hosts
+$ echo "$(ifconfig $(VBoxManage showvminfo boot2docker-vm --machinereadable | grep hostonlyadapter | cut -d '"' -f 2) | grep inet | cut -d ' ' -f 2) localbox" >> /etc/hosts
 
 ###### 2. Add alias for the sb.sh wrapper tools
 
@@ -19,7 +19,15 @@ $ docker build -t sitback/web .
 
 ###### 4. Expose local MySQL Host
 
-Change your DB hosting in settings.php (or equvilant) from 127.0.0.1|localhost to localbox
+Change your DB host in settings.php (or equvilant) from 127.0.0.1|localhost to localbox
+
+###### 4. MySQL Privilages
+
+Grant you mysql user access from the boot2docker VM IP
+
+
+![alt tag](https://raw.github.com/paulhudson/docker-web/master/Docs/img/mysql-add-host.png)
+
 
 
 ##### Usage
@@ -63,22 +71,12 @@ Man love goes to:
 - Sitback.com.au
 
 
-##### Install Docker on adult versions of linux
-rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
-yum install docker-io
+### Advanced
 
-service docker start
+###### Rambling notes, wishfully hoping I might help future incarnations of me
 
-chkconfig docker on
-
-
-##### Install Docker on Windows
-
-I think you're mad... if you want some love speak to @PierreJoye 
-
-
-####Remove containers
+#### Remove containers
 
 docker stop $(docker ps -q)
 
@@ -88,14 +86,10 @@ docker rm $(docker ps -aq)
 
 docker rmi $(docker images --filter dangling=true --quiet)
 
-
-### Advanced
-###### Rambling notes, wishfully hoping I might help future incarnations of me
-
-####Remove images
+#### Remove images
 docker rmi ID  (you probalby want to keep base images like CentOS)
 
-####Build
+#### Build
 docker build -t web .
 
 - '-t' = tag/title
@@ -106,9 +100,11 @@ docker build -t web .
 docker run -d -p 8080:80 docker/web
 
 #### Run in docker
+
 docker run -i -t docker/web /bin/bash
 
 #### Connect to Container (boot2docker)
+
 Determine boot2docker IP to point your domain to:
 
 $ boot2docker ip
@@ -117,6 +113,7 @@ You could do something like:
 echo "$(boot2docker ip) mysite.com" >> /etc/hosts
 
 #### Using Xdebug
+
 Port forward:
 VBoxManage controlvm boot2docker-vm natpf1 "xdebug,tcp,127.0.0.1,9000,,9000"
 
@@ -149,7 +146,6 @@ $ docker run -i --link mysql:mysql -p 8080:80 -v /Users/huders2000/Documents/sit
 #### @todo
 - variablize:
   - {{-DOMAIN-}} (openssl.conf)
-  - ServerAdmin, ServerName (httpd.conf)
 
 
 #### boot2docket stuff
