@@ -135,17 +135,10 @@ Pull and run the MySQL container mounting the volume fromt the mysql_data contai
 $ docker run --name mysql --volumes-from mysql_data -v /var/lib/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=goldcat99 -d -p 3306:3306 mysql:5.5
 
 
-Run web container, linking it to the MySQL container
-
-Run docker with:
-
-$ docker run -i --link mysql:mysql -p 8080:80 -v /Users/huders2000/Documents/sites/sitback/woolies/dev:/var/www/vhosts/mysite.com -t docker/web /bin/bash
-
-
-
 #### @todo
-- variablize:
-  - {{-DOMAIN-}} (openssl.conf)
+- HAProxy to support multiple container projects
+- Switch in sb.sh wrapper to choose PHP version
+- Possibly add coding 
 
 
 #### boot2docket stuff
