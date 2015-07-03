@@ -3,6 +3,7 @@
 DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor \
 openssh-server \
 apache2 \
+nano \
 php5 \
 php-pear \
 php5-dev \
