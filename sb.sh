@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o nounset
+
 ##
 # Comapability checks
 ##
@@ -9,41 +11,33 @@ if ! [ -x "$(type -P boot2docker)" ]; then
   exit 1
 fi
 
-##
-# Conatiner to target
-##
-C_NAME=$1
+# User-entered container name.
+C_NAME=${1:-}
+
+# Wrapper command to be executed.
+SB_CMD=${2:-}
+
+# `docker exec` command to be run.
+D_CMD=${3:-}
 
 ##
-# Options
+# Functions
 ##
-helpflag='false'
-
-while getopts 'h' flag; do
-  case "${flag}" in
-    h) helpflag='true' ;;
-    *) error "Unexpected option ${flag}" ;;
-  esac
-done
-
-if [ $helpflag == 'true' ] || [ $# == 0 ]; then
+help() {
   echo " "
   echo "SB Docker Tool"
   echo " "
   echo "options:"
   echo "-h, --help                    show this help"
-  echo "sb [name] run                 run project in docker"
+  echo "sb [name] start               run project in docker"
   echo "sb [name] stop                stop the project's docker container"
   echo "sb [name] restart             restart the project's docker container"
   echo "sb [name] exec [command]      execute a command in the project container tty"
   echo " "
 
   exit 0
-fi
+}
 
-##
-# Functions
-##
 start() {
 
   if exists ; then
@@ -80,16 +74,12 @@ start() {
 }
 
 stop() {
-
   if exists ; then
-
     docker kill $C_NAME
     docker rm $C_NAME
 
-    echo Stopped: $C_NAME
-
+    echo "Stopped: $C_NAME"
   fi
-
 }
 
 execcommand() {
@@ -104,27 +94,44 @@ exists() {
     return 1
   fi
 
-  # Default, Not exits
+  # Default, does not exist
   return 0
 }
 
-# Run project in docker
-#if [ $run == 'true' ]; then
-if [ "$2" == 'start' ]; then
+##
+# Options
+##
+helpflag='false'
+
+while getopts 'h' flag; do
+  case "${flag}" in
+    h) helpflag='true' ;;
+    *) error "Unexpected option ${flag}" ;;
+  esac
+done
+
+if [ $helpflag == 'true' ] || [ $# -lt 2 ]; then
+  help
+fi
+
+case "$SB_CMD" in
+"start")
+  # Run project in docker.
   start
-fi
-
-# Stop current project
-if [ "$2" == 'stop' ]; then
- stop
-fi
-
-if [ "$2" == 'restart' ]; then
+  ;;
+"stop")
+  # Stop current project.
+  stop
+  ;;
+"restart")
   stop
   start
-fi
-
-# Exec in current project
-if [ "$2" == 'exec' ]; then
-  execcommand $3
-fi
+  ;;
+"exec")
+  # Exec in current project.
+  execcommand $D_CMD
+  ;;
+*)
+  help
+  ;;
+esac
