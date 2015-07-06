@@ -27,6 +27,14 @@ COPY ./root/etc/resolv.conf /etc/resolv.conf
 RUN pear channel-discover pear.drush.org
 RUN pear install drush/drush
 
+# Setup Xdebug
+RUN echo "xdebug.profiler_enable = 0 \n\
+xdebug.remote_enable = 1 \n\
+xdebug.remote_autostart = 1 \n\
+xdebug.remote_connect_back = 1 \n\
+xdebug.remote_port = 9000 \n\
+xdebug.max_nesting_level = 1000" >> /etc/php5/mods-available/xdebug.ini
+
 # middleware settings
 ADD ./root/etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
