@@ -20,6 +20,9 @@ SB_CMD=${2:-}
 # `docker exec` command to be run.
 D_CMD=${3:-}
 
+# Name for the nginx proxy container.
+CONT_NAME="SB_proxy"
+
 ##
 # Functions
 ##
@@ -38,17 +41,47 @@ help() {
   exit 0
 }
 
-start() {
+# Make sure that the nginx proxy container is always running.
+ensure_proxy() {
+  if exists $CONT_NAME; then
+    echo "Proxy already running."
 
-  if exists ; then
+    # Start in case it's stopped.
+    docker start $CONT_NAME
+  else
+    # Stop & cleanup any existing.
+    stop $CONT_NAME
+
+    ID=$(docker run -d \
+      --name="$CONT_NAME" \
+      -p 80:80 \
+      -p 443:443 \
+      -p 9000:9000 \
+      -v /var/run/docker.sock:/tmp/docker.sock:ro \
+      jwilder/nginx-proxy)
+
+    if [[ -n $ID ]]; then
+      echo "Started proxy container."
+    else
+      echo "ERROR: Failed to start proxy container."
+      exit 1
+    fi
+  fi
+}
+
+start() {
+  if exists $1 ; then
 
     echo "ERROR: $C_NAME already exists"
     echo "       - try 'sb $C_NAME (restart|stop) instead"
 
   else
+    # Run proxy if needed.
+    ensure_proxy
+
     # Run image and mount current dir as doc root
      ID=$(docker run -d \
-       --net=host \
+       -e VIRTUAL_HOST="$C_NAME" \
        -v `pwd`:/var/www \
        --name="$C_NAME" \
        -t sitback/web)
@@ -70,26 +103,25 @@ start() {
       echo "ERROR: Failed to start $C_NAME"
     fi
   fi
-
 }
 
 stop() {
-  if exists ; then
-    docker kill $C_NAME
-    docker rm $C_NAME
+  if exists $1 ; then
+    docker kill $1
+    docker rm $1
 
-    echo "Stopped: $C_NAME"
+    echo "Stopped: $1"
   fi
 }
 
 execcommand() {
-  docker exec -it $C_NAME $1
+  docker exec -it $2 $2
 
-  echo "Executed: $1 in $C_NAME"
+  echo "Executed: $2 in $2"
 }
 
 exists() {
-  if ! [[ "/$C_NAME" == $(docker inspect --format="{{ .Name }}" $C_NAME) ]]; then
+  if ! [[ "/$1" == $(docker inspect --format="{{ .Name }}" $1) ]]; then
     # Exists
     return 1
   fi
@@ -114,22 +146,25 @@ if [ $helpflag == 'true' ] || [ $# -lt 2 ]; then
   help
 fi
 
+##
+# Main execution.
+##
 case "$SB_CMD" in
-"start")
+'start')
   # Run project in docker.
   start
   ;;
-"stop")
+'stop')
   # Stop current project.
-  stop
+  stop $C_NAME
   ;;
-"restart")
-  stop
-  start
+'restart')
+  stop $C_NAME
+  start $C_NAME
   ;;
-"exec")
+'exec')
   # Exec in current project.
-  execcommand $D_CMD
+  execcommand $C_NAME $D_CMD
   ;;
 *)
   help
