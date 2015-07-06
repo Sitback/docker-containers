@@ -26,7 +26,7 @@ while getopts 'h' flag; do
   esac
 done
 
-if [ $helpflag == 'true' ]; then
+if [ $helpflag == 'true' ] || [ $# == 0 ]; then
   echo " "
   echo "SB Docker Tool"
   echo " "
@@ -36,6 +36,7 @@ if [ $helpflag == 'true' ]; then
   echo "sb [name] stop                stop the project's docker container"
   echo "sb [name] restart             restart the project's docker container"
   echo "sb [name] exec [command]      execute a command in the project container tty"
+  echo " "
 
   exit 0
 fi
