@@ -1,6 +1,6 @@
 # FROM gig745/web:v6
 FROM ubuntu:14.04
-MAINTAINER Jonathan Rhodes <jonathan.rhodes@sitback.com.au>
+MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # update repositories
 RUN apt-get -y update
