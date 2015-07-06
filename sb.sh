@@ -56,8 +56,8 @@ start() {
        --net=host \
        -v `pwd`:/var/www \
        --name="$C_NAME" \
-       -t sitback/web) 
-       
+       -t sitback/web)
+
     if [[ -n $ID ]]; then
 
       echo "$C_NAME running in container $ID"
@@ -71,7 +71,7 @@ start() {
       docker exec -d $ID sh -c "sed -i -r s/---HOSTNAME---/$C_NAME/ /etc/apache2/sites-enabled/000-default.conf"
       docker exec -d $ID sh -c "sudo apachectl restart"
 
-    else 
+    else
       echo "ERROR: Failed to start $C_NAME"
     fi
   fi
@@ -92,14 +92,12 @@ stop() {
 }
 
 execcommand() {
-
   docker exec -it $C_NAME $1
 
   echo "Executed: $1 in $C_NAME"
 }
 
 exists() {
-  
   if ! [[ "/$C_NAME" == $(docker inspect --format="{{ .Name }}" $C_NAME) ]]; then
     # Exists
     return 1
@@ -111,29 +109,21 @@ exists() {
 
 # Run project in docker
 #if [ $run == 'true' ]; then
-if [ $2 == 'start' ]; then
-
+if [ "$2" == 'start' ]; then
   start
-  
 fi
 
 # Stop current project
-if [ $2 == 'stop' ]; then
-
+if [ "$2" == 'stop' ]; then
  stop
-  
 fi
 
-if [ $2 == 'restart' ]; then
-
+if [ "$2" == 'restart' ]; then
   stop
   start
-  
 fi
 
 # Exec in current project
-if [ $2 == 'exec' ]; then
-
+if [ "$2" == 'exec' ]; then
   execcommand $3
-  
 fi
