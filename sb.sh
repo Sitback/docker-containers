@@ -70,7 +70,7 @@ ensure_proxy() {
 }
 
 start() {
-  if exists $1 ; then
+  if exists ${1:-} ; then
 
     echo "ERROR: $C_NAME already exists"
     echo "       - try 'sb $C_NAME (restart|stop) instead"
@@ -84,7 +84,7 @@ start() {
        -e VIRTUAL_HOST="$C_NAME" \
        -v `pwd`:/var/www \
        --name="$C_NAME" \
-       -t sitback/web)
+       -t chinthakagodawita/soe:php5.5)
 
     if [[ -n $ID ]]; then
 
@@ -152,7 +152,7 @@ fi
 case "$SB_CMD" in
 'start')
   # Run project in docker.
-  start
+  start $C_NAME
   ;;
 'stop')
   # Stop current project.
