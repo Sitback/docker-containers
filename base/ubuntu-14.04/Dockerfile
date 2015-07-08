@@ -11,6 +11,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
 ADD ./conf/etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# APT management tools.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-software-properties
+
 # OpenSSH.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server
 
