@@ -3,18 +3,19 @@
 FROM chinthakagodawita/base:ubuntu-14.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
-# Update /usr/sbin/policy-rc.d
-# COPY ./root/policy-rc.d /usr/sbin/policy-rc.d
-
 # Install & configure Apache.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 COPY ./conf/etc/apache2/httpd-vhosts.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod vhost_alias
 RUN a2enmod rewrite
 RUN a2enmod ssl
+RUN a2enmod headers
 
 # PHP.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5 php5-gd php5-dev php5-curl php5-mysql php5-xdebug php-soap php-pear
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5 php5-gd php5-dev php5-curl php5-mcrypt php5-mysql php5-xdebug php-soap php-pear
+
+# Enable PHP modules.
+RUN php5enmod opcache
 
 # Install drush.
 RUN pear channel-discover pear.drush.org
