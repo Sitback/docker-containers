@@ -39,7 +39,7 @@ xdebug.remote_port = 9000 \n\
 xdebug.max_nesting_level = 1000" >> /etc/php5/mods-available/xdebug.ini
 
 # Startup settings.
-ADD ./conf/etc/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD ./conf/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN service apache2 restart
 
 # SSH, HTTP, HTTPS & Xdebug.
