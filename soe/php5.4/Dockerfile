@@ -1,35 +1,53 @@
-# Standard Operating Environment running off Ubuntu 14.04 & PHP 5.5.
+# Standard Operating Environment running off Ubuntu 12.04 & PHP 5.4.
 
 FROM chinthakagodawita/base:ubuntu-12.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
-# Install & configure Apache.
+# Install all packages.
+## Apache
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
-COPY ./conf/etc/apache2/httpd-vhosts.conf /etc/apache2/sites-available/000-default.conf
+
+## PHP 5.4 via PPA.
+RUN add-apt-repository ppa:ondrej/php5-oldstable
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
+  php5 \
+  php5-gd \
+  php5-dev \
+  php5-curl \
+  php5-mcrypt \
+  php5-mysql \
+  php-apc \
+  php-soap \
+  php-pear
+
+# Configure Apache.
+COPY ./conf/apache2/httpd-vhosts.conf /etc/apache2/sites-available/default
 RUN a2enmod vhost_alias
 RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
-# PHP 5.4 via PPA.
-RUN add-apt-repository ppa:ondrej/php5-oldstable
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5 php5-gd php5-dev php5-curl php5-mcrypt php5-mysql php5-xdebug php-apc php-soap php-pear
+# Install Xdebug via PECL to get around the performance issues that are in the
+# PPA version.
+RUN pecl install xdebug
 
 # Install drush.
 RUN pear channel-discover pear.drush.org
 RUN pear install drush/drush
 
 # Setup Xdebug
-RUN echo "xdebug.profiler_enable = 0 \n\
+RUN echo "zend_extension=/usr/lib/php5/20100525/xdebug.so \n\
+xdebug.profiler_enable = 0 \n\
 xdebug.remote_enable = 1 \n\
 xdebug.remote_autostart = 1 \n\
 xdebug.remote_connect_back = 1 \n\
 xdebug.remote_port = 9000 \n\
 xdebug.max_nesting_level = 1000" >> /etc/php5/mods-available/xdebug.ini
+RUN php5enmod xdebug
 
 # Startup settings.
-ADD ./conf/etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD ./conf/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN service apache2 restart
 
 # SSH, HTTP, HTTPS & Xdebug.
