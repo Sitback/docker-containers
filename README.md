@@ -26,7 +26,7 @@ Change your DB host in settings.php (or equvilant) from 127.0.0.1|localhost to l
 Grant you mysql user access from the boot2docker VM IP
 
 
-![alt tag](https://raw.github.com/paulhudson/docker-web/master/Docs/img/mysql-add-host.png)
+![alt tag](https://raw.github.com/paulhudson/docker-web/master/_docs/img/mysql-add-host.png)
 
 
 
@@ -34,7 +34,7 @@ Grant you mysql user access from the boot2docker VM IP
 
 ####### SB Wrapper
 
-The sb.sh is very simple CLI wrapper for common docker tasks. 
+The sb.sh isr very simple CLI wrapper for common docker tasks.
 
 It is not an orchastration tool, other projects do that. sb.sh should only be:
 
@@ -62,7 +62,7 @@ Current functionality:
 
 You're vbox only needs the default vboxnet0 network and the setting should look like this:
 
-![alt tag](https://raw.github.com/paulhudson/docker-web/master/Docs/img/vbox-network-settings.png)
+![alt tag](https://raw.github.com/paulhudson/docker-web/master/_docs/img/vbox-network-settings.png)
 
 ##### Credits
 

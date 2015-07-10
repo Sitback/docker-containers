@@ -7,9 +7,8 @@ MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 RUN apt-get -y update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 
-# Supervisord.
+# Supervisord (should be configured in any containers that inherit this base).
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
-ADD ./conf/etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # APT management tools.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-software-properties
@@ -22,9 +21,5 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano telnet
 
 # *.dev certificates
 RUN mkdir /root/certs
-COPY ./conf/certs/dev-self-signed-ssl.crt /root/certs/dev-self-signed-ssl.crt
-COPY ./conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
-
-EXPOSE 22
-
-CMD ["/usr/bin/supervisord"]
+COPY ../_conf/certs/dev-self-signed-ssl.crt /root/certs/dev-self-signed-ssl.crt
+COPY ../_conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
