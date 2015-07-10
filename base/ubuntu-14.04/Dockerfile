@@ -21,5 +21,5 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano telnet
 
 # *.dev certificates
 RUN mkdir /root/certs
-COPY ../_conf/certs/dev-self-signed-ssl.crt /root/certs/dev-self-signed-ssl.crt
-COPY ../_conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
+COPY ./conf/certs/dev-self-signed-ssl.crt /root/certs/dev-self-signed-ssl.crt
+COPY ./conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
