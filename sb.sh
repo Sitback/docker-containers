@@ -115,9 +115,9 @@ stop() {
 }
 
 execcommand() {
-  docker exec -it $2 $2
+  docker exec -it $1 $2
 
-  echo "Executed: $2 in $2"
+  echo "Executed: $2 in $1"
 }
 
 exists() {
