@@ -13,6 +13,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
 # APT management tools.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-software-properties
 
+# Essential build tools, required for some software.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
+  build-essential \
+  autoconf \
+  automake
+
 # OpenSSH.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server
 
