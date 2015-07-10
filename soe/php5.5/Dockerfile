@@ -12,7 +12,7 @@ RUN a2enmod ssl
 RUN a2enmod headers
 
 # PHP.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5 \
   php5-gd \
   php5-dev \
