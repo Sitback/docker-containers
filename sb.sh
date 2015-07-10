@@ -96,7 +96,7 @@ start() {
       docker exec -d $ID sh -c "echo '$IP localbox' >> /etc/hosts"
 
       # Add site hostname to apache and hosts file
-      docker exec -d $ID sh -c "sed -i -r s/---HOSTNAME---/$C_NAME/ /etc/apache2/sites-enabled/000-default.conf"
+      docker exec -d $ID sh -c "sed -i -r s/---HOSTNAME---/$C_NAME/ /etc/apache2/sites-enabled/*default*"
       docker exec -d $ID sh -c "sudo apachectl restart"
 
     else
