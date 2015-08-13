@@ -5,6 +5,7 @@ MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # Install all packages.
 ## Apache
+RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 
 ## PHP 5.4 via PPA.
