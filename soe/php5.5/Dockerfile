@@ -3,7 +3,11 @@
 FROM chinthakagodawita/base:ubuntu-14.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
-# Install & configure Apache.
+# Install all packages.
+## Socat
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat
+
+## Install & configure Apache.
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 COPY ./conf/apache2/httpd-vhosts.conf /etc/apache2/sites-available/000-default.conf
@@ -12,7 +16,7 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
-# PHP.
+## PHP.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5 \
   php5-gd \
@@ -40,6 +44,7 @@ xdebug.remote_port = 9000 \n\
 xdebug.max_nesting_level = 1000" >> /etc/php5/mods-available/xdebug.ini
 
 # Startup settings.
+RUN mkdir -p /var/run/mysqld
 ADD ./conf/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN service apache2 restart
 

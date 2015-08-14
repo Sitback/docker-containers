@@ -4,6 +4,9 @@ FROM chinthakagodawita/base:ubuntu-12.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # Install all packages.
+## Socat
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat
+
 ## Apache
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
@@ -41,6 +44,7 @@ xdebug.remote_port = 9000 \n\
 xdebug.max_nesting_level = 1000" >> /etc/php5/conf.d/xdebug.ini
 
 # Startup settings.
+RUN mkdir -p /var/run/mysqld
 ADD ./conf/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN service apache2 restart
 
