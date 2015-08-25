@@ -4,11 +4,12 @@ FROM chinthakagodawita/base:ubuntu-14.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # Install all packages.
+RUN apt-get update
+
 ## Socat
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat
 
 ## Install & configure Apache.
-RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 COPY ./conf/apache2/httpd-vhosts.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod vhost_alias
