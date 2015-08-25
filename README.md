@@ -2,7 +2,7 @@
 
 This is a set of Dockerfiles used to build containers base/SOE containers on [my container registry](https://registry.hub.docker.com/u/chinthakagodawita/).
 
-**Don't use this project directly, see [chinthakagodawita/docker-helpers](https://github.com/chinthakagodawita/docker-helpers) instead.**
+**Don't use this project directly, see [chinthakagodawita/docker-hat](https://github.com/chinthakagodawita/docker-hat) instead.**
 
 ## Current containers
 
@@ -18,7 +18,7 @@ This is a set of Dockerfiles used to build containers base/SOE containers on [my
 * Docker (tested on 1.7+)
 
 ## Build instructions
-_Update this once `dh build` (chinthakagodawita/docker-helpers#3) has been implemented._
+_Update this once `dh build` (chinthakagodawita/docker-hat#3) has been implemented._
 
 Make sure your Docker host is running.
 
