@@ -29,6 +29,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 ## MySQL client.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client
 
+# Configure socat.
+ADD ./conf/socat/start.sh /root/socat-start.sh
+RUN chmod +x /root/socat-start.sh
+
 # Configure Apache.
 COPY ./conf/apache2/httpd-vhosts.conf /etc/apache2/sites-available/default
 RUN a2enmod vhost_alias
@@ -59,7 +63,6 @@ RUN composer global require drush/drush:7.*
 RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/
 
 # Startup settings.
-RUN mkdir -p /var/run/mysqld
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
 
 # SSH, HTTP, HTTPS & Xdebug.
