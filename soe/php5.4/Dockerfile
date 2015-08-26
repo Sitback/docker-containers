@@ -14,6 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 
 ## PHP 5.4 via PPA.
 RUN add-apt-repository ppa:ondrej/php5-oldstable
+RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5 \
   php5-gd \
