@@ -38,3 +38,6 @@ RUN easy_install supervisor-stdout
 RUN mkdir /root/certs
 COPY ./conf/certs/dev-self-signed-ssl.crt /root/certs/dev-self-signed-ssl.crt
 COPY ./conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
+
+# Startup settings.
+ADD ./conf/supervisor/base.conf /etc/supervisor/conf.d/base.conf

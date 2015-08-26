@@ -50,7 +50,7 @@ RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/
 
 # Startup settings.
 RUN mkdir -p /var/run/mysqld
-ADD ./conf/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
 
 # SSH, HTTP, HTTPS & Xdebug.
 EXPOSE 22 80 443 9000
