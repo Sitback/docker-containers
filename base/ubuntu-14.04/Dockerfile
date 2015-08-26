@@ -13,6 +13,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
 # APT management tools.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-software-properties
 
+# Python easy_install.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-setuptools
+
 # Essential build tools, required for some software.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   build-essential \
@@ -22,8 +25,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 # OpenSSH.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server
 
+# Curl.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install curl
+
 # Nano & telnet (just in case).
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano telnet
+
+# stdout helper for supervisord.
+RUN easy_install supervisor-stdout
 
 # *.dev certificates
 RUN mkdir /root/certs
