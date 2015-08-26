@@ -44,10 +44,12 @@ xdebug.remote_host = hostbox \n\
 xdebug.remote_port = 9000 \n\
 xdebug.max_nesting_level = 1000" >> /etc/php5/conf.d/xdebug.ini
 
+# Install Composer.
+RUN curl -sS https://getcomposer.org/installer | php
+
 # Startup settings.
 RUN mkdir -p /var/run/mysqld
 ADD ./conf/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN service apache2 restart
 
 # SSH, HTTP, HTTPS & Xdebug.
 EXPOSE 22 80 443 9000
