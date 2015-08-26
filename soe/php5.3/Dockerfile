@@ -31,10 +31,6 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
-# Install drush.
-RUN pear channel-discover pear.drush.org
-RUN pear install drush/drush
-
 # Setup Xdebug
 RUN echo "xdebug.profiler_enable = 0 \n\
 xdebug.remote_enable = 1 \n\
@@ -45,7 +41,10 @@ xdebug.remote_port = 9000 \n\
 xdebug.max_nesting_level = 1000" >> /etc/php5/conf.d/xdebug.ini
 
 # Install Composer.
-RUN curl -sS https://getcomposer.org/installer | php
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install drush.
+RUN composer global require drush/drush:7.*
 
 # Startup settings.
 RUN mkdir -p /var/run/mysqld
