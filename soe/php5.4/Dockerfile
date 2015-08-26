@@ -45,7 +45,8 @@ RUN echo "zend_extension=/usr/lib/php5/20100525/xdebug.so \n\
 xdebug.profiler_enable = 0 \n\
 xdebug.remote_enable = 1 \n\
 xdebug.remote_autostart = 1 \n\
-xdebug.remote_connect_back = 1 \n\
+xdebug.remote_connect_back = 0 \n\
+xdebug.remote_host = hostbox \n\
 xdebug.remote_port = 9000 \n\
 xdebug.max_nesting_level = 1000" >> /etc/php5/mods-available/xdebug.ini
 RUN php5enmod xdebug
