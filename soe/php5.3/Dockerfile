@@ -4,11 +4,12 @@ FROM chinthakagodawita/base:ubuntu-12.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # Install all packages.
+RUN apt-get update
+
 ## Socat
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat
 
 ## Apache
-RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 
 ## PHP 5.3 via default apt.
@@ -45,6 +46,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install drush.
 RUN composer global require drush/drush:7.*
+RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/
 
 # Startup settings.
 RUN mkdir -p /var/run/mysqld

@@ -4,16 +4,16 @@ FROM chinthakagodawita/base:ubuntu-12.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # Install all packages.
+RUN apt-get update
+
 ## Socat
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat
 
 ## Apache
-RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 
 ## PHP 5.4 via PPA.
 RUN add-apt-repository ppa:ondrej/php5-oldstable
-RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5 \
   php5-gd \
@@ -24,6 +24,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php-apc \
   php-soap \
   php-pear
+
+## MySQL client.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client
 
 # Configure Apache.
 COPY ./conf/apache2/httpd-vhosts.conf /etc/apache2/sites-available/default
@@ -52,6 +55,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install drush.
 RUN composer global require drush/drush:7.*
+RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/
 
 # Startup settings.
 RUN mkdir -p /var/run/mysqld
