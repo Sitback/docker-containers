@@ -1,6 +1,4 @@
 machine:
-  timezone:
-    Australia/Sydney
   node:
     version: 0.12.0
   services:
