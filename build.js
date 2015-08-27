@@ -7,7 +7,6 @@ var
   containers,
   childProcess;
 
-fs = require('fs');
 childProcess = require('child_process');
 
 containers = require('./manifest.json');
