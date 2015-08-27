@@ -13,6 +13,8 @@ before_install:
   - node _scripts/build.js
 
 script:
+  - docker run -d -p 80:80 chinthakagodawita/soe:php5.3
+  - docker run -d -p 80:80 chinthakagodawita/soe:php5.4
   - docker run -d -p 80:80 chinthakagodawita/soe:php5.5
 
 after_success:
