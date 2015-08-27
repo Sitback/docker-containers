@@ -1,4 +1,4 @@
-# Docker Web Containers
+# docker-containers
 
 This is a set of Dockerfiles used to build containers base/SOE containers on [my container registry](https://registry.hub.docker.com/u/chinthakagodawita/).
 
@@ -9,7 +9,7 @@ This is a set of Dockerfiles used to build containers base/SOE containers on [my
 * [base](https://hub.docker.com/r/chinthakagodawita/base/)
     * Ubuntu 12.04
     * Ubuntu 14.04
-* soe
+* [soe](https://hub.docker.com/r/chinthakagodawita/soe/)
     * PHP 5.3 (uses base:ubuntu-12.04)
     * PHP 5.4 (uses base:ubuntu-12.04)
     * PHP 5.5 (uses base:ubuntu-14.04)
