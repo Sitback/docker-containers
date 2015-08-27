@@ -1,6 +1,5 @@
 {
   "base/ubuntu-12.04": {
-    "dockerfile": "Dockerfile",
     "user": "chinthakagodawita",
     "repository": "base",
     "tag": "ubuntu-12.04"
