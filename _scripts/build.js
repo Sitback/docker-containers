@@ -9,7 +9,7 @@ var
 
 childProcess = require('child_process');
 
-containers = require('./manifest.json');
+containers = require('../manifest.json');
 
 for (contPath in containers) {
   container = containers[contPath];
