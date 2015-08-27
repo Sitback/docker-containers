@@ -20,10 +20,4 @@ for (contPath in containers) {
   childProcess.execSync('docker build -t ' + repo + ' ' + contPath, {
     stdio: 'inherit'
   });
-
-  // Push.
-  console.log('Running: docker push ' + repo);
-  childProcess.execSync('docker push ' + repo, {
-    stdio: 'inherit'
-  });
 }
