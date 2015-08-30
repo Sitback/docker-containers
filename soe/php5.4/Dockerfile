@@ -40,6 +40,9 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
+# Configure PHP.
+ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
+
 # Install Xdebug via PECL to get around the performance issues that are in the
 # PPA version.
 RUN pecl install xdebug
