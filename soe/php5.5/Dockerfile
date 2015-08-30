@@ -38,6 +38,9 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
+# Configure PHP.
+ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
+
 # Enable PHP modules.
 RUN php5enmod opcache
 

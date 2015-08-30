@@ -1,0 +1,15 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - "0.12"
+
+services:
+  - docker
+
+before_install:
+  - node _scripts/build.js
+
+script:
+  - docker run -d -p 80:80 chinthakagodawita/soe:php5.5
