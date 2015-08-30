@@ -15,5 +15,7 @@ script:
   - docker run -d -p 80:80 chinthakagodawita/soe:php5.5
 
 after_success:
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USER" -p="$DOCKER_PASS"
-  - node _scripts/publish.js
+  if ([ "$TRAVIS_BRANCH" == "master" ]); then
+    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USER" -p="$DOCKER_PASS"
+    node _scripts/publish.js
+  fi
