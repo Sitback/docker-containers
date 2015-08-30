@@ -9,11 +9,7 @@ services:
   - docker
 
 before_install:
-  - bash _scripts/login.sh
   - node _scripts/build.js
 
 script:
   - docker run -d -p 80:80 chinthakagodawita/soe:php5.5
-
-after_success:
-  - node _scripts/publish.js
