@@ -4,7 +4,7 @@ language: ruby
 
 cache:
   directories:
-  - $HOME/docker
+  - docker
 
 services:
   - docker
