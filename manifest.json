@@ -1,47 +1,7 @@
 {
-  "base/ubuntu-12.04": {
-    "user": "chinthakagodawita",
-    "repository": "base",
-    "tag": "ubuntu-12.04"
-  },
-  "base/ubuntu-14.04": {
-    "user": "chinthakagodawita",
-    "repository": "base",
-    "tag": "ubuntu-14.04"
-  },
-  "base/ubuntu-14.04": {
-    "user": "chinthakagodawita",
-    "repository": "base",
-    "tag": "latest"
-  },
-  "soe/php5.3": {
-    "user": "chinthakagodawita",
-    "repository": "soe",
-    "tag": "php5.3"
-  },
-  "soe/php5.4": {
-    "user": "chinthakagodawita",
-    "repository": "soe",
-    "tag": "php5.4"
-  },
-  "soe/php5.5": {
-    "user": "chinthakagodawita",
-    "repository": "soe",
-    "tag": "php5.5"
-  },
-  "soe/php5.5": {
-    "user": "chinthakagodawita",
-    "repository": "soe",
-    "tag": "latest"
-  },
   "proxy/nginx": {
     "user": "chinthakagodawita",
     "repository": "proxy",
     "tag": "nginx"
-  },
-  "proxy/nginx-node": {
-    "user": "chinthakagodawita",
-    "repository": "proxy",
-    "tag": "nginx-node"
   }
 }
