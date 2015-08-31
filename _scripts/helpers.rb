@@ -3,7 +3,9 @@ require 'json'
 def system! (cmd)
   green_code = 32
   puts "\e[#{green_code}m#{cmd}\e[0m"
-  return system(cmd)
+  system(cmd)
+  # Non-zero exit on failure.
+  exit $?.exitstatus unless $?.success?
 end
 
 def load_manifest
@@ -12,6 +14,6 @@ def load_manifest
   return JSON.parse(manifest)
 end
 
-def get_image_name (container)
-  return "#{container['user']}/#{container['repository']}:#{container['tag']}"
+def get_image_name (name, container)
+  return "#{container['user']}/#{name}"
 end
