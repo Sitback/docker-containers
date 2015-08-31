@@ -5,10 +5,10 @@ email = ENV['DOCKER_EMAIL']
 user = ENV['DOCKER_USER']
 pass = ENV['DOCKER_PASS']
 
-login_cmd = "docker login -e=\"#{email}\" -u=\"#{user}\" -p=\"#{pass}\""
+system "docker login -e=\"#{email}\" -u=\"#{user}\" -p=\"#{pass}\""
 
 manifest = load_manifest
 load_manifest.each do |path, container|
   image = get_image_name container
-  break unless system "#{login_cmd} && docker push #{image}"
+  break unless system! "docker login && docker push #{image}"
 end
