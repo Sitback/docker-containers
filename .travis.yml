@@ -1,21 +1,17 @@
 sudo: required
 
-language: node_js
+language: ruby
 
-node_js:
-  - "0.12"
+rvm:
+  - 2.1.0
 
 services:
   - docker
 
 before_install:
-  - node _scripts/build.js
-
-script:
-  - docker run -d -p 80:80 chinthakagodawita/soe:php5.5
+  - ruby _scripts/build.rb
 
 after_success:
   if ([ "$TRAVIS_BRANCH" == "master" ]); then
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USER" -p="$DOCKER_PASS"
-    node _scripts/publish.js
+    ruby _scripts/publish.rb
   fi
