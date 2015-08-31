@@ -16,5 +16,4 @@ script:
   - echo "Container tests go here."
 
 after_success:
-  - ruby _scripts/publish.rb
-  # if ([ "$TRAVIS_BRANCH" == "master" ]); then ruby _scripts/publish.rb; fi
+  if ([ "$TRAVIS_BRANCH" == "master" ]); then ruby _scripts/publish.rb; fi
