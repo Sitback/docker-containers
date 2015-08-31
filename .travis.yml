@@ -1,9 +1,12 @@
-sudo: false
+sudo: required
 
 language: ruby
 
 cache:
   directories:
+  - docker
+
+services:
   - docker
 
 before_install:
