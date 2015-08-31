@@ -33,5 +33,15 @@
     "user": "chinthakagodawita",
     "repository": "soe",
     "tag": "latest"
+  },
+  "proxy/nginx": {
+    "user": "chinthakagodawita",
+    "repository": "proxy",
+    "tag": "nginx"
+  },
+  "proxy/nginx-node": {
+    "user": "chinthakagodawita",
+    "repository": "proxy",
+    "tag": "nginx-node"
   }
 }
