@@ -11,6 +11,9 @@ services:
 before_install:
   - ruby _scripts/build.rb
 
+script:
+  - echo "Container tests go here."
+
 after_success:
   if ([ "$TRAVIS_BRANCH" == "master" ]); then
     ruby _scripts/publish.rb
