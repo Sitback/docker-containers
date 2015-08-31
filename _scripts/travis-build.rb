@@ -14,7 +14,7 @@ load_manifest.each do |name, container|
   # system! "docker load -i #{cache_file}" if File.exist?(cache_file)
 
   # Pull existing from Docker Hub, ignoring errors.
-  system! "docker pulls #{image}", true
+  system! "docker pull #{image}", true
 
   system! "docker build -t #{image} #{container['path']}"
 
