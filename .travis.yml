@@ -8,7 +8,7 @@ rvm:
 services:
   - docker
 
-before_install:
+script:
   - ruby _scripts/build.rb
 
 after_success:
