@@ -2,17 +2,18 @@ sudo: required
 
 language: ruby
 
-rvm:
-  - 2.1.7
+cache:
+  directories:
+  - docker
 
 services:
   - docker
 
 before_install:
-  - ruby _scripts/build.rb
+  - ruby _scripts/travis-build.rb
 
 script:
   - echo "Container tests go here."
 
-# after_success:
-  # if ([ "$TRAVIS_BRANCH" == "master" ]); then ruby _scripts/publish.rb; fi
+after_success:
+  if ([ "$TRAVIS_BRANCH" == "master" ]); then ruby _scripts/publish.rb; fi
