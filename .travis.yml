@@ -2,11 +2,15 @@ sudo: required
 
 language: ruby
 
+cache:
+  directories:
+  - $HOME/docker
+
 services:
   - docker
 
 before_install:
-  - ruby _scripts/build.rb
+  - ruby _scripts/travis-build.rb
 
 script:
   - echo "Container tests go here."

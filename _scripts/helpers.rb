@@ -17,3 +17,10 @@ end
 def get_image_name (name, container)
   return "#{container['user']}/#{name}"
 end
+
+# Inspired by http://stackoverflow.com/a/1939351.
+def sanitise_filename (filename)
+  # Get only the filename without the whole path and strip out non-ascii
+  # characters.
+  return filename.to_s.gsub(/^.*(\\|\/)/, '').gsub(/[^0-9A-Za-z.\-]/, '_')
+end
