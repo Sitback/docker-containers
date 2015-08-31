@@ -1,11 +1,12 @@
 require 'json'
 
-def system! (cmd)
+def system! (cmd, ignore_exit = false)
   green_code = 32
   puts "\e[#{green_code}m#{cmd}\e[0m"
   system(cmd)
+
   # Non-zero exit on failure.
-  exit $?.exitstatus unless $?.success?
+  exit $?.exitstatus unless $?.success? or ignore_exit
 end
 
 def load_manifest
