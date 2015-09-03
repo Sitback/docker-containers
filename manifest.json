@@ -45,7 +45,7 @@
     "user": "chinthakagodawita",
     "repository": "ci",
     "tag": "php5.5",
-    "path": "ci/Php5.5"
+    "path": "ci/php5.5"
   },
   "proxy:nginx": {
     "user": "chinthakagodawita",
