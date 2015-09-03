@@ -10,8 +10,6 @@ dependencies:
 
   override:
     - docker info
-    - gem install git-set-mtime --no-ri --no-rdoc
-    - git set-mtime
     - ruby _scripts/ci-build.rb
 
 test:
