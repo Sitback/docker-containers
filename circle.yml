@@ -9,7 +9,6 @@ dependencies:
     - "~/docker"
 
   override:
-    - docker info
     - ruby _scripts/ci-build.rb
 
 test:
