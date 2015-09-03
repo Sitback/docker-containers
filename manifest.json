@@ -41,6 +41,12 @@
     "tag": "latest",
     "path": "soe/php5.5"
   },
+  "ci:php5.5": {
+    "user": "chinthakagodawita",
+    "repository": "ci",
+    "tag": "php5.5",
+    "path": "ci/Php5.5"
+  },
   "proxy:nginx": {
     "user": "chinthakagodawita",
     "repository": "proxy",
