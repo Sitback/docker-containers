@@ -1,0 +1,24 @@
+machine:
+  ruby: 2.1.0
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+
+  override:
+    - docker info
+    - gem install git-set-mtime --no-ri --no-rdoc
+    - git set-mtime
+    - ruby _scripts/ci-build.rb
+
+test:
+  override:
+  - echo "Container tests go here."
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - ruby _scripts/publish.rb
