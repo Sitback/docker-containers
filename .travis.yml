@@ -9,10 +9,8 @@ cache:
 services:
   - docker
 
-before_install:
-  - rake docker:build
-
 script:
+  - rake docker:build
   - rake docker:test:all
 
 after_success:
