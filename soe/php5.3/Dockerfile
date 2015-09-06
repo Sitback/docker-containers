@@ -59,7 +59,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install drush.
 RUN composer global require drush/drush:7.*
-RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/
+
+# Update PATH to include Composer's bin.
+ENV COMPOSER_BIN /root/.composer/vendor/bin
+ENV PATH "$COMPOSER_BIN:$PATH"
 
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
