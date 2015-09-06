@@ -10,8 +10,8 @@ services:
   - docker
 
 script:
-  - rake docker:build
-  - rake docker:test:all
+  - bundle exec rake docker:build
+  - bundle exec rake docker:test:all
 
 after_success:
   if ([ "$TRAVIS_BRANCH" == "master" ]); then rake docker:publish; fi
