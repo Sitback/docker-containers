@@ -39,6 +39,9 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
+# Fix issue with SSLMutex.
+RUN mkdir -p /var/run/apache2
+
 # Configure PHP.
 ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
 
@@ -56,7 +59,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install drush.
 RUN composer global require drush/drush:7.*
-RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/
+
+# Update PATH to include Composer's bin.
+ENV COMPOSER_BIN /root/.composer/vendor/bin
+ENV PATH "$COMPOSER_BIN:$PATH"
 
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
