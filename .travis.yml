@@ -10,10 +10,10 @@ services:
   - docker
 
 before_install:
-  - ruby _scripts/travis-build.rb
+  - rake docker:build
 
 script:
-  - echo "Container tests go here."
+  - rake docker:test:all
 
 after_success:
-  if ([ "$TRAVIS_BRANCH" == "master" ]); then ruby _scripts/publish.rb; fi
+  if ([ "$TRAVIS_BRANCH" == "master" ]); then rake docker:publish; fi

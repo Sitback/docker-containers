@@ -36,8 +36,8 @@ namespace :docker do
 
   test_targets.each do |target|
     original_target = target == "_default" ? target[1..-1] : target
-    desc "Run serverspec tests to #{target}"
-    task "test:#{target}"
+    # desc "Run serverspec tests to #{target}"
+    # task "test:#{target}"
     RSpec::Core::RakeTask.new(target.to_sym) do |t|
       t.pattern = "spec/#{target}/*_spec.rb"
     end
