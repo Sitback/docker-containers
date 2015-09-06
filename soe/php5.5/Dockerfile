@@ -38,6 +38,9 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
+# Fix issue with SSLMutex.
+RUN mkdir -p /var/run/apache2
+
 # Configure PHP.
 ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
 
