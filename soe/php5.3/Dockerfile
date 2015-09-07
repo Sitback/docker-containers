@@ -20,10 +20,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5-curl \
   php5-mcrypt \
   php5-mysql \
+  php5-memcached \
   php5-xdebug \
   php-apc \
   php-soap \
   php-pear
+
+## Memcached.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached
 
 ## MySQL client.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client
