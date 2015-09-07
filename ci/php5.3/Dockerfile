@@ -1,6 +1,6 @@
-# PHP 5.4 container, optimised for Continuous Integration.
+# PHP 5.3 container, optimised for Continuous Integration.
 
-FROM chinthakagodawita/soe:php5.4
+FROM chinthakagodawita/soe:php5.3
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # Install all packages.

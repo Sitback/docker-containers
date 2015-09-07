@@ -53,6 +53,12 @@
     "tag": "php5.4",
     "path": "ci/php5.4"
   },
+  "ci:php5.3": {
+    "user": "chinthakagodawita",
+    "repository": "ci",
+    "tag": "php5.3",
+    "path": "ci/php5.3"
+  },
   "ci:latest": {
     "user": "chinthakagodawita",
     "repository": "ci",
