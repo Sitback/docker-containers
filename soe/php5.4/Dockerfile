@@ -72,7 +72,7 @@ RUN mkdir -p /server/pimpmylog
 RUN composer require -d /server/pimpmylog "potsky/pimp-my-log"
 RUN chmod -R 777 /server/pimpmylog/vendor/potsky/pimp-my-log
 ADD ./conf/pimpmylog/config.user.json /server/pimpmylog/config.user.json
-ADD ./conf/apache2/pimpmylog.conf /etc/apache2/sites-available/pimpmylog.conf
+ADD ./conf/apache2/pimpmylog.conf /etc/apache2/sites-available/pimpmylog
 RUN a2ensite pimpmylog
 
 # Add apache user to the adm group so they can read logs.
