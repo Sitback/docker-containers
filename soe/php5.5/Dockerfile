@@ -66,6 +66,17 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install drush.
 RUN composer global require drush/drush:7.*
 
+# Install PimpMyLog.
+RUN mkdir -p /server/pimpmylog
+RUN composer require -d /server/pimpmylog "potsky/pimp-my-log"
+RUN chmod -R 777 /server/pimpmylog/vendor/potsky/pimp-my-log
+ADD ./conf/pimpmylog/config.user.json /server/pimpmylog/config.user.json
+ADD ./conf/apache2/pimpmylog.conf /etc/apache2/sites-available/pimpmylog
+RUN a2ensite pimpmylog
+
+# Add apache user to the adm group so they can read logs.
+RUN usermod -a -G adm www-data
+
 # Update PATH to include Composer's bin.
 ENV COMPOSER_BIN /root/.composer/vendor/bin
 ENV PATH "$COMPOSER_BIN:$PATH"
@@ -73,7 +84,7 @@ ENV PATH "$COMPOSER_BIN:$PATH"
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
 
-# SSH, HTTP, HTTPS & Xdebug.
-EXPOSE 22 80 443 9000
+# SSH, HTTP, HTTPS, PimpMyLog & Xdebug.
+EXPOSE 22 80 443 8000 9000
 
 CMD ["/usr/bin/supervisord"]
