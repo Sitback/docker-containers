@@ -11,7 +11,7 @@ services:
 
 script:
   - bundle exec rake docker:build
-  - bundle exec rake docker:test:all
+  - bundle exec rspec spec/soe
 
 after_success:
   if ([ "$TRAVIS_BRANCH" == "master" ]); then bundle exec rake docker:publish; fi
