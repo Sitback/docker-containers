@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "specinfra", "2.12.7" # Required for Travis (due to LXC usage)
+gem "specinfra", :git => "git://github.com/chinthakagodawita/specinfra.git", :branch => "feature/lxc-docker-exec"
 gem "serverspec"
 gem "docker-api"
 gem "rake"
