@@ -26,8 +26,10 @@ shared_context 'soe' do
   let(:ports) { [80, 443, 8000] }
 
   before(:all) do
+    image_name = "#{SOE_IMAGE_PREFIX}#{SOE_VERSION}"
+    docker_image = Docker::Image.create('fromImage' => image_name)
     set :os, family: SOE_OS_FAMILY
-    set :docker_image, "#{SOE_IMAGE_PREFIX}#{SOE_VERSION}"
+    set :docker_image, docker_image.id
   end
 
   it 'Installs the right version of Ubuntu' do
