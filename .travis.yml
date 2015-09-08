@@ -10,6 +10,10 @@ cache:
 services:
   - docker
 
+before_install:
+  - ls -al /var/run/
+  - invalid_cmd
+
 script:
   - bundle exec rake docker:build
   - bundle exec rspec spec/soe/php55_spec.rb
