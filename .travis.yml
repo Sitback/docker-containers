@@ -11,6 +11,7 @@ services:
   - docker
 
 script:
+  - gem install -f docker-api
   - ruby _scripts/travis-docker-test.rb
   - bundle exec rake docker:build
   - bundle exec rspec spec/soe/php55_spec.rb
