@@ -3,7 +3,7 @@ require 'serverspec'
 shared_context 'soe' do
   SOE_OS_FAMILY = :debian
   SOE_IMAGE_PREFIX = 'chinthakagodawita/soe:'
-  SERVICE_TIMEOUT = 1
+  SERVICE_TIMEOUT = 30
 
   let(:packages) { [
     'apache2',
@@ -69,10 +69,13 @@ shared_context 'soe' do
         its(:stdout) { should contains_count service_count, service_running_msg }
       end
 
-      it "All required ports are listening" do
-        ports.each do |port|
-          puts "\tChecking port '#{port}'"
-          expect(port(port)).to be_listening
+      # Sleeping to make sure all services come up.
+      describe command("sleep #{SERVICE_TIMEOUT}") do
+        it "All required ports are listening" do
+          ports.each do |port|
+            puts "\tChecking port '#{port}'"
+            expect(port(port)).to be_listening
+          end
         end
       end
     end
