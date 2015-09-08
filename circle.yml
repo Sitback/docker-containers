@@ -6,16 +6,17 @@ machine:
 
 dependencies:
   post:
-    - docker pull chinthakagodawita/soe:php5.5
-    # - bundle exec rake docker:ci_build
+    - gem install -f docker-api
+    # - docker pull chinthakagodawita/soe:php5.5
+    - bundle exec rake docker:ci_build
 
 test:
   override:
-  - docker run -d --name=soe -t chinthakagodawita/soe:php5.5
-  - sudo lxc-attach -n "$(docker inspect --format '{{.Id}}' soe)" -- bash -c "supervisorctl status"
-  - docker kill soe
-  - docker rm soe
-  # - bundle exec rspec spec/soe/php55_spec.rb
+  # - docker run -d --name=soe -t chinthakagodawita/soe:php5.5
+  # - sudo lxc-attach -n "$(docker inspect --format '{{.Id}}' soe)" -- bash -c "supervisorctl status"
+  # - docker kill soe
+  # - docker rm soe
+  - bundle exec rspec spec/soe/php55_spec.rb
 
 deployment:
   hub:
