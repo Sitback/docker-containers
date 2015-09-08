@@ -20,6 +20,8 @@ elsif ENV['TRAVIS']
   Docker.url = 'unix:///var/run/docker.sock'
 end
 
+puts Docker.info
+
 # Require all local shared files.
 Dir["#{File.dirname(__FILE__)}/_shared/**/*.rb"].each do |f|
   require f
