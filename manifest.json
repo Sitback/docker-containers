@@ -5,10 +5,76 @@
     "tag": "ubuntu-12.04",
     "path": "base/ubuntu-12.04"
   },
+  "base:ubuntu-14.04": {
+    "user": "chinthakagodawita",
+    "repository": "base",
+    "tag": "ubuntu-14.04",
+    "path": "base/ubuntu-14.04"
+  },
+  "base:latest": {
+    "user": "chinthakagodawita",
+    "repository": "base",
+    "tag": "latest",
+    "path": "base/ubuntu-14.04"
+  },
+  "soe:php5.3": {
+    "user": "chinthakagodawita",
+    "repository": "soe",
+    "tag": "php5.3",
+    "path": "soe/php5.3"
+  },
   "soe:php5.4": {
     "user": "chinthakagodawita",
     "repository": "soe",
     "tag": "php5.4",
     "path": "soe/php5.4"
+  },
+  "soe:php5.5": {
+    "user": "chinthakagodawita",
+    "repository": "soe",
+    "tag": "php5.5",
+    "path": "soe/php5.5"
+  },
+  "soe:latest": {
+    "user": "chinthakagodawita",
+    "repository": "soe",
+    "tag": "latest",
+    "path": "soe/php5.5"
+  },
+  "ci:php5.5": {
+    "user": "chinthakagodawita",
+    "repository": "ci",
+    "tag": "php5.5",
+    "path": "ci/php5.5"
+  },
+  "ci:php5.4": {
+    "user": "chinthakagodawita",
+    "repository": "ci",
+    "tag": "php5.4",
+    "path": "ci/php5.4"
+  },
+  "ci:php5.3": {
+    "user": "chinthakagodawita",
+    "repository": "ci",
+    "tag": "php5.3",
+    "path": "ci/php5.3"
+  },
+  "ci:latest": {
+    "user": "chinthakagodawita",
+    "repository": "ci",
+    "tag": "latest",
+    "path": "ci/php5.5"
+  },
+  "proxy:nginx": {
+    "user": "chinthakagodawita",
+    "repository": "proxy",
+    "tag": "nginx",
+    "path": "proxy/nginx"
+  },
+  "proxy:nginx-node": {
+    "user": "chinthakagodawita",
+    "repository": "proxy",
+    "tag": "nginx-node",
+    "path": "proxy/nginx-node"
   }
 }

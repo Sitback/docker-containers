@@ -12,7 +12,7 @@ services:
 
 script:
   - bundle exec rake docker:build
-  - bundle exec rspec spec/soe/php54_spec.rb
+  - bundle exec rspec spec/soe
 
 after_success:
   if ([ "$TRAVIS_BRANCH" == "master" ]); then bundle exec rake docker:publish; fi
