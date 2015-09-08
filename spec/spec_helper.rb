@@ -16,7 +16,14 @@ if ENV['DOCKER_HOST']
     docker_host.gsub!(/^tcp/,'https')
   end
   Docker.url = docker_host
-elsif ENV['TRAVIS']
+end
+
+# Workaround needed for Travis
+if ENV['CIRCLECI']
+  class Docker::Container
+    def remove(options={}); end
+    alias_method :delete, :remove
+  end
   Docker.url = 'unix:///var/run/docker.sock'
 end
 

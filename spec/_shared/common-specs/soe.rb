@@ -27,10 +27,10 @@ shared_context 'soe' do
 
   before(:all) do
     image_name = "#{SOE_IMAGE_PREFIX}#{SOE_VERSION}"
-    docker_image = Docker::Image.create('fromImage' => image_name)
-    puts docker_image.json
+    # docker_image = Docker::Image.create('fromImage' => image_name)
+    # puts docker_image.json
     set :os, family: SOE_OS_FAMILY
-    set :docker_image, docker_image.id
+    set :docker_image, image_name
   end
 
   it 'Installs the right version of Ubuntu' do
