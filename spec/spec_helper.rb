@@ -18,8 +18,8 @@ if ENV['DOCKER_HOST']
   Docker.url = docker_host
 end
 
-# Workaround needed for Travis
-if ENV['TRAVIS']
+# Workaround needed for Circle CI.
+if ENV['CIRCLECI']
   class Docker::Container
     def remove(options={}); end
     alias_method :delete, :remove
