@@ -10,6 +10,9 @@ cache:
 services:
   - docker
 
+before_install:
+  - ruby _scripts/travis-docker-test.rb
+
 script:
   - bundle exec rake docker:build
   - bundle exec rspec spec/soe/php55_spec.rb
