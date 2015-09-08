@@ -5,15 +5,18 @@ language: ruby
 cache:
   directories:
   - docker
+  - vendor/bundle
 
 services:
   - docker
 
 before_install:
-  - ruby _scripts/travis-build.rb
+  - gem install -f docker-api
 
 script:
-  - echo "Container tests go here."
+  # - ruby _scripts/travis-docker-test.rb
+  - bundle exec rake docker:build
+  - bundle exec rspec spec/soe/php55_spec.rb
 
 after_success:
-  if ([ "$TRAVIS_BRANCH" == "master" ]); then ruby _scripts/publish.rb; fi
+  if ([ "$TRAVIS_BRANCH" == "master" ]); then bundle exec rake docker:publish; fi

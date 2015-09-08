@@ -31,6 +31,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install curl
 # Nano & telnet (just in case).
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano telnet
 
+# Netstat et al.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install net-tools
+
 # stdout helper for supervisord.
 RUN easy_install supervisor-stdout
 
