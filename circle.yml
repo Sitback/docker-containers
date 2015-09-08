@@ -5,8 +5,7 @@ machine:
     - docker
 
 dependencies:
-  override:
-    - bundle install
+  post:
     - bundle exec rake docker:ci_build
 
 test:
