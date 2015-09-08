@@ -27,8 +27,19 @@ shared_context 'soe' do
 
   before(:all) do
     image_name = "#{SOE_IMAGE_PREFIX}#{SOE_VERSION}"
+    image = nil
+    Docker::Image.all.each do |image_def|
+      puts "#{image_def.info['RepoTags'][0]} eq #{image_name}"
+      if image_def.info['RepoTags'][0] == image_name
+        image = image_def.id
+        break
+      end
+    end
+    puts image
     set :os, family: SOE_OS_FAMILY
+    # set :docker_image, image
     set :docker_image, image_name
+    # set :docker_container_create_options, { 'Cmd' => '/bin/bash -c "echo hello"' }
   end
 
   it 'Installs the right version of Ubuntu' do
