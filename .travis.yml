@@ -9,6 +9,10 @@ cache:
 services:
   - docker
 
+before_install:
+  - docker info
+  - invalid_cmd
+
 script:
   - bundle exec rake docker:build
   - bundle exec rspec spec/soe
