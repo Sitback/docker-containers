@@ -12,8 +12,9 @@ services:
 
 script:
   - gem install -f docker-api
-  - bundle exec rake docker:build
-  - bundle exec rspec spec/soe/php55_spec.rb
+  - ruby _scripts/travis-docker-test.rb
+  # - bundle exec rake docker:build
+  # - bundle exec rspec spec/soe/php55_spec.rb
 
 after_success:
   if ([ "$TRAVIS_BRANCH" == "master" ]); then bundle exec rake docker:publish; fi

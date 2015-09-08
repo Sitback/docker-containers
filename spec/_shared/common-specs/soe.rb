@@ -26,7 +26,6 @@ shared_context 'soe' do
   let(:ports) { [80, 443, 8000] }
 
   before(:all) do
-    puts "#{SOE_IMAGE_PREFIX}:#{SOE_VERSION}"
     set :os, family: SOE_OS_FAMILY
     set :docker_image, "#{SOE_IMAGE_PREFIX}#{SOE_VERSION}"
   end
