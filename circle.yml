@@ -5,18 +5,16 @@ machine:
     - docker
 
 dependencies:
-  cache_directories:
-    - "~/docker"
-
   override:
-    - ruby _scripts/ci-build.rb
+    - bundle install
+    - bundle exec rake docker:ci_build
 
 test:
   override:
-  - echo "Container tests go here."
+  - bundle exec rspec spec/soe/php55_spec.rb
 
 deployment:
   hub:
     branch: master
     commands:
-      - ruby _scripts/publish.rb
+      - bundle exec rake docker:publish

@@ -13,8 +13,8 @@ namespace :docker do
   task :default => :build_and_test
 
   desc "Build all containers within a CI environment"
-  task :build do
-    require_relative '_scripts/travis-build.rb'
+  task :ci_build do
+    require_relative '_scripts/ci-build.rb'
   end
 
   desc "Build all containers"
