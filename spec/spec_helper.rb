@@ -16,6 +16,8 @@ if ENV['DOCKER_HOST']
     docker_host.gsub!(/^tcp/,'https')
   end
   Docker.url = docker_host
+elsif ENV['TRAVIS']
+  Docker.url = 'unix:///var/run/docker.sock'
 end
 
 # Require all local shared files.
