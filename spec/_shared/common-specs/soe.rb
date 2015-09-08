@@ -27,8 +27,6 @@ shared_context 'soe' do
 
   before(:all) do
     image_name = "#{SOE_IMAGE_PREFIX}#{SOE_VERSION}"
-    # docker_image = Docker::Image.create('fromImage' => image_name)
-    # puts docker_image.json
     set :os, family: SOE_OS_FAMILY
     set :docker_image, image_name
   end
@@ -66,13 +64,13 @@ shared_context 'soe' do
   end
 
   describe 'Supervisord Services' do
-    describe command("sleep #{SERVICE_TIMEOUT} && supervisorctl status") do
+    describe command("supervisord && sleep #{SERVICE_TIMEOUT} && supervisorctl status") do
       describe 'All Services Running' do
         its(:stdout) { should contains_count service_count, service_running_msg }
       end
 
       # Sleeping to make sure all services come up.
-      describe command("sleep #{SERVICE_TIMEOUT}") do
+      describe command("supervisord && sleep #{SERVICE_TIMEOUT}") do
         it "All required ports are listening" do
           ports.each do |port|
             puts "\tChecking port '#{port}'"
