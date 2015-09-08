@@ -34,6 +34,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano telnet
 # Netstat et al.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install net-tools
 
+# Git.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install git
+
 # stdout helper for supervisord.
 RUN easy_install supervisor-stdout
 
