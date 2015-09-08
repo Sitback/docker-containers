@@ -5,6 +5,7 @@ language: ruby
 cache:
   directories:
   - docker
+  - vendor/bundle
 
 services:
   - docker
