@@ -114,26 +114,9 @@ shared_context 'soe' do
     end
   end
 
-  describe 'PHP config' do
+  describe 'PHP version' do
     describe command 'php --version' do
       its(:stdout) { should include("PHP #{php_version}.") }
-    end
-
-    context php_config('error_reporting') do
-      # 32767 = E_ALL (http://php.net/manual/en/errorfunc.constants.php).
-      its(:value) { should eq 32767 }
-    end
-
-    context php_config('display_errors') do
-      its(:value) { should eq 'On' }
-    end
-
-    context php_config('post_max_size') do
-      its(:value) { should eq '100M' }
-    end
-
-    context php_config('date.timezone') do
-      its(:value) { should eq 'Australia/Sydney' }
     end
   end
 
