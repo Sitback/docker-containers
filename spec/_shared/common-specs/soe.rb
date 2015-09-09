@@ -1,10 +1,6 @@
 require 'serverspec'
 
 shared_context 'soe' do
-  SOE_OS_FAMILY = :debian
-  SOE_IMAGE_PREFIX = 'chinthakagodawita/soe:'
-  SERVICE_TIMEOUT = 30
-
   let(:packages) { [
     'apache2',
     'php5',
@@ -25,22 +21,10 @@ shared_context 'soe' do
   let(:apache_version) { '2.4.7' }
   let(:ports) { [80, 443, 8000] }
   let(:php_version) { '5.5' }
-
-  before(:all) do
-    image_name = "#{SOE_IMAGE_PREFIX}#{SOE_VERSION}"
-    image = nil
-    Docker::Image.all.each do |image_def|
-      if image_def.info['RepoTags'][0] == image_name
-        image = image_def.id
-        break
-      end
-    end
-    set :os, family: SOE_OS_FAMILY
-    set :docker_image, image_name
-  end
+  let(:ubuntu_version) { '14.04' }
 
   it 'Installs the right version of Ubuntu' do
-    expect(get_os_version).to include("Ubuntu #{UBUNTU_VERSION}")
+    expect(get_os_version).to include("Ubuntu #{ubuntu_version}")
   end
 
   it "Install all required packages" do
@@ -72,7 +56,7 @@ shared_context 'soe' do
   end
 
   describe "Supervisord services" do
-    describe command("sleep #{SERVICE_TIMEOUT}") do
+    describe command("sleep #{SoeConstants::SERVICE_TIMEOUT}") do
       its(:exit_status) { should eq 0 }
     end
 
@@ -93,9 +77,9 @@ shared_context 'soe' do
     end
 
     # PimpMyLog.
-    describe port(8000) do
-      it { should be_listening }
-    end
+    # describe port(8000) do
+      # it { should be_listening }
+    # end
   end
 
   describe 'Working Drush command' do

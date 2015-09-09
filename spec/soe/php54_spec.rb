@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Dockerfile' do
+describe 'PHP 5.4 SOE' do
   include_context 'soe' do
     let(:packages) { [
       'apache2',
@@ -19,8 +19,12 @@ describe 'Dockerfile' do
     ] }
     let(:apache_version) { '2.2.22' }
     let(:php_version) { '5.4' }
+    let(:ubuntu_version) { '12.04' }
   end
 
-  UBUNTU_VERSION = '12.04'
-  SOE_VERSION = 'php5.4'
+  before(:all) do
+    image_name = "#{SoeConstants::IMAGE_PREFIX}php5.4"
+    set :os, family: :debian
+    set :docker_image, get_docker_image_id(image_name)
+  end
 end
