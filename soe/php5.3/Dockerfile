@@ -79,7 +79,8 @@ RUN usermod -a -G adm www-data
 # tests pick it up too).
 ENV COMPOSER_BIN /root/.composer/vendor/bin
 ENV PATH "$COMPOSER_BIN:$PATH"
-RUN echo -e "\nPATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
+RUN echo "" >> /etc/profile
+RUN echo "PATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
 
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
