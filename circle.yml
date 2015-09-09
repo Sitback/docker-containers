@@ -11,9 +11,9 @@ dependencies:
 test:
   override:
     - bundle exec rspec:
-      parallel: true
-      files:
-        - spec/**/*_spec.rb
+        parallel: true
+        files:
+          - spec/**/*_spec.rb
 
 deployment:
   hub:
