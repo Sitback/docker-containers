@@ -75,20 +75,20 @@ shared_context 'soe' do
   end
 
   describe 'Supervisord Services' do
-    describe command("supervisord && sleep #{SERVICE_TIMEOUT} && supervisorctl status") do
-      describe 'All Services Running' do
-        its(:stdout) { should contains_count service_count, service_running_msg }
-      end
-
-      # Sleeping to make sure all services come up.
-      describe command("supervisord && sleep #{SERVICE_TIMEOUT}") do
-        it "All required ports are listening" do
-          ports.each do |port|
-            puts "\tChecking port '#{port}'"
-            expect(port(port)).to be_listening
-          end
-        end
-      end
+    describe service('apache2') do
+      it { should be_running.under('supervisor') }
+    end
+    describe service('socat') do
+      it { should be_running.under('supervisor') }
+    end
+    describe service('apache2errorlog') do
+      it { should be_running.under('supervisor') }
+    end
+    describe service('memcached') do
+      it { should be_running.under('supervisor') }
+    end
+    describe service('stdout') do
+      it { should be_running.under('supervisor') }
     end
   end
 
