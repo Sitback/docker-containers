@@ -74,24 +74,31 @@ shared_context 'soe' do
     end
   end
 
-  describe command("sleep #{SERVICE_TIMEOUT}") do
-    its(:exit_status) { should eq 0 }
-  end
+  describe "Supervisord services" do
+    describe command("sleep #{SERVICE_TIMEOUT}") do
+      its(:exit_status) { should eq 0 }
+    end
 
-  describe service('apache2') do
-    it { should be_running.under('supervisor') }
-  end
-  describe service('socat') do
-    it { should be_running.under('supervisor') }
-  end
-  describe service('apache2errorlog') do
-    it { should be_running.under('supervisor') }
-  end
-  describe service('memcached') do
-    it { should be_running.under('supervisor') }
-  end
-  describe service('stdout') do
-    it { should be_running.under('supervisor') }
+    describe service('apache2') do
+      it { should be_running.under('supervisor') }
+    end
+    describe service('socat') do
+      it { should be_running.under('supervisor') }
+    end
+    describe service('apache2errorlog') do
+      it { should be_running.under('supervisor') }
+    end
+    describe service('memcached') do
+      it { should be_running.under('supervisor') }
+    end
+    describe service('stdout') do
+      it { should be_running.under('supervisor') }
+    end
+
+    # PimpMyLog.
+    describe port(8000) do
+      it { should be_listening }
+    end
   end
 
   describe 'Working Drush command' do
@@ -106,6 +113,23 @@ shared_context 'soe' do
     end
   end
 
-  # @TODO: Check PHP config settings.
+  describe 'PHP config overrides' do
+    context php_config('error_reporting') do
+      # 32767 = E_ALL (http://php.net/manual/en/errorfunc.constants.php).
+      its(:value) { should eq 32767 }
+    end
+
+    context php_config('display_errors') do
+      its(:value) { should eq 'On' }
+    end
+
+    context php_config('post_max_size') do
+      its(:value) { should eq '100M' }
+    end
+
+    context php_config('date.timezone') do
+      its(:value) { should eq 'Australia/Sydney' }
+    end
+  end
 
 end
