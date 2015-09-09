@@ -7,6 +7,15 @@ MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 RUN apt-get -y update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 
+# Set timezone to be AEST/AEDT.
+RUN echo "Australia/Sydney" > /etc/timezone
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
+# Set locale to be AU.
+RUN locale-gen en_AU en_AU.UTF-8
+RUN dpkg-reconfigure locales
+RUN update-locale LC_ALL=en_AU.UTF-8 LANG=en_AU.UTF-8
+
 # Supervisord (should be configured in any containers that inherit this base).
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
 
