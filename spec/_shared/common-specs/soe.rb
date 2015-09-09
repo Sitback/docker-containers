@@ -75,21 +75,23 @@ shared_context 'soe' do
   end
 
   describe command("sleep #{SERVICE_TIMEOUT}") do
-    describe service('apache2') do
-      it { should be_running.under('supervisor') }
-    end
-    describe service('socat') do
-      it { should be_running.under('supervisor') }
-    end
-    describe service('apache2errorlog') do
-      it { should be_running.under('supervisor') }
-    end
-    describe service('memcached') do
-      it { should be_running.under('supervisor') }
-    end
-    describe service('stdout') do
-      it { should be_running.under('supervisor') }
-    end
+    its(:exit_status) { should eq 0 }
+  end
+
+  describe service('apache2') do
+    it { should be_running.under('supervisor') }
+  end
+  describe service('socat') do
+    it { should be_running.under('supervisor') }
+  end
+  describe service('apache2errorlog') do
+    it { should be_running.under('supervisor') }
+  end
+  describe service('memcached') do
+    it { should be_running.under('supervisor') }
+  end
+  describe service('stdout') do
+    it { should be_running.under('supervisor') }
   end
 
   describe 'Working Drush command' do
