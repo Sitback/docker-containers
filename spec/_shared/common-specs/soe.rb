@@ -39,7 +39,7 @@ shared_context 'soe' do
     set :os, family: SOE_OS_FAMILY
     # set :docker_image, image
     set :docker_image, image_name
-    # set :docker_container_create_options, { 'Cmd' => '/bin/bash -c "echo hello"' }
+    set :docker_container_create_options, { 'Cmd' => ['/bin/bash'] }
   end
 
   it 'Installs the right version of Ubuntu' do
