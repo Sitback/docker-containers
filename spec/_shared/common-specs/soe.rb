@@ -24,6 +24,7 @@ shared_context 'soe' do
   let(:service_running_msg) { 'RUNNING' }
   let(:apache_version) { '2.4.7' }
   let(:ports) { [80, 443, 8000] }
+  let(:php_version) { '5.5' }
 
   before(:all) do
     image_name = "#{SOE_IMAGE_PREFIX}#{SOE_VERSION}"
@@ -113,7 +114,11 @@ shared_context 'soe' do
     end
   end
 
-  describe 'PHP config overrides' do
+  describe 'PHP config' do
+    describe command 'php --version' do
+      its(:stdout) { should include("PHP #{php_version}.") }
+    end
+
     context php_config('error_reporting') do
       # 32767 = E_ALL (http://php.net/manual/en/errorfunc.constants.php).
       its(:value) { should eq 32767 }
