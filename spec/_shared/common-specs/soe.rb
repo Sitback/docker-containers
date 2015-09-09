@@ -39,7 +39,7 @@ shared_context 'soe' do
     set :os, family: SOE_OS_FAMILY
     # set :docker_image, image
     set :docker_image, image_name
-    set :docker_container_create_options, { 'Cmd' => ['/bin/bash'] }
+    # set :docker_container_create_options, { 'Cmd' => ['/bin/bash'] }
   end
 
   it 'Installs the right version of Ubuntu' do
@@ -72,10 +72,6 @@ shared_context 'soe' do
       # test 'Apache/2.2.15' exists before "Server built".
       its(:stdout) { should include("Apache/#{apache_version}") }
     end
-  end
-
-  describe command "echo $PATH" do
-    its(:stdout) { should include('composer') }
   end
 
   describe 'Supervisord Services' do

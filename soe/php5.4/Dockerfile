@@ -95,4 +95,4 @@ ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
 # SSH, HTTP, HTTPS, PimpMyLog & Xdebug.
 EXPOSE 22 80 443 8000 9000
 
-CMD ["/usr/bin/supervisord -n"]
+CMD ["/usr/bin/supervisord", "-n"]
