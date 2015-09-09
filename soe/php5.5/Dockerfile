@@ -81,10 +81,17 @@ RUN usermod -a -G adm www-data
 ENV COMPOSER_BIN /root/.composer/vendor/bin
 ENV PATH "$COMPOSER_BIN:$PATH"
 
+# Install MailHog & MailHog's sendmail replacement.
+RUN curl -s -L https://github.com/mailhog/MailHog/releases/latest | egrep -o '/mailhog/MailHog/releases/download/[v.0-9]*/MailHog_linux_amd64' | wget --base=http://github.com/ -i - -O /usr/local/bin/mailhog
+RUN chmod +x /usr/local/bin/mailhog
+RUN curl -s -L https://github.com/mailhog/mhsendmail/releases/latest | egrep -o '/mailhog/mhsendmail/releases/download/[v.0-9]*/mhsendmail_linux_amd64' | wget --base=http://github.com/ -i - -O /usr/local/bin/mhsendmail
+RUN chmod +x /usr/local/bin/mhsendmail
+RUN update-alternatives --install /usr/sbin/sendmail mhsendmail /usr/local/bin/mhsendmail 1
+
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
 
-# SSH, HTTP, HTTPS, PimpMyLog & Xdebug.
-EXPOSE 22 80 443 8000 9000
+# SSH, HTTP, HTTPS, MailHog SMTP, MailHog WebUI, PimpMyLog & Xdebug.
+EXPOSE 22 80 443 1025 8000 8025 9000
 
 CMD ["/usr/bin/supervisord"]
