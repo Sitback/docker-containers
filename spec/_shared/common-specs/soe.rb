@@ -74,10 +74,7 @@ shared_context 'soe' do
     end
   end
 
-  describe 'Supervisord Services' do
-    describe command 'supervisorctl status' do
-      its (:stdout) { should include 'something' }
-    end
+  describe command("sleep #{SERVICE_TIMEOUT}") do
     describe service('apache2') do
       it { should be_running.under('supervisor') }
     end
