@@ -75,9 +75,11 @@ RUN a2ensite pimpmylog
 # Add apache user to the adm group so they can read logs.
 RUN usermod -a -G adm www-data
 
-# Update PATH to include Composer's bin.
+# Update PATH to include Composer's bin (also add into /etc/profile so that our
+# tests pick it up too).
 ENV COMPOSER_BIN /root/.composer/vendor/bin
 ENV PATH "$COMPOSER_BIN:$PATH"
+RUN echo -e "\nPATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
 
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
