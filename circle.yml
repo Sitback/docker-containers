@@ -10,10 +10,7 @@ dependencies:
 
 test:
   override:
-    - bundle exec rspec:
-        parallel: true
-        files:
-          - spec/**/*_spec.rb
+    - bundle exec rspec spec/**/*_spec.rb
 
 deployment:
   hub:
