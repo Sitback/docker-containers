@@ -74,6 +74,10 @@ shared_context 'soe' do
     end
   end
 
+  describe command "echo $PATH" do
+    its(:stdout) { should include('composer') }
+  end
+
   describe 'Supervisord Services' do
     describe command("supervisord && sleep #{SERVICE_TIMEOUT} && supervisorctl status") do
       describe 'All Services Running' do
