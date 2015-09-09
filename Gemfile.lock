@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/chinthakagodawita/specinfra.git
-  revision: 18bcec8572cd2e127aa273d2961b1261f7be1612
+  revision: b38b635503dbc97970ed0edb423d23c6e2b3e5a8
   branch: feature/lxc-docker-exec
   specs:
     specinfra (2.43.2)
