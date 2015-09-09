@@ -6,7 +6,7 @@ machine:
 
 dependencies:
   post:
-    - gem install -f docker-api
+    # - gem install -f docker-api
     # - docker pull chinthakagodawita/soe:php5.5
     - bundle exec rake docker:ci_build
 
