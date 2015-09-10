@@ -12,8 +12,6 @@ test:
   override:
     - bundle exec rake docker:test:circleci_parallel
         parallel: true
-        files:
-          - README.md
 
 deployment:
   hub:
