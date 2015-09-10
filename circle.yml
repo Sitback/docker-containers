@@ -10,7 +10,12 @@ dependencies:
 
 test:
   override:
-    - bundle exec rspec spec/**/*_spec.rb
+    - bundle exec rspec --format RspecJunitFormatter --out $CIRCLE_TEST_REPORTS/rspec.xml:
+        parallel: true
+        files:
+          - spec/soe/php55_spec.rb
+          - spec/soe/php54_spec.rb
+          - spec/soe/php53_spec.rb
 
 deployment:
   hub:
