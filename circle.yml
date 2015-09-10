@@ -10,12 +10,8 @@ dependencies:
 
 test:
   override:
-    - bundle exec rspec --format RspecJunitFormatter --out $CIRCLE_TEST_REPORTS/rspec.xml:
+    - bundle exec rake docker:test:circleci_parallel
         parallel: true
-        files:
-          - spec/soe/php55_spec.rb
-          - spec/soe/php54_spec.rb
-          - spec/soe/php53_spec.rb
 
 deployment:
   hub:

@@ -1,7 +1,6 @@
 require 'rake'
 require 'rspec/core/rake_task'
 
-# task :spec => 'spec:all'
 task :build => 'docker:build'
 task :ci_build => 'docker:ci_build'
 task :test => 'docker:test'
@@ -22,24 +21,36 @@ namespace :docker do
     require_relative '_scripts/build.rb'
   end
 
-  test_targets = []
-  Dir.glob('./spec/*').each do |dir|
-    next unless File.directory?(dir)
-    target = File.basename(dir)
-    next if target.start_with? '_'
-    target = "_#{target}" if target == "default"
-    test_targets << target
+  tests = []
+  Dir.glob('./spec/**/*_spec.rb').each do |file|
+    spec_name = file.match('\.\/spec\/(.+)\/(.+)_spec\.rb')[2]
+    test_name = "test:#{spec_name}"
+
+    desc "Run tests from spec in '#{file}'"
+    RSpec::Core::RakeTask.new("test:#{spec_name}") do |t|
+      t.pattern = file
+    end
+
+    tests << test_name
   end
 
-  desc "Run tests for all containers"
-  task "test:all" => test_targets
+  desc "Run all tests."
+  task "test:all" => tests
 
-  test_targets.each do |target|
-    original_target = target == "_default" ? target[1..-1] : target
-    # desc "Run serverspec tests to #{target}"
-    # task "test:#{target}"
-    RSpec::Core::RakeTask.new(target.to_sym) do |t|
-      t.pattern = "spec/#{target}/*_spec.rb"
+  desc "Run tests in parallel on CircleCI"
+  task "test:circleci_parallel" do
+    if ENV['CIRCLECI']
+      i = 0
+      total_nodes = ENV['CIRCLE_NODE_TOTAL'].to_i
+      node_index = ENV['CIRCLE_NODE_INDEX'].to_i
+      tests.each do |test|
+        if ((i % total_nodes) == node_index)
+          system "bundle exec rake docker:#{test}"
+        end
+        i += 1
+      end
+    else
+      puts "Not CircleCI, cowardly refusing to run."
     end
   end
 
