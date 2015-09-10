@@ -1,9 +1,9 @@
 require_relative 'helpers.rb'
 
-# CACHE_DIR = File.expand_path('~/docker').to_s
+CACHE_DIR = File.expand_path('~/docker').to_s
 
 # Create cache directory if required.
-# system! "mkdir -p #{CACHE_DIR}"
+system! "mkdir -p #{CACHE_DIR}"
 
 manifest = load_manifest
 load_manifest.each do |name, container|

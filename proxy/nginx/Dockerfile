@@ -26,4 +26,4 @@ ADD ./conf/supervisor/nginx.conf /etc/supervisor/conf.d/nginx.conf
 # HTTP only.
 EXPOSE 80
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-n"]

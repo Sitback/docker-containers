@@ -1,0 +1,20 @@
+machine:
+  ruby:
+    version: 2.1.0
+  services:
+    - docker
+
+dependencies:
+  post:
+    - bundle exec rake docker:ci_build
+
+test:
+  override:
+    - bundle exec rake docker:test:circleci_parallel:
+        parallel: true
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - bundle exec rake docker:publish
