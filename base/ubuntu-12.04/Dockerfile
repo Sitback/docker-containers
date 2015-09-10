@@ -3,6 +3,9 @@
 FROM ubuntu:12.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
+# Increment this to trigger a full rebuild.
+ENV DC_BASE_VERSION 'ubuntu-12.04-1.0.0'
+
 # Update repositories and make sure we're on the latest 14.04 release.
 RUN apt-get -y update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
