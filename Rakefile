@@ -43,9 +43,12 @@ namespace :docker do
       i = 0
       total_nodes = ENV['CIRCLE_NODE_TOTAL'].to_i
       node_index = ENV['CIRCLE_NODE_INDEX'].to_i
+      report_dir = ENV['CIRCLE_TEST_REPORTS'].to_s
+      format = "--format RspecJunitFormatter --out #{report_dir}/rspec.xml"
+
       tests.each do |test|
         if ((i % total_nodes) == node_index)
-          system "bundle exec rake docker:#{test}"
+          system "bundle exec rake docker:#{test} #{format}"
         end
         i += 1
       end
