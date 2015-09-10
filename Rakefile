@@ -27,8 +27,16 @@ namespace :docker do
     test_name = "test:#{spec_name}"
 
     desc "Run tests from spec in '#{file}'"
-    RSpec::Core::RakeTask.new("test:#{spec_name}") do |t|
+    RSpec::Core::RakeTask.new("test:#{spec_name}", :out) do |t, task_args|
       t.pattern = file
+      if task_args[:out]
+        if ENV['CIRCLE_TEST_REPORTS']
+          report_dir = ENV['CIRCLE_TEST_REPORTS'].to_s
+        else
+          report_dir = '.'
+        end
+        t.rspec_opts = "--format RspecJunitFormatter --out #{report_dir}/rspec.xml"
+      end
     end
 
     tests << test_name
@@ -43,12 +51,10 @@ namespace :docker do
       i = 0
       total_nodes = ENV['CIRCLE_NODE_TOTAL'].to_i
       node_index = ENV['CIRCLE_NODE_INDEX'].to_i
-      report_dir = ENV['CIRCLE_TEST_REPORTS'].to_s
-      format = "--format RspecJunitFormatter --out #{report_dir}/rspec.xml"
 
       tests.each do |test|
         if ((i % total_nodes) == node_index)
-          system "bundle exec rake docker:#{test} #{format}"
+          system "bundle exec rake docker:#{test}[ci]"
         end
         i += 1
       end
