@@ -7,6 +7,9 @@ MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
 
+# Add PM2 for process management.
+RUN npm install pm2 -g
+
 # Setup application base directory.
 RUN mkdir -p /server
 WORKDIR /server
