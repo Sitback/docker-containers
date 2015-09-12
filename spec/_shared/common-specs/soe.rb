@@ -76,6 +76,19 @@ shared_context 'soe' do
       it { should be_running.under('supervisor') }
     end
 
+    describe port(80) do
+      it { should be_listening }
+    end
+
+    describe port(443) do
+      it { should be_listening }
+    end
+
+    # Memcached.
+    describe port(11211) do
+      it { should be_listening }
+    end
+
     # PimpMyLog.
     describe port(8000) do
       it { should be_listening }
