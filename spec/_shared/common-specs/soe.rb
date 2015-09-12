@@ -1,7 +1,9 @@
 require 'serverspec'
 
 shared_context 'soe' do
-  let(:packages) { [
+  include_context 'base'
+
+  let(:soe_packages) { [
     'apache2',
     'php5',
     'socat',
@@ -18,14 +20,9 @@ shared_context 'soe' do
   ] }
   let(:apache_version) { '2.4.7' }
   let(:php_version) { '5.5' }
-  let(:ubuntu_version) { '14.04' }
 
-  it 'Installs the right version of Ubuntu' do
-    expect(get_os_version).to include("Ubuntu #{ubuntu_version}")
-  end
-
-  it "Install all required packages" do
-    packages.each do |package|
+  it "Install all required SOE packages" do
+    soe_packages.each do |package|
       puts "\tChecking package '#{package}'"
       expect(package(package)).to be_installed
     end
@@ -53,7 +50,7 @@ shared_context 'soe' do
   end
 
   describe "Supervisord services" do
-    describe command("sleep #{SoeConstants::SERVICE_TIMEOUT}") do
+    describe command("sleep #{Constants::SUPERVISORD_SERVICE_TIMEOUT}") do
       its(:exit_status) { should eq 0 }
     end
 

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'PHP 5.4 SOE' do
   include_context 'soe' do
-    let(:packages) { [
+    let(:soe_packages) { [
       'apache2',
       'php5',
       'socat',
