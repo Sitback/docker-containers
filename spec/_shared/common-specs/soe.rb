@@ -16,10 +16,7 @@ shared_context 'soe' do
     'php-soap',
     'php-pear'
   ] }
-  let(:service_count) { 5 }
-  let(:service_running_msg) { 'RUNNING' }
   let(:apache_version) { '2.4.7' }
-  let(:ports) { [80, 443, 8000] }
   let(:php_version) { '5.5' }
   let(:ubuntu_version) { '14.04' }
 
