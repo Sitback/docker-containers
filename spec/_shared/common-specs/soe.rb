@@ -77,9 +77,9 @@ shared_context 'soe' do
     end
 
     # PimpMyLog.
-    # describe port(8000) do
-      # it { should be_listening }
-    # end
+    describe port(8000) do
+      it { should be_listening }
+    end
   end
 
   describe 'Working Drush command' do
