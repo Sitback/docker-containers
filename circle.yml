@@ -5,6 +5,8 @@ machine:
     - docker
 
 dependencies:
+  cache_directories:
+    - ~/docker
   post:
     - bundle exec rake docker:ci_build
 
