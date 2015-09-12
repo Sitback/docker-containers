@@ -21,7 +21,7 @@ shared_context 'base' do
     expect(get_os_version).to include("Ubuntu #{ubuntu_version}")
   end
 
-  it "Install all required base packages" do
+  it "Installs all required base packages" do
     base_packages.each do |package|
       puts "\tChecking package '#{package}'"
       expect(package(package)).to be_installed

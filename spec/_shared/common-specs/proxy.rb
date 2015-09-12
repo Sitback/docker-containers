@@ -7,7 +7,7 @@ shared_context 'proxy' do
     'nginx'
   ] }
 
-  it "Install all required proxy packages" do
+  it "Installs all required proxy packages" do
     proxy_packages.each do |package|
       puts "\tChecking package '#{package}'"
       expect(package(package)).to be_installed
@@ -33,7 +33,7 @@ shared_context 'proxy' do
       its(:exit_status) { should eq 0 }
     end
 
-    describe "Supervisord services" do
+    describe "Proxy supervisord services" do
       describe command("sleep #{Constants::SUPERVISORD_SERVICE_TIMEOUT}") do
         its(:exit_status) { should eq 0 }
       end

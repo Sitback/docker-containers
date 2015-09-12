@@ -18,10 +18,17 @@ shared_context 'soe' do
     'php-soap',
     'php-pear'
   ] }
+  let(:soe_supervisord_services) { [
+    'apache2',
+    'socat',
+    'apache2errorlog',
+    'memcached',
+    'stdout'
+  ] }
   let(:apache_version) { '2.4.7' }
   let(:php_version) { '5.5' }
 
-  it "Install all required SOE packages" do
+  it "Installs all required SOE packages" do
     soe_packages.each do |package|
       puts "\tChecking package '#{package}'"
       expect(package(package)).to be_installed
@@ -53,25 +60,18 @@ shared_context 'soe' do
     it { should be_file }
   end
 
-  describe "Supervisord services" do
+  describe "SOE supervisord services" do
     describe command("sleep #{Constants::SUPERVISORD_SERVICE_TIMEOUT}") do
       its(:exit_status) { should eq 0 }
     end
 
-    describe service('apache2') do
-      it { should be_running.under('supervisor') }
-    end
-    describe service('socat') do
-      it { should be_running.under('supervisor') }
-    end
-    describe service('apache2errorlog') do
-      it { should be_running.under('supervisor') }
-    end
-    describe service('memcached') do
-      it { should be_running.under('supervisor') }
-    end
-    describe service('stdout') do
-      it { should be_running.under('supervisor') }
+    describe 'Service status' do
+      it 'Has expected services' do
+        soe_supervisord_services.each do |supervisord_service|
+          puts "\tChecking service '#{supervisord_service}'"
+          expect(service(supervisord_service)).to be_running.under('supervisor')
+        end
+      end
     end
 
     describe port(80) do
