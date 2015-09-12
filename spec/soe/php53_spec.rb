@@ -24,8 +24,8 @@ describe 'PHP 5.3 SOE' do
   end
 
   before(:all) do
-    image_name = "#{SoeConstants::IMAGE_PREFIX}php5.3"
-    set :os, family: :debian
+    image_name = "#{Constants::IMAGE_PREFIX}soe:php5.3"
+    set :os, family: Constants::OS_FAMILY
     set :docker_image, get_docker_image_id(image_name)
   end
 end
