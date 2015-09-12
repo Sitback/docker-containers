@@ -8,6 +8,8 @@ dependencies:
   cache_directories:
     - ~/docker
   post:
+    - mkdir -p ~/docker
+    - ls -al ~/docker/
     - bundle exec rake docker:ci_build
 
 test:
