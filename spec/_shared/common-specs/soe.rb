@@ -49,6 +49,10 @@ shared_context 'soe' do
     end
   end
 
+  describe file('/etc/supervisor/conf.d/soe.conf') do
+    it { should be_file }
+  end
+
   describe "Supervisord services" do
     describe command("sleep #{Constants::SUPERVISORD_SERVICE_TIMEOUT}") do
       its(:exit_status) { should eq 0 }
