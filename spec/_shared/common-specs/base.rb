@@ -28,11 +28,6 @@ shared_context 'base' do
     end
   end
 
-  describe command('locale') do
-    its(:exit_status) { should eq 0 }
-    its(:stdout) { should include 'en_AU' }
-  end
-
   describe file('/etc/supervisor/conf.d/base.conf') do
     it { should be_file }
   end
