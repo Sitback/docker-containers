@@ -30,7 +30,7 @@ shared_context 'base' do
 
   describe command('locale') do
     its(:exit_status) { should eq 0 }
-    its(:stdout) { should match 'en_AU' }
+    its(:stdout) { should include 'en_AU' }
   end
 
   describe file('/etc/supervisor/conf.d/base.conf') do
