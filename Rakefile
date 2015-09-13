@@ -54,7 +54,7 @@ namespace :docker do
 
       tests.each do |test|
         if ((i % total_nodes) == node_index)
-          system "bundle exec rake docker:#{test}[ci]"
+          system! "bundle exec rake docker:#{test}[ci]"
         end
         i += 1
       end
@@ -66,5 +66,12 @@ namespace :docker do
   desc "Publish all containers"
   task :publish do
     require_relative '_scripts/publish.rb'
+  end
+
+  def system! (cmd, ignore_exit = false)
+    system(cmd)
+
+    # Non-zero exit on failure.
+    exit $?.exitstatus unless $?.success? or ignore_exit
   end
 end
