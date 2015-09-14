@@ -5,9 +5,6 @@ CACHE_DIR = File.expand_path('~/docker').to_s
 # Create cache directory if required.
 system! "mkdir -p #{CACHE_DIR}"
 
-# Update mtime to prevent unwanted builds.
-system! "git set-mtime"
-
 manifest = load_manifest
 load_manifest.each do |name, container|
   image = get_image_name name, container
