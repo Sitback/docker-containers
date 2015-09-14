@@ -11,10 +11,12 @@ load_manifest.each do |name, container|
 
   # Load from cache if we have one.
   cache_file = File.expand_path(sanitise_filename("#{name}.tar"), CACHE_DIR).to_s
-  system! "docker load -i #{cache_file}", true if File.exist?(cache_file)
-
-  # Pull existing from Docker Hub, ignoring errors.
-  # system! "docker pull #{image}", true
+  if File.exist?(cache_file)
+    system! "docker load -i #{cache_file}", true
+  else
+    # Pull existing from Docker Hub, ignoring errors.
+    system! "docker pull #{image}", true
+  end
 
   system! "docker build -t #{image} #{container['path']}"
 
