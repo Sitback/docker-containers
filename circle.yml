@@ -4,11 +4,6 @@ machine:
   services:
     - docker
 
-
-checkout:
-  post:
-    - _scripts/set-mtime.sh
-
 dependencies:
   cache_directories:
     - ~/docker
