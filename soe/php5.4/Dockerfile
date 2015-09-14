@@ -12,21 +12,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat
 ## Apache
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 
-## PHP 5.4 via PPA.
-RUN add-apt-repository ppa:ondrej/php5-oldstable
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
-  php5 \
-  php5-gd \
-  php5-dev \
-  php5-curl \
-  php5-mcrypt \
-  php5-mysql \
-  php5-memcached \
-  php-apc \
-  php-soap \
-  php-pear
-
 ## Memcached.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached
 
@@ -52,6 +37,21 @@ COPY ./conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
 
 # Fix issue with SSLMutex.
 RUN mkdir -p /var/run/apache2
+
+# PHP 5.4 via PPA.
+RUN add-apt-repository ppa:ondrej/php5-oldstable
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
+  php5 \
+  php5-gd \
+  php5-dev \
+  php5-curl \
+  php5-mcrypt \
+  php5-mysql \
+  php5-memcached \
+  php-apc \
+  php-soap \
+  php-pear
 
 # Configure PHP.
 ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
