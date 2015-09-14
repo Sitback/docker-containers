@@ -48,6 +48,9 @@ namespace :docker do
   desc "Run tests in parallel on CircleCI"
   task "test:_circleci_parallel" do
     if ENV['CIRCLECI']
+      # Update mtime to prevent unwanted builds.
+      system! "git set-mtime"
+
       i = 0
       total_nodes = ENV['CIRCLE_NODE_TOTAL'].to_i
       node_index = ENV['CIRCLE_NODE_INDEX'].to_i

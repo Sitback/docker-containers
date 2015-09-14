@@ -18,6 +18,8 @@ GEM
       excon (>= 0.38.0)
       json
     excon (0.45.4)
+    git-set-mtime (0.0.2)
+      thor (~> 0.19.1)
     json (1.8.3)
     multi_json (1.11.2)
     net-scp (1.2.1)
@@ -50,12 +52,14 @@ GEM
       rspec-its
       specinfra (~> 2.43)
     sfl (2.2)
+    thor (0.19.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   docker-api
+  git-set-mtime
   rake
   rspec_junit_formatter
   serverspec
