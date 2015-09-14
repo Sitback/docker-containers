@@ -4,16 +4,10 @@ machine:
   services:
     - docker
 
-# Thanks to http://disq.us/8oltdg
+
 checkout:
   post:
-    # Set all files have a mtime of 2014-01-01.
-    - find . -exec touch -t 201401010000 {} \;
-    # Set all tracked files to have a mtime as per git.
-    - for x in $(git ls-tree --full-tree --name-only -r HEAD);\
-      do touch -t \
-      $(date -d "$(git log -1 --format=%ci "${x}")" +%y%m%d%H%M.%S) \
-      "${x}"; done
+    - _scripts/set-mtime.sh
 
 dependencies:
   cache_directories:
