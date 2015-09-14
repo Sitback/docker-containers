@@ -3,7 +3,7 @@ require_relative 'helpers.rb'
 CACHE_DIR = File.expand_path('~/docker').to_s
 
 # Toggle to disable caching.
-CACHE_ENABLED = true;
+CACHE_ENABLED = false
 
 # Create cache directory if required.
 system! "mkdir -p #{CACHE_DIR}"
