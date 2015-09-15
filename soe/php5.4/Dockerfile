@@ -12,21 +12,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat
 ## Apache
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
 
-## PHP 5.4 via PPA.
-RUN add-apt-repository ppa:ondrej/php5-oldstable
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
-  php5 \
-  php5-gd \
-  php5-dev \
-  php5-curl \
-  php5-mcrypt \
-  php5-mysql \
-  php5-memcached \
-  php-apc \
-  php-soap \
-  php-pear
-
 ## Memcached.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached
 
@@ -44,8 +29,29 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
+# @TODO: Fix to be .docker.
+# *.dev certificates
+RUN mkdir /root/certs
+COPY ./conf/certs/dev-self-signed-ssl.crt /root/certs/dev-self-signed-ssl.crt
+COPY ./conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
+
 # Fix issue with SSLMutex.
 RUN mkdir -p /var/run/apache2
+
+# PHP 5.4 via PPA.
+RUN add-apt-repository ppa:ondrej/php5-oldstable
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
+  php5 \
+  php5-gd \
+  php5-dev \
+  php5-curl \
+  php5-mcrypt \
+  php5-mysql \
+  php5-memcached \
+  php-apc \
+  php-soap \
+  php-pear
 
 # Configure PHP.
 ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
@@ -82,14 +88,17 @@ RUN a2ensite pimpmylog
 # Add apache user to the adm group so they can read logs.
 RUN usermod -a -G adm www-data
 
-# Update PATH to include Composer's bin.
+# Update PATH to include Composer's bin (also add into /etc/profile so that our
+# tests pick it up too).
 ENV COMPOSER_BIN /root/.composer/vendor/bin
 ENV PATH "$COMPOSER_BIN:$PATH"
+RUN echo "" >> /etc/profile
+RUN echo "PATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
 
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
 
-# SSH, HTTP, HTTPS, PimpMyLog & Xdebug.
-EXPOSE 22 80 443 8000 9000
+# HTTP, HTTPS, PimpMyLog & Xdebug.
+EXPOSE 80 443 8000 9000
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-n"]

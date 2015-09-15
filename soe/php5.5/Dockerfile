@@ -42,6 +42,12 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod headers
 
+# @TODO: Fix to be .docker.
+# *.dev certificates
+RUN mkdir /root/certs
+COPY ./conf/certs/dev-self-signed-ssl.crt /root/certs/dev-self-signed-ssl.crt
+COPY ./conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
+
 # Fix issue with SSLMutex.
 RUN mkdir -p /var/run/apache2
 
@@ -77,9 +83,12 @@ RUN a2ensite pimpmylog
 # Add apache user to the adm group so they can read logs.
 RUN usermod -a -G adm www-data
 
-# Update PATH to include Composer's bin.
+# Update PATH to include Composer's bin (also add into /etc/profile so that our
+# tests pick it up too).
 ENV COMPOSER_BIN /root/.composer/vendor/bin
 ENV PATH "$COMPOSER_BIN:$PATH"
+RUN echo "" >> /etc/profile
+RUN echo "PATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
 
 # Install MailHog & MailHog's sendmail replacement.
 RUN curl -s -L https://github.com/mailhog/MailHog/releases/latest | egrep -o '/mailhog/MailHog/releases/download/[v.0-9]*/MailHog_linux_amd64' | wget --base=http://github.com/ -i - -O /usr/local/bin/mailhog
@@ -91,7 +100,7 @@ RUN update-alternatives --install /usr/sbin/sendmail mhsendmail /usr/local/bin/m
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
 
-# SSH, HTTP, HTTPS, MailHog SMTP, MailHog WebUI, PimpMyLog & Xdebug.
-EXPOSE 22 80 443 1025 8000 8025 9000
+# HTTP, HTTPS, MailHog SMTP, MailHog WebUI, PimpMyLog & Xdebug.
+EXPOSE 80 443 1025 8000 8025 9000
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-n"]

@@ -1,5 +1,5 @@
 # docker-containers
-[![Build Status](https://img.shields.io/travis/chinthakagodawita/docker-containers/master.svg)](https://travis-ci.org/chinthakagodawita/docker-containers)
+[![Build Status](https://img.shields.io/circleci/project/chinthakagodawita/docker-containers/master.svg)](https://circleci.com/gh/chinthakagodawita/docker-containers)
 
 This is a set of Dockerfiles used to build containers base/SOE containers on [my container registry](https://registry.hub.docker.com/u/chinthakagodawita/).
 
