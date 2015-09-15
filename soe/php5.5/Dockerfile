@@ -31,6 +31,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached
 ## MySQL client.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client
 
+## SSMTP.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install ssmtp
+
 # Configure socat.
 ADD ./conf/socat/start.sh /root/socat-start.sh
 RUN chmod +x /root/socat-start.sh
@@ -93,9 +96,16 @@ RUN echo "PATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
 # Install MailHog & MailHog's sendmail replacement.
 RUN curl -s -L https://github.com/mailhog/MailHog/releases/latest | egrep -o '/mailhog/MailHog/releases/download/[v.0-9]*/MailHog_linux_amd64' | wget --base=http://github.com/ -i - -O /usr/local/bin/mailhog
 RUN chmod +x /usr/local/bin/mailhog
-RUN curl -s -L https://github.com/mailhog/mhsendmail/releases/latest | egrep -o '/mailhog/mhsendmail/releases/download/[v.0-9]*/mhsendmail_linux_amd64' | wget --base=http://github.com/ -i - -O /usr/local/bin/mhsendmail
-RUN chmod +x /usr/local/bin/mhsendmail
-RUN update-alternatives --install /usr/sbin/sendmail mhsendmail /usr/local/bin/mhsendmail 1
+# Disabled until https://github.com/mailhog/mhsendmail/issues/3 is fixed.
+# RUN curl -s -L https://github.com/mailhog/mhsendmail/releases/latest | egrep -o '/mailhog/mhsendmail/releases/download/[v.0-9]*/mhsendmail_linux_amd64' | wget --base=http://github.com/ -i - -O /usr/local/bin/mhsendmail
+# RUN chmod +x /usr/local/bin/mhsendmail
+# RUN update-alternatives --install /usr/sbin/sendmail mhsendmail /usr/local/bin/mhsendmail 1
+# Configure PHP to use mhsendmail.
+# ADD ./conf/php/40-mhsendmail.ini /etc/php5/cli/conf.d/40-mhsendmail.ini
+# ADD ./conf/php/40-mhsendmail.ini /etc/php5/apache2/conf.d/40-mhsendmail.ini
+
+# Configure SSMTP to relay to MailHog.
+ADD ./conf/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf
 
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
