@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe 'PHP 5.5 SOE' do
-  include_context 'soe'
+describe 'Base nginx proxy' do
+  include_context 'proxy'
 
   before(:all) do
-    image_name = "#{Constants::IMAGE_PREFIX}soe:php5.5"
+    image_name = "#{Constants::IMAGE_PREFIX}proxy:nginx"
     set :os, family: Constants::OS_FAMILY
     set :docker_image, get_docker_image_id(image_name)
   end

@@ -18,6 +18,9 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN locale-gen en_AU en_AU.UTF-8
 RUN dpkg-reconfigure locales
 RUN update-locale LC_ALL=en_AU.UTF-8 LANG=en_AU.UTF-8
+ENV LANG en_AU.UTF-8
+ENV LANGUAGE en_AU:en
+ENV LC_ALL en_AU.UTF-8
 
 # Supervisord (should be configured in any containers that inherit this base).
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor

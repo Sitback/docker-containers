@@ -8,7 +8,7 @@ module Helpers
   def get_docker_image_id (image_name)
     image = nil
     Docker::Image.all.each do |image_def|
-      if image_def.info['RepoTags'][0] == image_name
+      if image_def.info['RepoTags'].include?(image_name)
         image = image_def.id
         break
       end

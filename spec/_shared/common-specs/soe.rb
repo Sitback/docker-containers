@@ -1,7 +1,9 @@
 require 'serverspec'
 
 shared_context 'soe' do
-  let(:packages) { [
+  include_context 'base'
+
+  let(:soe_packages) { [
     'apache2',
     'php5',
     'socat',
@@ -16,19 +18,18 @@ shared_context 'soe' do
     'php-soap',
     'php-pear'
   ] }
-  let(:service_count) { 5 }
-  let(:service_running_msg) { 'RUNNING' }
+  let(:soe_supervisord_services) { [
+    'apache2',
+    'socat',
+    'apache2errorlog',
+    'memcached',
+    'stdout'
+  ] }
   let(:apache_version) { '2.4.7' }
-  let(:ports) { [80, 443, 8000] }
   let(:php_version) { '5.5' }
-  let(:ubuntu_version) { '14.04' }
 
-  it 'Installs the right version of Ubuntu' do
-    expect(get_os_version).to include("Ubuntu #{ubuntu_version}")
-  end
-
-  it "Install all required packages" do
-    packages.each do |package|
+  it "Installs all required SOE packages" do
+    soe_packages.each do |package|
       puts "\tChecking package '#{package}'"
       expect(package(package)).to be_installed
     end
@@ -55,31 +56,41 @@ shared_context 'soe' do
     end
   end
 
-  describe "Supervisord services" do
-    describe command("sleep #{SoeConstants::SERVICE_TIMEOUT}") do
+  describe file('/etc/supervisor/conf.d/soe.conf') do
+    it { should be_file }
+  end
+
+  describe "SOE supervisord services" do
+    describe command("sleep #{Constants::SUPERVISORD_SERVICE_TIMEOUT}") do
       its(:exit_status) { should eq 0 }
     end
 
-    describe service('apache2') do
-      it { should be_running.under('supervisor') }
+    describe 'Service status' do
+      it 'Has expected services' do
+        soe_supervisord_services.each do |supervisord_service|
+          puts "\tChecking service '#{supervisord_service}'"
+          expect(service(supervisord_service)).to be_running.under('supervisor')
+        end
+      end
     end
-    describe service('socat') do
-      it { should be_running.under('supervisor') }
+
+    describe port(80) do
+      it { should be_listening }
     end
-    describe service('apache2errorlog') do
-      it { should be_running.under('supervisor') }
+
+    describe port(443) do
+      it { should be_listening }
     end
-    describe service('memcached') do
-      it { should be_running.under('supervisor') }
-    end
-    describe service('stdout') do
-      it { should be_running.under('supervisor') }
+
+    # Memcached.
+    describe port(11211) do
+      it { should be_listening }
     end
 
     # PimpMyLog.
-    # describe port(8000) do
-      # it { should be_listening }
-    # end
+    describe port(8000) do
+      it { should be_listening }
+    end
   end
 
   describe 'Working Drush command' do
