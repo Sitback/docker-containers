@@ -13,7 +13,10 @@ shared_context 'base' do
     'nano',
     'telnet',
     'net-tools',
-    'git'
+    'rsync',
+    'wget',
+    'git',
+    'vim'
   ] }
   let(:ubuntu_version) { '14.04' }
 
