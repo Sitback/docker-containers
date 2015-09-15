@@ -8,6 +8,7 @@ shared_context 'soe' do
     'php5',
     'socat',
     'mysql-client',
+    'memcached',
     'php5-gd',
     'php5-dev',
     'php5-curl',
