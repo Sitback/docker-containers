@@ -48,4 +48,16 @@ shared_context 'ci' do
     end
   end
 
+  describe 'Working PHPCS command' do
+    describe command('which phpcs') do
+      its(:stdout) { should match "/root/.composer/vendor/bin/phpcs" }
+    end
+  end
+
+  describe 'PHPCS Drupal standards installed' do
+    describe command('phpcs -i') do
+      its(:stdout) { should include "Drupal" }
+    end
+  end
+
 end
