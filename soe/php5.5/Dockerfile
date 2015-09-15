@@ -103,4 +103,6 @@ ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
 # HTTP, HTTPS, MailHog SMTP, MailHog WebUI, PimpMyLog & Xdebug.
 EXPOSE 80 443 1025 8000 8025 9000
 
+WORKDIR /var/www
+
 CMD ["/usr/bin/supervisord", "-n"]

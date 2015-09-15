@@ -40,8 +40,17 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 # Curl.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install curl
 
-# Nano & telnet (just in case).
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano telnet
+# Telnet.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install telnet
+
+# Rsync.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install rsync
+
+# Wget.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install wget
+
+# Nano & Vim (just in case).
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano vim
 
 # Netstat et al.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install net-tools

@@ -17,6 +17,11 @@ ADD ./conf/mysql/ci_overrides.cnf /etc/mysql/conf.d/ci_overrides.cnf
 RUN ln -sfv /dev/stdout /var/log/mysql/mysql.log
 RUN ln -sfv /dev/stderr /var/log/mysql/error.log
 
+# PHPCS & Coder.
+RUN composer global require drupal/coder
+RUN phpcs --config-set installed_paths \
+  ~/.composer/vendor/drupal/coder/coder_sniffer
+
 # Startup settings.
 ADD ./conf/supervisor/ci.conf /etc/supervisor/conf.d/ci.conf
 
