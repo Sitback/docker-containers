@@ -17,7 +17,8 @@ shared_context 'soe' do
     'php5-xdebug',
     'php5-memcached',
     'php-soap',
-    'php-pear'
+    'php-pear',
+    'ssmtp'
   ] }
   let(:soe_supervisord_services) { [
     'apache2',
