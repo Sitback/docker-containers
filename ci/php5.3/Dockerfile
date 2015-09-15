@@ -17,6 +17,11 @@ ADD ./conf/mysql/ci_overrides.cnf /etc/mysql/conf.d/ci_overrides.cnf
 RUN ln -sfv /dev/stdout /var/log/mysql/mysql.log
 RUN ln -sfv /dev/stderr /var/log/mysql/error.log
 
+# PHPCS & Coder.
+RUN drush pm-download coder-7.x-2.5 --destination=$HOME/.drush
+RUN composer global require squizlabs/PHP_CodeSniffer:\<2
+RUN drush cache-clear drush
+
 # Startup settings.
 ADD ./conf/supervisor/ci.conf /etc/supervisor/conf.d/ci.conf
 
