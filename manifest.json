@@ -76,5 +76,11 @@
     "repository": "proxy",
     "tag": "nginx-node",
     "path": "proxy/nginx-node"
+  },
+  "node:base": {
+    "user": "chinthakagodawita",
+    "repository": "node",
+    "tag": "base",
+    "path": "node/base"
   }
 }

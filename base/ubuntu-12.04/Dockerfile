@@ -3,9 +3,24 @@
 FROM ubuntu:12.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
+# Increment this to trigger a full rebuild.
+ENV DC_BASE_VERSION 'ubuntu-12.04-1.0.0'
+
 # Update repositories and make sure we're on the latest 14.04 release.
 RUN apt-get -y update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
+
+# Set timezone to be AEST/AEDT.
+RUN echo "Australia/Sydney" > /etc/timezone
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
+# Set locale to be AU.
+RUN locale-gen en_AU en_AU.UTF-8
+RUN dpkg-reconfigure locales
+RUN update-locale LC_ALL=en_AU.UTF-8 LANG=en_AU.UTF-8
+ENV LANG en_AU.UTF-8
+ENV LANGUAGE en_AU:en
+ENV LC_ALL en_AU.UTF-8
 
 # Supervisord (should be configured in any containers that inherit this base).
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
@@ -22,22 +37,20 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   autoconf \
   automake
 
-# OpenSSH.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server
-
 # Curl.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install curl
 
 # Nano & telnet (just in case).
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano telnet
 
+# Netstat et al.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install net-tools
+
+# Git.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install git
+
 # stdout helper for supervisord.
 RUN easy_install supervisor-stdout
-
-# *.dev certificates
-RUN mkdir /root/certs
-COPY ./conf/certs/dev-self-signed-ssl.crt /root/certs/dev-self-signed-ssl.crt
-COPY ./conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
 
 # Startup settings.
 ADD ./conf/supervisor/base.conf /etc/supervisor/conf.d/base.conf
