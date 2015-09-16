@@ -1,10 +1,10 @@
 # Base for most of the Docker containers here.
 
-FROM ubuntu:12.04
+FROM ubuntu-debootstrap:12.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # Increment this to trigger a full rebuild.
-ENV DC_BASE_VERSION 'ubuntu-12.04-1.0.0'
+ENV DC_BASE_VERSION 'ubuntu-12.04-2.0.0'
 
 # Update repositories and make sure we're on the latest 14.04 release.
 RUN apt-get -y update
@@ -40,8 +40,17 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 # Curl.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install curl
 
-# Nano & telnet (just in case).
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano telnet
+# Telnet.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install telnet
+
+# Rsync.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install rsync
+
+# Wget.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install wget
+
+# Nano & Vim (just in case).
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano vim
 
 # Netstat et al.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install net-tools

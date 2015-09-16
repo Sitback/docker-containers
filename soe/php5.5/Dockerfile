@@ -93,6 +93,8 @@ RUN echo "PATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
 # Startup settings.
 ADD ./conf/supervisor/soe.conf /etc/supervisor/conf.d/soe.conf
 
+WORKDIR /var/www
+
 # HTTP, HTTPS, PimpMyLog & Xdebug.
 EXPOSE 80 443 8000 9000
 
