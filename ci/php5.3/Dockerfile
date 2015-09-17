@@ -26,4 +26,4 @@ RUN phpcs --config-set installed_paths \
 ADD ./conf/supervisor/ci.conf /etc/supervisor/conf.d/ci.conf
 
 # Prevent socat from taking over the MySQL socket.
-RUN perl -pi -e 'BEGIN{undef $/;} s/(\[program:socat.*autostart=)true/$1false/sgm' /etc/supervisor/conf.d/soe.conf
+RUN perl -pi -e 'BEGIN{undef $/;} s/(\[program:socat.*?autostart=)true/$1false/sgm' /etc/supervisor/conf.d/soe.conf

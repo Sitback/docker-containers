@@ -17,13 +17,15 @@ shared_context 'soe' do
     'php5-xdebug',
     'php5-memcached',
     'php-soap',
-    'php-pear'
+    'php-pear',
+    'ssmtp'
   ] }
   let(:soe_supervisord_services) { [
     'apache2',
     'socat',
     'apache2errorlog',
     'memcached',
+    'mailhog',
     'stdout'
   ] }
   let(:apache_version) { '2.4.7' }
@@ -90,6 +92,14 @@ shared_context 'soe' do
 
     # PimpMyLog.
     describe port(8000) do
+      it { should be_listening }
+    end
+
+    # MailHog.
+    describe port(1025) do
+      it { should be_listening }
+    end
+    describe port(8025) do
       it { should be_listening }
     end
   end
