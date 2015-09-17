@@ -7,6 +7,7 @@ shared_context 'ci' do
       'apache2',
       'apache2errorlog',
       'memcached',
+      'mailhog',
       'stdout'
     ] }
   end
