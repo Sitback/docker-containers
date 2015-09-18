@@ -26,7 +26,7 @@ ENV LC_ALL en_AU.UTF-8
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
 
 # APT management tools.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-software-properties
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common
 
 # Python easy_install.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-setuptools

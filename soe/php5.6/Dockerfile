@@ -43,6 +43,7 @@ RUN mkdir -p /var/run/apache2
 
 # PHP.
 RUN add-apt-repository ppa:ondrej/php5-5.6
+RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5 \
   php5-gd \
