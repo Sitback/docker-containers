@@ -4,7 +4,7 @@ require 'serverspec'
 shared_context 'base' do
   let(:base_packages) { [
     'supervisor',
-    'python-software-properties',
+    'software-properties-common',
     'python-setuptools',
     'build-essential',
     'autoconf',
