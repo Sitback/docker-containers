@@ -1,6 +1,6 @@
 # Base for most of the Docker containers here.
 
-FROM chinthakagodawita/ubuntu:14.04
+FROM chinthakagodawita/ubuntu:12.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # Increment this to trigger a full rebuild.
