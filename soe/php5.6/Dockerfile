@@ -1,4 +1,4 @@
-# Standard Operating Environment running off Ubuntu 14.04 & PHP 5.5.
+# Standard Operating Environment running off Ubuntu 14.04 & PHP 5.6.
 
 FROM chinthakagodawita/base:ubuntu-14.04
 MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
@@ -42,6 +42,8 @@ COPY ./conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
 RUN mkdir -p /var/run/apache2
 
 # PHP.
+RUN add-apt-repository ppa:ondrej/php5-5.6
+RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5 \
   php5-gd \

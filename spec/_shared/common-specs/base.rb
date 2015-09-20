@@ -4,7 +4,6 @@ require 'serverspec'
 shared_context 'base' do
   let(:base_packages) { [
     'supervisor',
-    'python-software-properties',
     'python-setuptools',
     'build-essential',
     'autoconf',
@@ -37,6 +36,10 @@ shared_context 'base' do
 
   describe command('cat /etc/timezone') do
     its(:stdout) { should match 'Australia/Sydney' }
+  end
+
+  describe command('which add-apt-repository') do
+    its(:stdout) { should match '/usr/bin/add-apt-repository' }
   end
 
 end
