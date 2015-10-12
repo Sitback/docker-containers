@@ -64,6 +64,7 @@ ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
 RUN pecl install xdebug
 
 # Setup Xdebug.
+ADD ./conf/php/xdebug.ini /etc/php5/mods-available/xdebug.ini
 RUN php5enmod xdebug
 ADD ./conf/php/30-xdebug-conf.ini /etc/php5/apache2/conf.d/30-xdebug-conf.ini
 
