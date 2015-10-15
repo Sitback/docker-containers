@@ -89,6 +89,12 @@
     "tag": "nginx-node",
     "path": "proxy/nginx-node"
   },
+  "proxy:haproxy-node": {
+    "user": "chinthakagodawita",
+    "repository": "proxy",
+    "tag": "haproxy-node",
+    "path": "proxy/haproxy-node"
+  },
   "node:base": {
     "user": "chinthakagodawita",
     "repository": "node",

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Nginx proxy for Node.js applications' do
-  include_context 'proxy'
+  include_context 'nginx'
 
   before(:all) do
     image_name = "#{Constants::IMAGE_PREFIX}proxy:nginx-node"
