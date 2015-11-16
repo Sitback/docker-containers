@@ -37,8 +37,10 @@ shared_context 'ci' do
       it { should_not be_running.under('supervisor') }
     end
 
-    describe port(3306) do
-      it { should be_listening }
+    if !ENV['CIRCLECI']
+      describe port(3306) do
+        it { should be_listening }
+      end
     end
   end
 

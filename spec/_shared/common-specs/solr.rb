@@ -35,8 +35,10 @@ shared_context 'solr' do
         it { should be_running.under('supervisor') }
       end
 
-      describe port(8983) do
-        it { should be_listening }
+      if !ENV['CIRCLECI']
+        describe port(8983) do
+          it { should be_listening }
+        end
       end
     end
   end
