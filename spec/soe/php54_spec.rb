@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe 'PHP 5.4 SOE' do
   include_context 'soe' do
+    # This SOE image doesn't inherit from a PHP one.
+    let(:php_packages) { [] }
     let(:soe_packages) { Constants::PHP54_PACKAGES }
     let(:apache_version) { Constants::UBUNTU1204_APACHE_VERSION }
     let(:php_version) { '5.4' }

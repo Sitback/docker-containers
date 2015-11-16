@@ -1,26 +1,33 @@
 require 'serverspec'
 
-shared_context 'soe' do
-  include_context 'php'
+shared_context 'php' do
+  include_context 'base'
 
-  let(:soe_packages) { [
-    'socat',
-    'php5-xdebug',
-    'ssmtp'
-  ] }
-  let(:soe_supervisord_services) { [
+  let(:php_packages) { [
     'apache2',
-    'socat',
+    'php5',
+    'mysql-client',
+    'memcached',
+    'php5-gd',
+    'php5-dev',
+    'php5-curl',
+    'php5-mcrypt',
+    'php5-mysql',
+    'php5-memcached',
+    'php-soap',
+    'php-pear'
+  ] }
+  let(:php_supervisord_services) { [
+    'apache2',
     'apache2errorlog',
     'memcached',
-    'mailhog',
     'stdout'
   ] }
   let(:apache_version) { '2.4.7' }
   let(:php_version) { '5.5' }
 
-  it "Installs all required SOE packages" do
-    soe_packages.each do |package|
+  it "Installs all required php packages" do
+    php_packages.each do |package|
       puts "\tChecking package '#{package}'"
       expect(package(package)).to be_installed
     end
@@ -47,18 +54,18 @@ shared_context 'soe' do
     end
   end
 
-  describe file('/etc/supervisor/conf.d/soe.conf') do
+  describe file('/etc/supervisor/conf.d/php.conf') do
     it { should be_file }
   end
 
-  describe "SOE supervisord services" do
+  describe "PHP supervisord services" do
     describe command("sleep #{Constants::SUPERVISORD_SERVICE_TIMEOUT}") do
       its(:exit_status) { should eq 0 }
     end
 
     describe 'Service status' do
       it 'Has expected services' do
-        soe_supervisord_services.each do |supervisord_service|
+        php_supervisord_services.each do |supervisord_service|
           puts "\tChecking service '#{supervisord_service}'"
           expect(service(supervisord_service)).to be_running.under('supervisor')
         end
@@ -66,28 +73,6 @@ shared_context 'soe' do
     end
 
     describe port(80) do
-      it { should be_listening }
-    end
-
-    describe port(443) do
-      it { should be_listening }
-    end
-
-    # Memcached.
-    describe port(11211) do
-      it { should be_listening }
-    end
-
-    # PimpMyLog.
-    describe port(8000) do
-      it { should be_listening }
-    end
-
-    # MailHog.
-    describe port(1025) do
-      it { should be_listening }
-    end
-    describe port(8025) do
       it { should be_listening }
     end
   end
