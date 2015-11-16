@@ -112,5 +112,11 @@
     "repository": "node",
     "tag": "base",
     "path": "node/base"
+  },
+  "solr:5.3": {
+    "user": "chinthakagodawita",
+    "repository": "solr",
+    "tag": "5.3",
+    "path": "solr/5.3"
   }
 }
