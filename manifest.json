@@ -17,6 +17,24 @@
     "tag": "latest",
     "path": "base/ubuntu-14.04"
   },
+  "php:5.5.": {
+    "user": "chinthakagodawita",
+    "repository": "php",
+    "tag": "5.5.",
+    "path": "php/5.5."
+  },
+  "php:5.6": {
+    "user": "chinthakagodawita",
+    "repository": "php",
+    "tag": "5.6",
+    "path": "php/5.6"
+  },
+  "php:latest": {
+    "user": "chinthakagodawita",
+    "repository": "php",
+    "tag": "latest",
+    "path": "php/5.6"
+  },
   "soe:php5.3": {
     "user": "chinthakagodawita",
     "repository": "soe",
