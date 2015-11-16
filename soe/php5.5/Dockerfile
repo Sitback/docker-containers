@@ -16,6 +16,8 @@ RUN chmod +x /root/socat-start.sh
 RUN mkdir /root/certs
 COPY ./conf/certs/dev-self-signed-ssl.crt /root/certs/dev-self-signed-ssl.crt
 COPY ./conf/certs/dev-self-signed-ssl.key /root/certs/dev-self-signed-ssl.key
+COPY ./conf/apache2/ssl-vhost.conf /etc/apache2/sites-available/ssl.conf
+RUN a2ensite ssl
 
 # Configure PHP.
 ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
