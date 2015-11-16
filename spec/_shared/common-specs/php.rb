@@ -25,6 +25,7 @@ shared_context 'php' do
   ] }
   let(:apache_version) { '2.4.7' }
   let(:php_version) { '5.5' }
+  let(:check_php_supervisord_file) { true }
 
   it "Installs all required php packages" do
     php_packages.each do |package|
@@ -54,8 +55,12 @@ shared_context 'php' do
     end
   end
 
-  describe file('/etc/supervisor/conf.d/php.conf') do
-    it { should be_file }
+  describe 'PHP supervisord file check' do
+    it 'Has config file' do
+      if check_php_supervisord_file
+        expect(file('/etc/supervisor/conf.d/php.conf')).to be_file
+      end
+    end
   end
 
   describe "PHP supervisord services" do
