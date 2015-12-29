@@ -23,6 +23,7 @@ shared_context 'php' do
     'memcached',
     'stdout'
   ] }
+  let(:apache_php_mod) { 'php5_module' }
   let(:apache_version) { '2.4.7' }
   let(:php_version) { '5.5' }
   let(:check_php_supervisord_file) { true }
@@ -37,7 +38,7 @@ shared_context 'php' do
   describe 'Apache Install' do
     describe command('apachectl -M') do
       its(:stdout) { should include('rewrite_module') }
-      its(:stdout) { should include('php5_module') }
+      its(:stdout) { should include(apache_php_mod) }
       its(:stdout) { should include('vhost_alias') }
       its(:stdout) { should include('ssl') }
       its(:stdout) { should include('headers') }

@@ -13,12 +13,13 @@ describe 'PHP 7.0' do
       'php7.0-gd',
       'php7.0-dev',
       'php7.0-curl',
-      'php7.0-mcrypt',
       'php7.0-mysql',
       'php-memcached',
       'php-soap',
       'php-pear'
     ] }
+
+    let(:apache_php_mod) { 'php7_module' }
   end
 
   before(:all) do

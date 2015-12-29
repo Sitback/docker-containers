@@ -9,6 +9,8 @@ describe 'PHP 7.0 SOE' do
       'xdebug',
       'ssmtp'
     ] }
+
+    let(:apache_php_mod) { 'php7_module' }
   end
 
   before(:all) do

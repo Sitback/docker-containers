@@ -41,7 +41,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 
 # Configure PHP.
 ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
-ADD ./conf/php/30-memcached.ini /etc/php5/apache2/conf.d/30-memcached.ini
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
