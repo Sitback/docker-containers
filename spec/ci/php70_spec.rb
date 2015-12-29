@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe 'PHP 7.0 CI' do
   include_context 'ci' do
+    let(:soe_packages) { [
+      'socat',
+      'ssmtp'
+    ] }
+
     let(:php_version) { '7.0' }
 
     let(:php_packages) { [
