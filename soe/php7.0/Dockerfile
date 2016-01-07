@@ -5,22 +5,7 @@ MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
 
 # Install all packages.
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat ssmtp
-
-# Compile xdebug from source.
-RUN cd /tmp/ \
-  && wget http://xdebug.org/files/xdebug-2.4.0rc3.tgz \
-  && tar -xvzf xdebug-2.4.0rc3.tgz \
-  && pwd \
-  && cd xdebug-2.4.0RC3/ \
-  && /usr/bin/phpize \
-  && ./configure --enable-xdebug --with-php-config=/usr/bin/php-config \
-  && make \
-  && make install \
-  && cp modules/xdebug.so /usr/lib/php/20151012/
-
-RUN echo '[xdebug]' >> /etc/php/7.0/cli/php.ini \
-  && echo 'zend_extension=/usr/lib/php/20151012/xdebug.so' >> /etc/php/7.0/cli/php.ini
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat ssmtp php-xdebug
 
 # Configure socat.
 ADD ./conf/socat/start.sh /root/socat-start.sh
@@ -35,10 +20,10 @@ COPY ./conf/apache2/ssl-vhost.conf /etc/apache2/sites-available/ssl.conf
 RUN a2ensite ssl
 
 # Configure PHP.
-ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
+ADD ./conf/php/30-overrides.ini /etc/php/7.0/apache2/conf.d/30-overrides.ini
 
 # Setup Xdebug.
-ADD ./conf/php/30-xdebug-conf.ini /etc/php5/apache2/conf.d/30-xdebug-conf.ini
+ADD ./conf/php/30-xdebug.ini /etc/php/7.0/apache2/conf.d/30-xdebug.ini
 
 # Install PimpMyLog.
 RUN mkdir -p /server/pimpmylog && \

@@ -40,7 +40,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php-pear
 
 # Configure PHP.
-ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
+ADD ./conf/php/30-overrides.ini /etc/php/7.0/apache2/conf.d/30-overrides.ini
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
