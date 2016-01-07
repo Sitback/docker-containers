@@ -29,6 +29,12 @@
     "tag": "5.6",
     "path": "php/5.6"
   },
+  "php:7.0": {
+    "user": "chinthakagodawita",
+    "repository": "php",
+    "tag": "7.0",
+    "path": "php/7.0"
+  },
   "php:latest": {
     "user": "chinthakagodawita",
     "repository": "php",
@@ -59,11 +65,23 @@
     "tag": "php5.6",
     "path": "soe/php5.6"
   },
+  "soe:php7.0": {
+    "user": "chinthakagodawita",
+    "repository": "soe",
+    "tag": "php7.0",
+    "path": "soe/php7.0"
+  },
   "soe:latest": {
     "user": "chinthakagodawita",
     "repository": "soe",
     "tag": "latest",
     "path": "soe/php5.6"
+  },
+  "ci:php7.0": {
+    "user": "chinthakagodawita",
+    "repository": "ci",
+    "tag": "php7.0",
+    "path": "ci/php7.0"
   },
   "ci:php5.6": {
     "user": "chinthakagodawita",
