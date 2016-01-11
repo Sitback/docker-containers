@@ -1,7 +1,6 @@
 # PHP 7.0 container.
-
-FROM chinthakagodawita/base:ubuntu-14.04
-MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
+FROM sitback/base:ubuntu-14.04
+MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update

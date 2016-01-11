@@ -3,7 +3,7 @@
 ##
 
 module Constants
-  IMAGE_PREFIX = 'chinthakagodawita/'
+  IMAGE_PREFIX = 'sitback/'
   OS_FAMILY = :debian
   SUPERVISORD_SERVICE_TIMEOUT = 30
   PHP54_PACKAGES = [

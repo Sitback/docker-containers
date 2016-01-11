@@ -1,5 +1,5 @@
-FROM chinthakagodawita/base:ubuntu-14.04
-MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
+FROM sitback/base:ubuntu-14.04
+MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Add Java repository and install Solr dependencies.
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 \

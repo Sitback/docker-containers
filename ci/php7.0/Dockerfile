@@ -1,7 +1,6 @@
 # PHP 5.6 container, optimised for Continuous Integration.
-
-FROM chinthakagodawita/soe:php7.0
-MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
+FROM sitback/soe:php7.0
+MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update

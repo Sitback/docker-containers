@@ -1,5 +1,5 @@
 # docker-containers
-[![Build Status](https://img.shields.io/circleci/project/chinthakagodawita/docker-containers/master.svg)](https://circleci.com/gh/chinthakagodawita/docker-containers)
+[![Build Status](https://img.shields.io/circleci/project/sitback/docker-containers/master.svg)](https://circleci.com/gh/sitback/docker-containers)
 
 This is a set of Dockerfiles used to build containers base/SOE containers on [my container registry](https://registry.hub.docker.com/u/chinthakagodawita/).
 
@@ -7,7 +7,7 @@ This is a set of Dockerfiles used to build containers base/SOE containers on [my
 
 ## Current containers
 
-* [base](https://hub.docker.com/r/chinthakagodawita/base/)
+* [base](https://hub.docker.com/r/sitback/base/)
     * Ubuntu 12.04
     * Ubuntu 14.04
 * [soe](https://hub.docker.com/r/chinthakagodawita/soe/)
@@ -28,11 +28,11 @@ Clone this project and `cd` into the image you wish to build (e.g. 'base/ubuntu-
 Run:
 
 ```bash
-docker build -t chinthakagodawita/base:ubuntu-14.04 .
+docker build -t sitback/base:ubuntu-14.04 .
 ```
 
 To push to the Docker registry, run:
 
 ```bash
-docker push chinthakagodawita/base:ubuntu-14.04
+docker push sitback/base:ubuntu-14.04
 ```

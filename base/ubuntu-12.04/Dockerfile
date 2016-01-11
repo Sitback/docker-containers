@@ -1,7 +1,6 @@
 # Base for most of the Docker containers here.
-
 FROM chinthakagodawita/ubuntu:12.04
-MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
+MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Increment this to trigger a full rebuild.
 ENV DC_BASE_VERSION 'ubuntu-12.04-3.0.1'
