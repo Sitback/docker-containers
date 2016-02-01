@@ -1,7 +1,6 @@
 # Standard Operating Environment running off Ubuntu 12.04 & PHP 5.4.
-
-FROM chinthakagodawita/base:ubuntu-12.04
-MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
+FROM sitback/base:ubuntu-12.04
+MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update

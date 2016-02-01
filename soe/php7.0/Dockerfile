@@ -1,7 +1,6 @@
 # Standard Operating Environment running off PHP 7.0.
-
-FROM chinthakagodawita/php:7.0
-MAINTAINER Chinthaka Godawita <chin.godawita@me.com>
+FROM sitback/php:7.0
+MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update

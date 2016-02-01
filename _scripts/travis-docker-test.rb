@@ -5,7 +5,7 @@ Docker.url = 'unix:///var/run/docker.sock'
 
 puts Docker.info
 
-img_name = 'chinthakagodawita/soe:php5.5'
+img_name = 'sitback/soe:php5.5'
 # image1 = Docker::Image.get(img_name)
 image2 = Docker::Image.create('fromImage' => img_name)
 container = Docker::Container.create('Cmd' => ['ls'], 'Image' => image2.id)
