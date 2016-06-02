@@ -131,6 +131,12 @@
     "tag": "base",
     "path": "node/base"
   },
+  "node:ember": {
+    "user": "sitback",
+    "repository": "node",
+    "tag": "ember",
+    "path": "node/ember"
+  },
   "solr:5.3": {
     "user": "sitback",
     "repository": "solr",
