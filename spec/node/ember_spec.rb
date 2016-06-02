@@ -39,9 +39,9 @@ describe 'Node.js Ember' do
     end
   end
 
-  describe 'Working XVFB command' do
-    describe command('which xvfb') do
-      its(:stdout) { should match "/usr/bin/xvfb" }
+  describe 'Working XVFB run command' do
+    describe command('which xvfb-run') do
+      its(:stdout) { should match "/usr/bin/xvfb-run" }
     end
   end
 
