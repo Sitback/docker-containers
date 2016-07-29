@@ -25,7 +25,7 @@ RUN a2enmod headers
 RUN mkdir -p /var/run/apache2
 
 # Install & configure PHP.
-RUN add-apt-repository ppa:ondrej/php-7.0
+RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php7.0 \
