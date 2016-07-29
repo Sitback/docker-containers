@@ -26,7 +26,7 @@ RUN mkdir -p /var/run/apache2
 
 # Install & configure PHP.
 RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
-RUN apt-get updat`e
+RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php7.0 \
   php7.0-cli \
