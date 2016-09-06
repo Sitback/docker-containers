@@ -36,7 +36,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php-pear
 
 # Configure PHP.
-ADD ./conf/php/30-overrides.ini /etc/php5.6/apache2/conf.d/30-overrides.ini
+ADD ./conf/php/30-overrides.ini /etc/php/5.6/apache2/conf.d/30-overrides.ini
 
 # Enable PHP modules.
 RUN php5enmod opcache
