@@ -16,30 +16,27 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client
 
 # Configure Apache.
 COPY ./conf/apache2/httpd-vhosts.conf /etc/apache2/sites-available/000-default.conf
-RUN a2enmod vhost_alias
-RUN a2enmod rewrite
-RUN a2enmod ssl
-RUN a2enmod headers
+RUN a2enmod vhost_alias && a2enmod rewrite && a2enmod ssl && a2enmod headers
 
 ## Fix issue with SSLMutex.
 RUN mkdir -p /var/run/apache2
 
 # Install & configure PHP.
-RUN add-apt-repository ppa:ondrej/php5-5.6
+RUN add-apt-repository ppa:ondrej/php
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
-  php5 \
-  php5-gd \
-  php5-dev \
-  php5-curl \
-  php5-mcrypt \
-  php5-mysql \
-  php5-memcached \
+  php5.6 \
+  php5.6-gd \
+  php5.6-dev \
+  php5.6-curl \
+  php5.6-mcrypt \
+  php5.6-mysql \
+  php5.6-memcached \
   php-soap \
   php-pear
 
 # Configure PHP.
-ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
+ADD ./conf/php/30-overrides.ini /etc/php5.6/apache2/conf.d/30-overrides.ini
 
 # Enable PHP modules.
 RUN php5enmod opcache
