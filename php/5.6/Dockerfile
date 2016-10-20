@@ -35,12 +35,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5.6-soap \
   php-pear
 
+# Purge any PHP 7 libraries.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y purge php7.0-common
+
 # Configure PHP.
 ADD ./conf/php/30-overrides.ini /etc/php/5.6/apache2/conf.d/30-overrides.ini
 ADD ./conf/php/30-overrides.ini /etc/php/5.6/cli/conf.d/30-overrides.ini
-
-## Set the PHP binary to 5.6 instead of 7.0.
-RUN ln -sfn /usr/bin/php5.6 /etc/alternatives/php
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
