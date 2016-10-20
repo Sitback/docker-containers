@@ -43,6 +43,9 @@ ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
 # Enable PHP modules.
 RUN php5enmod opcache
 
+# Disable xdebug for performance reasons.
+RUN php5dismod xdebug
+
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -55,6 +58,9 @@ ENV COMPOSER_BIN /root/.composer/vendor/bin
 ENV PATH "$COMPOSER_BIN:$PATH"
 RUN echo "" >> /etc/profile
 RUN echo "PATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
+
+# Enable xdebug.
+RUN php5enmod xdebug
 
 # Startup settings.
 ADD ./conf/supervisor/php.conf /etc/supervisor/conf.d/php.conf
