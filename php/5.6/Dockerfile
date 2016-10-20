@@ -32,7 +32,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5.6-mcrypt \
   php5.6-mysql \
   php5.6-memcached \
-  php5.6-soap
+  php5.6-soap \
   php-pear
 
 # Configure PHP.
