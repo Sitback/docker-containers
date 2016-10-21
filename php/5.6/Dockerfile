@@ -35,8 +35,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5.6-soap \
   php-pear
 
-# Purge any PHP 7 libraries.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y purge php7.0-common
+# Installing php-pear causes php7.0-common to be installed which then clobbers
+# the php binary used for CLI. This symlink unclobbers it.
+RUN update-alternatives --set php /usr/bin/php5.6
 
 # Configure PHP.
 ADD ./conf/php/30-overrides.ini /etc/php/5.6/apache2/conf.d/30-overrides.ini

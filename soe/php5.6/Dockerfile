@@ -4,7 +4,7 @@ MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat ssmtp php5-xdebug
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat ssmtp php-xdebug
 
 # Configure socat.
 ADD ./conf/socat/start.sh /root/socat-start.sh
