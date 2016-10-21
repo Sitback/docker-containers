@@ -19,6 +19,7 @@ test:
   override:
     - bundle exec rake docker:test:_circleci_parallel:
         parallel: true
+        timeout: 1200
 
 deployment:
   hub:
