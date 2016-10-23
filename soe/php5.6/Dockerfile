@@ -4,7 +4,7 @@ MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat ssmtp php5-xdebug
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install socat ssmtp php-xdebug
 
 # Configure socat.
 ADD ./conf/socat/start.sh /root/socat-start.sh
@@ -19,10 +19,10 @@ COPY ./conf/apache2/ssl-vhost.conf /etc/apache2/sites-available/ssl.conf
 RUN a2ensite ssl
 
 # Configure PHP.
-ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
+ADD ./conf/php/30-overrides.ini /etc/php/5.6/apache2/conf.d/30-overrides.ini
 
 # Setup Xdebug.
-ADD ./conf/php/30-xdebug-conf.ini /etc/php5/apache2/conf.d/30-xdebug-conf.ini
+ADD ./conf/php/30-xdebug-conf.ini /etc/php/5.6/apache2/conf.d/30-xdebug-conf.ini
 
 # Install PimpMyLog.
 RUN mkdir -p /server/pimpmylog && \
