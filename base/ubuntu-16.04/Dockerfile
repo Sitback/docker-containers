@@ -10,8 +10,7 @@ RUN apt-get -y update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 
 # Set timezone to be AEST/AEDT.
-RUN echo "Australia/Sydney" > /etc/timezone
-RUN dpkg-reconfigure --frontend noninteractive tzdata
+RUN timedatectl set-timezone Australia/Sydney
 
 # Supervisord (should be configured in any containers that inherit this base).
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor \
