@@ -5,21 +5,13 @@ MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 # Install all packages.
 RUN apt-get update
 
-## Apache.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
-
-## Memcached.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached
-
-## MySQL client.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client
+## Apache, Memcached & MySQL client.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 \
+  memcached mysql-client
 
 # Configure Apache.
 COPY ./conf/apache2/httpd-vhosts.conf /etc/apache2/sites-available/000-default.conf
-RUN a2enmod vhost_alias
-RUN a2enmod rewrite
-RUN a2enmod ssl
-RUN a2enmod headers
+RUN a2enmod vhost_alias rewrite ssl headers
 
 ## Fix issue with SSLMutex.
 RUN mkdir -p /var/run/apache2
