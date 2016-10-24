@@ -6,6 +6,7 @@ describe 'PHP 7.0' do
     let(:php_packages) { Constants::PHP70_PACKAGES }
     let(:apache_version) { '2.4.18' }
     let(:apache_php_mod) { 'php7_module' }
+    let(:ubuntu_version) { '16.04' }
   end
 
   before(:all) do
