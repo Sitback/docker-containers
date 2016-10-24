@@ -148,11 +148,5 @@
     "repository": "solr",
     "tag": "5.3",
     "path": "solr/5.3"
-  },
-  "python:2.7": {
-    "user": "sitback",
-    "repository": "python",
-    "tag": "2.7",
-    "path": "python/2.7"
   }
 }
