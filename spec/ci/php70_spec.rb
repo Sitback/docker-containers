@@ -6,6 +6,7 @@ describe 'PHP 7.0 CI' do
     let(:soe_packages) { Constants::PHP70_SOE_PACKAGES }
     let(:php_packages) { Constants::PHP70_PACKAGES }
     let(:apache_php_mod) { 'php7_module' }
+    let(:ci_packages) { [ 'mariadb-server' ] }
   end
 
   before(:all) do

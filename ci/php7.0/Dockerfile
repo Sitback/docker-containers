@@ -2,13 +2,13 @@
 FROM sitback/soe:php7.0
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
-# Install all packages.
-RUN apt-get update
+## MariaDB.
+RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8 && \
+  add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://mirror.aarnet.edu.au/pub/MariaDB/repo/10.1/ubuntu xenial main' && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
 
-## MySQL.
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
-
-# Configure MySQL (installed with user:root and no password).
+# Configure MariaDB (installed with user:root and no password).
 RUN mysql_install_db
 ADD ./conf/mysql/ci_overrides.cnf /etc/mysql/conf.d/ci_overrides.cnf
 
