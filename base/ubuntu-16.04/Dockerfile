@@ -25,7 +25,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor \
   nano \
   vim \
   net-tools \
-  git
+  git \
+  unzip
 
 # Cleanup apt installs.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
