@@ -71,7 +71,7 @@ ADD ./conf/php/30-xdebug-conf.ini /etc/php5/apache2/conf.d/30-xdebug-conf.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install drush.
-RUN composer global require drush/drush:7.*
+RUN composer global require drush/drush:8.*
 
 # Install PimpMyLog.
 RUN mkdir -p /server/pimpmylog

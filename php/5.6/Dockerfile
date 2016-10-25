@@ -48,7 +48,7 @@ ADD ./conf/php/30-overrides.ini /etc/php/5.6/cli/conf.d/30-overrides.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install drush.
-RUN composer global require drush/drush:7.*
+RUN composer global require drush/drush:8.*
 
 # Update PATH to include Composer's bin (also add into /etc/profile so that our
 # tests pick it up too).
