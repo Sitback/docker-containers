@@ -7,7 +7,8 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 
 # Chrome + XVFB for headless browser support.
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y xvfb google-chrome-stable
+RUN apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y xvfb google-chrome-stable
 
 # Ember global requirements.
 RUN npm install -g bower ember-cli
