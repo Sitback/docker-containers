@@ -28,7 +28,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor \
   vim \
   net-tools \
   git \
-  unzip
+  unzip \
+  cron
 
 # Cleanup apt installs.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
