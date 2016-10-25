@@ -1,7 +1,9 @@
 require 'serverspec'
 
 shared_context 'nginx' do
-  include_context 'base'
+  include_context 'base' do
+    let(:ubuntu_version) { '16.04' }
+  end
 
   let(:nginx_packages) { [
     'nginx'
