@@ -6,6 +6,8 @@ describe 'PHP 7.0 SOE' do
     let(:soe_packages) { Constants::PHP70_SOE_PACKAGES }
     let(:php_packages) { Constants::PHP70_PACKAGES }
     let(:apache_php_mod) { 'php7_module' }
+    let(:ubuntu_version) { '16.04' }
+    let(:apache_version) { '2.4.18' }
   end
 
   before(:all) do
