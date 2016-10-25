@@ -23,7 +23,7 @@ describe 'Node.js Ember' do
 
   describe 'Correct node version' do
     describe command('node --version') do
-      its(:stdout) { should match /^v5/ }
+      its(:stdout) { should match /^v6/ }
     end
   end
 
