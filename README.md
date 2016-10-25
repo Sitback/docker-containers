@@ -8,10 +8,11 @@ This is a set of Dockerfiles used to build all containers on [our container regi
 * [base](https://hub.docker.com/r/sitback/base/)
     * Ubuntu 12.04
     * Ubuntu 14.04
+    * Ubuntu 16.04
 * [php](https://hub.docker.com/r/sitback/php/)
     * 5.5 (from base:ubuntu-14.04)
     * 5.6 (from base:ubuntu-14.04)
-    * 7.0 (from base:ubuntu-14.04)
+    * 7.0 (from base:ubuntu-16.04)
 * [soe](https://hub.docker.com/r/sitback/soe/)
     * PHP 5.3 (from base:ubuntu-12.04)
     * PHP 5.4 (from base:ubuntu-12.04)
