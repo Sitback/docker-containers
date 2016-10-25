@@ -1,5 +1,5 @@
 # Base nodejs container.
-FROM sitback/base:ubuntu-14.04
+FROM sitback/base:ubuntu-16.04
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Add node 6.x via nodesource.
