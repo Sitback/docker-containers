@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Node.js Ember' do
-  include_context 'base'
+  include_context 'base' do
+    let(:ubuntu_version) { '16.04' }
+  end
 
   before(:all) do
     image_name = "#{Constants::IMAGE_PREFIX}node:ember"
@@ -23,7 +25,7 @@ describe 'Node.js Ember' do
 
   describe 'Correct node version' do
     describe command('node --version') do
-      its(:stdout) { should match /^v5/ }
+      its(:stdout) { should match /^v6/ }
     end
   end
 

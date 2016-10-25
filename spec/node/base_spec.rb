@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Node.js base' do
-  include_context 'base'
+  include_context 'base' do
+    let(:ubuntu_version) { '16.04' }
+  end
 
   before(:all) do
     image_name = "#{Constants::IMAGE_PREFIX}node:base"
@@ -29,7 +31,7 @@ describe 'Node.js base' do
 
   describe 'Correct node version' do
     describe command('node --version') do
-      its(:stdout) { should match /^v4/ }
+      its(:stdout) { should match /^v6/ }
     end
   end
 
