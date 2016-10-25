@@ -33,6 +33,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php5.6-mysql \
   php5.6-memcached \
   php5.6-soap \
+  php5.6-xml \
   php-pear
 
 # Installing php-pear causes php7.0-common to be installed which then clobbers
