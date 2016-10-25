@@ -17,7 +17,7 @@ RUN ln -sfv /dev/stdout /var/log/mysql/mysql.log
 RUN ln -sfv /dev/stderr /var/log/mysql/error.log
 
 # Disable xdebug (on CLI) for performance reasons.
-RUN php5dismod -s cli xdebug
+RUN phpdismod -s cli xdebug
 
 # PHPCS & Coder.
 RUN composer global require drupal/coder
