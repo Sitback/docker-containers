@@ -29,7 +29,7 @@ describe 'Node.js base' do
 
   describe 'Correct node version' do
     describe command('node --version') do
-      its(:stdout) { should match /^v4/ }
+      its(:stdout) { should match /^v6/ }
     end
   end
 
