@@ -26,6 +26,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php7.0-dev \
   php7.0-curl \
   php7.0-mysql \
+  php7.0-xml \
   php-memcached \
   php-soap \
   php-pear
