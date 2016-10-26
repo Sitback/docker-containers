@@ -148,5 +148,11 @@
     "repository": "solr",
     "tag": "5.3",
     "path": "solr/5.3"
+  },
+  "elasticsearch:2.4-dev": {
+    "user": "sitback",
+    "repository": "elasticsearch",
+    "tag": "2.4-dev",
+    "path": "elasticsearch/2.4-dev"
   }
 }
