@@ -1,7 +1,9 @@
 require 'serverspec'
 
 shared_context 'haproxy' do
-  include_context 'base'
+  include_context 'base' do
+    let(:ubuntu_version) { '16.04' }
+  end
 
   let(:haproxy_packages) { [
     'haproxy'

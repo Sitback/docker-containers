@@ -1,6 +1,6 @@
 # Basic nginx container that port forwards to port 80 on a linked 'app'
 # container.
-FROM sitback/base:ubuntu-14.04
+FROM sitback/base:ubuntu-16.04
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
