@@ -14,40 +14,25 @@ RUN echo "Australia/Sydney" > /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 # Supervisord (should be configured in any containers that inherit this base).
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
-
-# APT management tools.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-software-properties
-
-# Python easy_install.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-setuptools
-
-# Essential build tools, required for some software.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor \
+  python-software-properties \
+  python-setuptools \
   build-essential \
   autoconf \
-  automake
+  automake \
+  curl \
+  telnet \
+  rsync \
+  wget \
+  nano \
+  vim \
+  net-tools \
+  git \
+  unzip \
+  cron
 
-# Curl.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install curl
-
-# Telnet.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install telnet
-
-# Rsync.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install rsync
-
-# Wget.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install wget
-
-# Nano & Vim (just in case).
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install nano vim
-
-# Netstat et al.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install net-tools
-
-# Git.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install git
+# Cleanup apt installs.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # stdout helper for supervisord.
 RUN easy_install supervisor-stdout
