@@ -10,8 +10,11 @@ RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y xvfb dbus-x11 google-chrome-stable
 
-# Add custom Chrome run script
-COPY ./conf/bin/google-chrome /usr/local/bin/google-chrome
-
 # Ember global requirements.
 RUN npm install -g bower ember-cli
+
+# Setup XVFB daemon.
+# ENV DISPLAY :99
+
+# Add custom Chrome run script.
+COPY ./conf/bin/google-chrome /usr/local/bin/google-chrome
