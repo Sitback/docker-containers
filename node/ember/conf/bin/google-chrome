@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Disable Chrome's sandboxer as it doesn't work under Docker.
+/usr/bin/google-chrome --no-sandbox
