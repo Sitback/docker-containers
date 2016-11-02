@@ -49,7 +49,7 @@ describe 'Node.js Ember' do
 
   describe 'Working Google Chrome command' do
     describe command('which google-chrome') do
-      its(:stdout) { should match "/usr/bin/google-chrome" }
+      its(:stdout) { should match "/usr/local/bin/google-chrome" }
     end
   end
 
