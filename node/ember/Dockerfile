@@ -1,6 +1,18 @@
 # Container for running/testing EmberJS applications.
-FROM sitback/node:base
+FROM sitback/base:ubuntu-14.04
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
+
+# Add node 6.x via nodesource.
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
+
+# Add PM2 for process management.
+RUN npm install pm2 -g
+
+# Setup application base directory.
+RUN mkdir -p /server
+WORKDIR /server
+
 
 # Google's stable Chrome repos.
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -

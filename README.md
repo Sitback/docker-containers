@@ -32,7 +32,7 @@ This is a set of Dockerfiles used to build all containers on [our container regi
     * 5.3.x (from base:ubuntu-16.04)
 * [node](https://hub.docker.com/r/sitback/node/)
     * base (6.x) (from base:ubuntu-16.04)
-    * ember (for testing) (from node:base)
+    * ember (for testing) (from base:ubuntu-14.04)
 * [elasticsearch](https://hub.docker.com/r/sitback/elasticsearch/)
     * 2.4.x (from elasticsearch:2.4, **for local development use only, do not use for production deployments!**)
 
