@@ -57,6 +57,9 @@ ENV PATH "$COMPOSER_BIN:$PATH"
 RUN echo "" >> /etc/profile
 RUN echo "PATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
 
+# Registry rebuild for Drush.
+RUN drush @none dl registry_rebuild-7.x
+
 # Startup settings.
 ADD ./conf/supervisor/php.conf /etc/supervisor/conf.d/php.conf
 

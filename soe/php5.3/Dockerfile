@@ -84,6 +84,9 @@ ENV PATH "$COMPOSER_BIN:$PATH"
 RUN echo "" >> /etc/profile
 RUN echo "PATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
 
+# Registry rebuild for Drush.
+RUN drush @none dl registry_rebuild-7.x
+
 # Install MailHog & MailHog's sendmail replacement.
 RUN curl -s -L https://github.com/mailhog/MailHog/releases/latest | egrep -o '/mailhog/MailHog/releases/download/[v.0-9]*/MailHog_linux_amd64' | wget --base=http://github.com/ -i - -O /usr/local/bin/mailhog
 RUN chmod +x /usr/local/bin/mailhog
