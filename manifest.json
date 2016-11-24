@@ -41,11 +41,17 @@
     "tag": "7.0",
     "path": "php/7.0"
   },
+  "php:7.1": {
+    "user": "sitback",
+    "repository": "php",
+    "tag": "7.1",
+    "path": "php/7.1"
+  },
   "php:latest": {
     "user": "sitback",
     "repository": "php",
     "tag": "latest",
-    "path": "php/7.0"
+    "path": "php/7.1"
   },
   "soe:php5.3": {
     "user": "sitback",
@@ -77,11 +83,23 @@
     "tag": "php7.0",
     "path": "soe/php7.0"
   },
+  "soe:php7.1": {
+    "user": "sitback",
+    "repository": "soe",
+    "tag": "php7.1",
+    "path": "soe/php7.1"
+  },
   "soe:latest": {
     "user": "sitback",
     "repository": "soe",
     "tag": "latest",
     "path": "soe/php5.6"
+  },
+  "ci:php7.1": {
+    "user": "sitback",
+    "repository": "ci",
+    "tag": "php7.1",
+    "path": "ci/php7.1"
   },
   "ci:php7.0": {
     "user": "sitback",
@@ -111,7 +129,7 @@
     "user": "sitback",
     "repository": "ci",
     "tag": "latest",
-    "path": "ci/php5.6"
+    "path": "ci/php7.1"
   },
   "proxy:nginx": {
     "user": "sitback",
