@@ -4,7 +4,7 @@ describe 'PHP 7.1 SOE' do
   include_context 'soe' do
     let(:php_version) { '7.1' }
     let(:soe_packages) { Constants::PHP70_SOE_PACKAGES }
-    let(:php_packages) { Constants::PHP70_PACKAGES }
+    let(:php_packages) { Constants::PHP71_PACKAGES }
     let(:apache_php_mod) { 'php7_module' }
     let(:ubuntu_version) { '16.04' }
     let(:apache_version) { '2.4.18' }
