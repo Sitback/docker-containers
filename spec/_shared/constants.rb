@@ -51,6 +51,20 @@ module Constants
     'php-soap',
     'php-pear'
   ]
+  PHP71_PACKAGES = [
+    'apache2',
+    'php7.1',
+    'php7.1-cli',
+    'mysql-client',
+    'memcached',
+    'php7.1-gd',
+    'php7.1-dev',
+    'php7.1-curl',
+    'php7.1-mysql',
+    'php-memcached',
+    'php-soap',
+    'php-pear'
+  ]
   UBUNTU1204_APACHE_VERSION = '2.2.22'
   PHP70_SOE_PACKAGES = [
     'socat',
