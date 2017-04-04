@@ -1,10 +1,4 @@
 {
-  "base:ubuntu-12.04": {
-    "user": "sitback",
-    "repository": "base",
-    "tag": "ubuntu-12.04",
-    "path": "base/ubuntu-12.04"
-  },
   "base:ubuntu-14.04": {
     "user": "sitback",
     "repository": "base",
@@ -52,18 +46,6 @@
     "repository": "php",
     "tag": "latest",
     "path": "php/7.1"
-  },
-  "soe:php5.3": {
-    "user": "sitback",
-    "repository": "soe",
-    "tag": "php5.3",
-    "path": "soe/php5.3"
-  },
-  "soe:php5.4": {
-    "user": "sitback",
-    "repository": "soe",
-    "tag": "php5.4",
-    "path": "soe/php5.4"
   },
   "soe:php5.5": {
     "user": "sitback",
@@ -118,12 +100,6 @@
     "repository": "ci",
     "tag": "php5.5",
     "path": "ci/php5.5"
-  },
-  "ci:php5.4": {
-    "user": "sitback",
-    "repository": "ci",
-    "tag": "php5.4",
-    "path": "ci/php5.4"
   },
   "ci:latest": {
     "user": "sitback",
