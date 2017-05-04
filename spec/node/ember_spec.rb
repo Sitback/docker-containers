@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Node.js Ember' do
   include_context 'base' do
-    let(:ubuntu_version) { '16.04' }
+    let(:ubuntu_version) { '14.04' }
   end
 
   before(:all) do
