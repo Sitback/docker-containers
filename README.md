@@ -6,7 +6,6 @@ This is a set of Dockerfiles used to build all containers on [our container regi
 ## Current containers
 
 * [base](https://hub.docker.com/r/sitback/base/)
-    * Ubuntu 12.04
     * Ubuntu 14.04
     * Ubuntu 16.04
 * [php](https://hub.docker.com/r/sitback/php/)
@@ -15,14 +14,11 @@ This is a set of Dockerfiles used to build all containers on [our container regi
     * 7.0 (from base:ubuntu-16.04)
     * 7.1 (from base:ubuntu-16.04)
 * [soe](https://hub.docker.com/r/sitback/soe/)
-    * PHP 5.3 (from base:ubuntu-12.04)
-    * PHP 5.4 (from base:ubuntu-12.04)
     * PHP 5.5 (from php:5.5)
     * PHP 5.6 (from php:5.6)
     * PHP 7.0 (from php:7.0)
     * PHP 7.1 (from php:7.1)
 * [ci](https://hub.docker.com/r/sitback/ci/)
-    * PHP 5.4 (from soe:php5.4)
     * PHP 5.5 (from soe:5.5)
     * PHP 5.6 (from soe:5.6)
     * PHP 7.0 (from soe:7.0)
