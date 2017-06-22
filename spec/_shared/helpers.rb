@@ -5,6 +5,10 @@ module Helpers
     command('lsb_release -a').stdout
   end
 
+  def get_centos_os_version
+    command('cat /etc/redhat-release').stdout
+  end
+
   def get_docker_image_id (image_name)
     image = nil
     Docker::Image.all.each do |image_def|
