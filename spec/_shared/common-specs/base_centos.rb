@@ -32,9 +32,6 @@ shared_context 'base_centos' do
     end
   end
 
-  #describe command('date | cut -c 21-24') do
-  #  its(:stdout) { should match 'AEST' }
-  #end
   describe command ('file /etc/localtime | cut -c 55-70') do
     its(:stdout) { should match 'Australia/Sydney'}
   end
@@ -52,6 +49,10 @@ shared_context 'base_centos' do
   end
 
   describe file('/etc/supervisor/conf.d/base.conf') do
+    it { should be_file }
+  end
+
+  describe file('/etc/supervisor/supervisord.conf') do
     it { should be_file }
   end
 
