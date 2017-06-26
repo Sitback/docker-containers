@@ -19,7 +19,7 @@ shared_context 'base_centos' do
     'wget',
     'git',
   ] }
-  let(:centos_version) { 'CentOS Linux release 7.3.1611 (Core)' }
+  let(:centos_version) { 'CentOS Linux release 7' }
 
   it 'Installs the right version of centos' do
     expect(get_centos_os_version).to include("#{centos_version}")
