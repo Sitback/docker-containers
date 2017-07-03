@@ -3,7 +3,7 @@ FROM chinthakagodawita/ubuntu:14.04
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Increment this to trigger a full rebuild.
-ENV DC_BASE_VERSION 'ubuntu-14.04-3.0.6'
+ENV DC_BASE_VERSION 'ubuntu-14.04-3.0.7'
 
 # Update repositories and make sure we're on the latest 14.04 release.
 RUN apt-get -y update
