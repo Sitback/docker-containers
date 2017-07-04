@@ -23,6 +23,12 @@
     "tag": "latest",
     "path": "base/ubuntu-16.04"
   },
+  "php:5.4": {
+    "user": "sitback",
+    "repository": "php",
+    "tag": "5.4",
+    "path": "php/5.4"
+  },
   "php:5.5": {
     "user": "sitback",
     "repository": "php",
