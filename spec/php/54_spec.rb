@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'PHP 5.4' do
-  include_context 'php_centos' 
+  include_context 'base_centos' 
 
   before(:all) do
     image_name = "#{Constants::IMAGE_PREFIX}php:5.4"
