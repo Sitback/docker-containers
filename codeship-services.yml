@@ -2,6 +2,7 @@ app:
   build:
     image: web-containers-build
     dockerfile_path: Dockerfile.codeship
+  add_docker: true
   cached: true
   volumes:
     - ./:/code
