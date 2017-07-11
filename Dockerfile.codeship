@@ -3,7 +3,7 @@ MAINTAINER Chin Godawita <chin.godawita@me.com>
 
 # Install Ruby
 RUN apk update && apk upgrade
-RUN apk add git curl wget bash ruby ruby-dev ruby-bundler
+RUN apk add git curl wget bash ruby ruby-dev ruby-bundler alpine-sdk
 RUN rm -rf /var/cache/apk/*
 
 RUN mkdir /code
