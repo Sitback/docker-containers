@@ -2,6 +2,8 @@ app:
   build:
     image: web-containers-build
     dockerfile_path: Dockerfile.codeship
+    args:
+      - storage-driver: overlay
   add_docker: true
   cached: true
   volumes:
