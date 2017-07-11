@@ -1,0 +1,4 @@
+- type: parallel
+  steps:
+  - service: app
+    command: bundle exec rake docker:ci_build

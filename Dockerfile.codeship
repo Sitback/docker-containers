@@ -1,0 +1,14 @@
+FROM docker:17.06-dind
+MAINTAINER Chin Godawita <chin.godawita@me.com>
+
+# Install Ruby
+RUN apk update && apk upgrade
+RUN apk add curl wget bash ruby ruby-bundler && rm -rf /var/cache/apk/*
+
+RUN mkdir /code
+WORKDIR /code
+
+# Setup dependencies.
+COPY Gemfile /code/
+COPY Gemfile.lock /code/
+RUN bundle install --jobs 20 --retry 5
