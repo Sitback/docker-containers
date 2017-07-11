@@ -3,4 +3,6 @@
   - service: app
     command: docker info
   - service: app
+    command: env
+  - service: app
     command: bundle exec rake docker:ci_build
