@@ -3,7 +3,7 @@ FROM chinthakagodawita/ubuntu:16.04
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Increment this to trigger a full rebuild.
-ENV DC_BASE_VERSION 'ubuntu-16.04-1.0.2'
+ENV DC_BASE_VERSION 'ubuntu-16.04-1.0.3'
 
 # Update repositories and make sure we're on the latest 16.04 release.
 RUN apt-get -y update
