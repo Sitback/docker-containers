@@ -11,6 +11,12 @@
     "tag": "ubuntu-16.04",
     "path": "base/ubuntu-16.04"
   },
+  "base:centos-7": {
+    "user": "sitback",
+    "repository": "base",
+    "tag": "centos-7",
+    "path": "base/centos-7"
+  },
   "base:latest": {
     "user": "sitback",
     "repository": "base",
