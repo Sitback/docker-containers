@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  build:
+    pre:
+      - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci'
+      - sudo chmod 0755 /usr/bin/docker
+    docker:
+      - image: circleci/ruby:2.1.9
+    services:
+      - docker
+    dependencies:
+      cache_directories:
+        - ~/docker
+      post:
+        - mkdir -p ~/docker
+        - ls -al ~/docker/
+        - bundle exec rake docker:ci_build
+
+    test:
+      override:
+        - bundle exec rake docker:test:_circleci_parallel:
+            parallel: true
+            timeout: 1200
+
+    deployment:
+      hub:
+        branch: master
+        commands:
+          - bundle exec rake docker:publish
