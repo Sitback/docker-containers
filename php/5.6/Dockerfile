@@ -66,8 +66,6 @@ ADD ./conf/supervisor/php.conf /etc/supervisor/conf.d/php.conf
 # HTTP.
 EXPOSE 80
 
-RUN mkdir /var/www
-
 WORKDIR /var/www
 
 CMD ["/usr/bin/supervisord", "-n"]
