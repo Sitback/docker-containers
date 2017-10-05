@@ -3,7 +3,9 @@ machine:
     - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci'
     - sudo chmod 0755 /usr/bin/docker
   ruby:
-    version: 2.1.9
+    version: 2.0.0p648
+  docker:
+    version: 17.05.0-ce
   services:
     - docker
 
