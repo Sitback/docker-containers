@@ -6,7 +6,7 @@ MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 ENV DC_BASE_VERSION 'ubuntu-16.04-1.0.2'
 
 # Update repositories and make sure we're on the latest 16.04 release.
-RUN apt-get -y update
+RUN apt-get -y --fix-missing update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 
 # Set timezone to be AEST/AEDT.
