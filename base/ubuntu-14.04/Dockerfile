@@ -6,7 +6,7 @@ MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 ENV DC_BASE_VERSION 'ubuntu-14.04-3.0.8'
 
 # Update repositories and make sure we're on the latest 14.04 release.
-RUN apt-get -y --fix-missing update
+RUN apt-get -y update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 
 # Set timezone to be AEST/AEDT.
