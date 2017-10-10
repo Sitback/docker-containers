@@ -9,4 +9,4 @@
       - service: app
         command: env
       - service: app
-        command: bundle exec rake docker:ci_build
+        command: bundle exec rake test:_codeship_all
