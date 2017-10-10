@@ -45,6 +45,15 @@ namespace :docker do
   desc "Run all tests."
   task "test:all" => tests
 
+  desc "Run all tests on Codeship"
+  task "test:_codeship_all" do
+    tests.each do |test|
+      if ((i % total_nodes) == node_index)
+        system! "bundle exec rake docker:#{test}[ci]"
+      end
+    end
+  end
+
   desc "Run tests in parallel on CircleCI"
   task "test:_circleci_parallel" do
     if ENV['CIRCLECI']
