@@ -6,5 +6,11 @@ app:
       storage-driver: overlay
   add_docker: true
   cached: true
+  volumes_from:
+    - dockerdata
+
+dockerdata:
+  image: busybox
   volumes:
+    - /var/lib/docker
     - ./:/code

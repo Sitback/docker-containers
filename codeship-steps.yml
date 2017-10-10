@@ -1,8 +1,12 @@
-- type: parallel
+- type: serial
   steps:
-  - service: app
-    command: docker info
-  - service: app
-    command: env
-  - service: app
-    command: bundle exec rake docker:ci_build
+    - service: app
+      command: bundle exec rake docker:ci_build
+    - type: parallel
+      steps:
+      - service: app
+        command: docker info
+      - service: app
+        command: env
+      - service: app
+        command: bundle exec rake docker:ci_build
