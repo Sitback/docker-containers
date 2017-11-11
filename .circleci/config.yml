@@ -20,9 +20,6 @@ jobs:
           command: |
             bundle exec rake docker:ci_build
 
-  test:
-    machine: true
-    steps:
       # run tests!
       - run:
           name: run tests
@@ -42,12 +39,3 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test
-          requires:
-            - build
