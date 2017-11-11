@@ -55,6 +55,10 @@ PLATFORMS
 DEPENDENCIES
   docker-api
   rake
+  rspec
   rspec_junit_formatter
   serverspec
   specinfra!
+
+BUNDLED WITH
+   1.15.4
