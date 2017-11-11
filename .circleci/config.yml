@@ -11,6 +11,11 @@ jobs:
       - checkout
 
       - run:
+          name: install dependencies
+          command: |
+            bundle install
+
+      - run:
           name: build containers
           command: |
             bundle exec rake docker:ci_build
