@@ -87,7 +87,7 @@
     "user": "sitback",
     "repository": "soe",
     "tag": "latest",
-    "path": "soe/php5.6"
+    "path": "soe/php7.1"
   },
   "ci:php7.1": {
     "user": "sitback",
