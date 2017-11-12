@@ -3,7 +3,7 @@
 ##
 
 module Constants
-  IMAGE_PREFIX = 'sitback/'
+  IMAGE_PREFIX = 'dockerdepot/'
   OS_FAMILY = :debian
   OS_FAMILY_CENTOS = :redhat
   SUPERVISORD_SERVICE_TIMEOUT = 30
