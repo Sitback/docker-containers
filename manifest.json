@@ -4,7 +4,7 @@
     "repository": "base",
     "tag": "ubuntu-14.04",
     "path": "base/ubuntu-14.04"
-  },
+  }/*,
   "base:ubuntu-16.04": {
     "user": "sitback",
     "repository": "base",
@@ -160,5 +160,5 @@
     "repository": "elasticsearch",
     "tag": "2.4-dev",
     "path": "elasticsearch/2.4-dev"
-  }
+  }*/
 }
