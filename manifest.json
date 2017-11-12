@@ -4,13 +4,13 @@
     "repository": "base",
     "tag": "ubuntu-14.04",
     "path": "base/ubuntu-14.04"
-  }/*,
+  },
   "base:ubuntu-16.04": {
     "user": "sitback",
     "repository": "base",
     "tag": "ubuntu-16.04",
     "path": "base/ubuntu-16.04"
-  },
+  }/*,
   "base:centos-7": {
     "user": "sitback",
     "repository": "base",
