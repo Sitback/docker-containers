@@ -8,7 +8,7 @@ describe 'PHP 7.0 CI' do
       'apache2',
       'php7.0',
       'php7.0-cli',
-      'mariadb-client-10.1',
+      'mariadb-client-10.2',
       'memcached',
       'php7.0-gd',
       'php7.0-dev',
