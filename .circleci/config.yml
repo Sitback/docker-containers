@@ -27,6 +27,10 @@ jobs:
             mkdir -p /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/ubuntu_*_spec.rb" | circleci tests split --split-by=timings)"
 
+            echo "BEFORE:"
+            echo $TEST_FILES
+            echo ":AFTER YO"
+
             bundle exec rspec --format progress \
                 --format RspecJunitFormatter \
                 --out /tmp/test-results/rspec.xml \

@@ -10,8 +10,4 @@ describe 'Ubuntu 16.04 Base' do
     set :os, family: Constants::OS_FAMILY
     set :docker_image, get_docker_image_id(image_name)
   end
-
-  after(:all) do
-    puts "docker image was #{docker_image}"
-  end
 end
