@@ -21,7 +21,7 @@ load_manifest.each do |name, container|
   #   system! "docker pull #{image}", true
   # end
 
-  system! "docker pull #{image}"
+  # system! "docker pull #{image}"
   system! "docker build --cache-from #{image} -t #{image} #{container['path']}"
 
   # Cache image for next build.
