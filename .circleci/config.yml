@@ -7,6 +7,7 @@ version: 2
 jobs:
   build:
     machine: true
+    parallelism: 4
     steps:
       - checkout
 
@@ -20,10 +21,6 @@ jobs:
           command: |
             bundle exec rake docker:ci_build
 
-  test:
-    machine: true
-    parallelism: 4
-    steps:
       # run tests!
       - run:
           name: run tests
@@ -38,11 +35,11 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
+# workflows:
+#   version: 2
+#   build_and_test:
+#     jobs:
+#       - build
+#       - test:
+#           requires:
+#             - build
