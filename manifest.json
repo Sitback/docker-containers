@@ -10,7 +10,7 @@
     "repository": "base",
     "tag": "ubuntu-16.04",
     "path": "base/ubuntu-16.04"
-  }/*,
+  },
   "base:centos-7": {
     "user": "dockerdepot",
     "repository": "base",
@@ -160,5 +160,5 @@
     "repository": "elasticsearch",
     "tag": "2.4-dev",
     "path": "elasticsearch/2.4-dev"
-  }*/
+  }
 }

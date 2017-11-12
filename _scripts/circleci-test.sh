@@ -5,8 +5,8 @@ set -o nounset
 # Exit entire script on interrupt.
 trap 'exit 130' INT
 
-TEST_FILES="$(circleci tests glob "spec/**/ubuntu_*_spec.rb" | circleci tests split --split-by=timings)"
-TEST_FILES="$(circleci tests glob "spec/**/ubuntu_*_spec.rb")"
+TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb")"
 TEST_OUTPUT_PATH="/tmp/test-results"
 
 printf '%s\n' "$TEST_FILES" | while IFS= read -r line
