@@ -8,6 +8,7 @@ trap 'exit 130' INT
 TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb")"
 TEST_OUTPUT_PATH="/tmp/test-results"
+EXIT_CODE=0
 
 printf '%s\n' "$TEST_FILES" | while IFS= read -r line
 do
@@ -23,9 +24,17 @@ do
   mkdir -p "${output_path}"
 
   echo "Running test ${line}..."
-  bundle exec rspec --format progress \
+  exec bundle exec rspec --format progress \
   --format RspecJunitFormatter \
   --out "${output_path}/${spec_filename}.xml" \
   --format progress \
   "${line}"
+
+
+  ret=$?
+  if [[ $ret -ne 0 ]]; then
+    EXIT_CODE=$ret
+  fi
 done
+
+exit $EXIT_CODE
