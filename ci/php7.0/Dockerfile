@@ -1,5 +1,5 @@
 # PHP 5.6 container, optimised for Continuous Integration.
-FROM sitback/soe:php7.0
+FROM dockerdepot/soe:php7.0
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 ## MariaDB.

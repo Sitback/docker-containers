@@ -1,5 +1,5 @@
 # PHP 5.4 on Centos container.
-FROM sitback/base:centos-7
+FROM dockerdepot/base:centos-7
 MAINTAINER Tarun Bhargav<tarun.bhargav@sitback.com.au>
 
 # Install all packages.

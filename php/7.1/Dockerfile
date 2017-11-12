@@ -1,5 +1,5 @@
 # PHP 7.1 container.
-FROM sitback/base:ubuntu-16.04
+FROM dockerdepot/base:ubuntu-16.04
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Increment this to trigger a full rebuild.
