@@ -1,4 +1,4 @@
-FROM sitback/base:ubuntu-16.04
+FROM dockerdepot/base:ubuntu-16.04
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Add Java repository and install Solr dependencies.

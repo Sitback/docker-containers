@@ -1,5 +1,5 @@
 # PHP 7.0 container.
-FROM sitback/base:ubuntu-16.04
+FROM dockerdepot/base:ubuntu-16.04
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
@@ -38,7 +38,8 @@ ADD ./conf/php/30-overrides.ini /etc/php/7.0/apache2/conf.d/30-overrides.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install drush.
-RUN composer global require drush/drush:8.*
+RUN curl -s -L https://github.com/drush-ops/drush/releases/latest | egrep -o '/drush-ops/drush/releases/download/[v.0-8]*/drush.phar' | wget --base=http://github.com/ -i - -O /usr/local/bin/drush
+RUN chmod +x /usr/local/bin/drush
 
 # Update PATH to include Composer's bin (also add into /etc/profile so that our
 # tests pick it up too).

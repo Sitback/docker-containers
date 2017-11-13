@@ -1,47 +1,41 @@
-# PHP 5.5 container.
-FROM dockerdepot/base:ubuntu-14.04
-MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
+# PHP 5.4 on Centos container.
+FROM dockerdepot/base:centos-7
+MAINTAINER Tarun Bhargav<tarun.bhargav@sitback.com.au>
 
 # Install all packages.
-RUN apt-get update
+RUN yum -y --setopt=tsflags=nodocs update  && yum clean all
 
 ## Apache.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2
+RUN yum -y install httpd  && yum clean all
 
 ## Memcached.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached
+RUN yum -y install memcached  && yum clean all
 
 ## MySQL client.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client
+RUN yum -y install mariadb  && yum clean all
+
+## mod SSL & openssl
+RUN yum -y install mod_ssl openssl && yum clean all
 
 # Configure Apache.
-COPY ./conf/apache2/httpd-vhosts.conf /etc/apache2/sites-available/000-default.conf
-RUN a2enmod vhost_alias
-RUN a2enmod rewrite
-RUN a2enmod ssl
-RUN a2enmod headers
-
-## Fix issue with SSLMutex.
-RUN mkdir -p /var/run/apache2
+COPY ./conf/httpd/httpd-vhosts.conf /etc/httpd/conf.d/vhosts.conf
 
 # Install & configure PHP.
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
-  php5 \
-  php5-gd \
-  php5-dev \
-  php5-curl \
-  php5-mcrypt \
-  php5-mysql \
-  php5-memcached \
+RUN yum -y --setopt=tsflags=nodocs update
+RUN yum -y install \
+  php \
+  php-gd \
+  php-devel \
+  php-mcrypt \
+  php-mysql \
+  php-memcached \
+  php-apc \
   php-soap \
   php-pear
 
 # Configure PHP.
-ADD ./conf/php/30-overrides.ini /etc/php5/apache2/conf.d/30-overrides.ini
-
-# Enable PHP modules.
-RUN php5enmod opcache
+COPY ./conf/php/30-overrides.ini /etc/php.d/30-overrides.ini
+COPY ./conf/php/10-php.conf /etc/httpd/conf.modules.d/10-php.conf
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -61,7 +55,8 @@ RUN echo "PATH=$COMPOSER_BIN:\$PATH" >> /etc/profile
 RUN drush @none dl registry_rebuild-7.x
 
 # Startup settings.
-ADD ./conf/supervisor/php.conf /etc/supervisor/conf.d/php.conf
+COPY ./conf/supervisor/php.conf /etc/supervisor/conf.d/php.conf
+COPY ./conf/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 
 # HTTP.
 EXPOSE 80

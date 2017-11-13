@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Ubuntu 14.04 Base' do
+describe 'Ubuntu 16.04 Base' do
   include_context 'base' do
     let(:ubuntu_version) { '16.04' }
   end

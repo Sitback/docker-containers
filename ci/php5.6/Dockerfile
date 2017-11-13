@@ -1,5 +1,5 @@
 # PHP 5.6 container, optimised for Continuous Integration.
-FROM sitback/soe:php5.6
+FROM dockerdepot/soe:php5.6
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.

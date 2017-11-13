@@ -1,31 +1,30 @@
 require 'serverspec'
 
-shared_context 'php' do
-  include_context 'base'
+shared_context 'php_centos' do
+  include_context 'base_centos'
 
   let(:php_packages) { [
-    'apache2',
-    'php5',
-    'mysql-client',
+    'httpd',
+    'php',
+    'mariadb',
     'memcached',
-    'php5-gd',
-    'php5-dev',
-    'php5-curl',
-    'php5-mcrypt',
-    'php5-mysql',
-    'php5-memcached',
+    'php-gd',
+    'php-devel',
+    'php-mcrypt',
+    'php-mysql',
+    'php-pecl-memcached',
     'php-soap',
     'php-pear'
   ] }
   let(:php_supervisord_services) { [
-    'apache2',
-    'apache2errorlog',
+    'httpd',
     'memcached',
+    'httpderrorlog',
     'stdout'
   ] }
   let(:apache_php_mod) { 'php5_module' }
-  let(:apache_version) { '2.4.7' }
-  let(:php_version) { '5.5' }
+  let(:apache_version) { '2.4.6' }
+  let(:php_version) { '5.4' }
   let(:check_php_supervisord_file) { true }
 
   it "Installs all required php packages" do
@@ -38,7 +37,7 @@ shared_context 'php' do
   describe 'Apache Install' do
     describe command('apachectl -M') do
       its(:stdout) { should include('rewrite_module') }
-      its(:stdout) { should include(apache_php_mod) }
+      its(:stdout) { should include('php5_module') }
       its(:stdout) { should include('vhost_alias') }
       its(:stdout) { should include('ssl') }
       its(:stdout) { should include('headers') }
@@ -49,7 +48,7 @@ shared_context 'php' do
       its(:stdout) { should include('prefork') }
 
       # test 'conf/httpd.conf' exists after "SERVER_CONFIG_FILE".
-      its(:stdout) { should include('apache2.conf') }
+      its(:stdout) { should include('httpd.conf') }
 
       # test 'Apache/2.2.15' exists before "Server built".
       its(:stdout) { should include("Apache/#{apache_version}") }

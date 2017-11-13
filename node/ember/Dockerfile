@@ -1,5 +1,5 @@
 # Container for running/testing EmberJS applications.
-FROM sitback/node:base
+FROM dockerdepot/node:base
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Google's stable Chrome repos.
