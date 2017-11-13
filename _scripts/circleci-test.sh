@@ -6,7 +6,6 @@ set -o nounset
 trap 'exit 130' INT
 
 TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb")"
 TEST_OUTPUT_PATH="/tmp/test-results"
 EXIT_CODE=0
 
@@ -24,7 +23,7 @@ do
   mkdir -p "${output_path}"
 
   echo "Running test ${line}..."
-  exec bundle exec rspec --format progress \
+  bundle exec rspec --format progress \
   --format RspecJunitFormatter \
   --out "${output_path}/${spec_filename}.xml" \
   --format progress \
