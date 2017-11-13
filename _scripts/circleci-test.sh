@@ -16,8 +16,8 @@ do
   fi
 
   spec_path="${line#*/}"
-  spec_base=$(dirname spec_path)
-  spec_filename=${line##*/}
+  spec_base="$(dirname spec_path)"
+  spec_filename="${line##*/}"
 
   output_path="${TEST_OUTPUT_PATH}/${spec_base}"
   mkdir -p "${output_path}"
