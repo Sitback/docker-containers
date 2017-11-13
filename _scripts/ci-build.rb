@@ -12,7 +12,7 @@ manifest = load_manifest
 load_manifest.each do |name, container|
   image = get_image_name name, container
 
-  Load from cache if we have one.
+  # Load from cache if we have one.
   cache_file = File.expand_path(sanitise_filename("#{name}.tar"), CACHE_DIR).to_s
   if File.exist?(cache_file) and CACHE_ENABLED
     system! "docker load -i #{cache_file}", true
