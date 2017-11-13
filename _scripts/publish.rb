@@ -1,7 +1,6 @@
 require_relative 'helpers.rb'
 
 # Login to the hub.
-email = ENV['DOCKER_EMAIL']
 user = ENV['DOCKER_USER']
 pass = ENV['DOCKER_PASS']
 retries = 3

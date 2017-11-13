@@ -9,5 +9,3 @@ describe 'PHP 5.4' do
     set :docker_image, get_docker_image_id(image_name)
   end
 end
-
-
