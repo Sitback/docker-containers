@@ -1,5 +1,5 @@
-# docker-containers
-[![Build Status](https://img.shields.io/circleci/project/dockerdepot/docker-containers/master.svg)](https://circleci.com/gh/dockerdepot/docker-containers)
+# web-containers
+[![Build Status](https://img.shields.io/circleci/project/dockerdepot/web-containers/master.svg)](https://circleci.com/gh/dockerdepot/web-containers)
 
 This is a set of Dockerfiles used to build all containers on [our container registry](https://registry.hub.docker.com/u/dockerdepot/).
 
