@@ -53,11 +53,17 @@
     "tag": "7.1",
     "path": "php/7.1"
   },
+  "php:7.2": {
+    "user": "dockerdepot",
+    "repository": "php",
+    "tag": "7.2",
+    "path": "php/7.2"
+  },
   "php:latest": {
     "user": "dockerdepot",
     "repository": "php",
     "tag": "latest",
-    "path": "php/7.1"
+    "path": "php/7.2"
   },
   "soe:php5.5": {
     "user": "dockerdepot",
@@ -83,11 +89,23 @@
     "tag": "php7.1",
     "path": "soe/php7.1"
   },
+  "soe:php7.2": {
+    "user": "dockerdepot",
+    "repository": "soe",
+    "tag": "php7.2",
+    "path": "soe/php7.2"
+  },
   "soe:latest": {
     "user": "dockerdepot",
     "repository": "soe",
     "tag": "latest",
-    "path": "soe/php7.1"
+    "path": "soe/php7.2"
+  },
+  "ci:php7.2": {
+    "user": "dockerdepot",
+    "repository": "ci",
+    "tag": "php7.2",
+    "path": "ci/php7.2"
   },
   "ci:php7.1": {
     "user": "dockerdepot",
@@ -117,7 +135,7 @@
     "user": "dockerdepot",
     "repository": "ci",
     "tag": "latest",
-    "path": "ci/php7.1"
+    "path": "ci/php7.2"
   },
   "proxy:nginx": {
     "user": "dockerdepot",
