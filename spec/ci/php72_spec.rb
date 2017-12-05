@@ -3,7 +3,12 @@ require 'spec_helper'
 describe 'PHP 7.2 CI' do
   include_context 'ci' do
     let(:php_version) { '7.2' }
-    let(:soe_packages) { Constants::PHP70_SOE_PACKAGES }
+    # @TODO: Replace with Constants::PHP70_SOE_PACKAGES once xdebug is
+    # installed via apt-get.
+    let(:soe_packages) { [
+      'socat',
+      'ssmtp'
+    ] }
     let(:php_packages) { [
       'apache2',
       'php7.2',
