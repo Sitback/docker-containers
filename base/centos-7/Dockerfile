@@ -2,9 +2,9 @@ FROM centos:7
 MAINTAINER tarun.bhargav@sitback.com.au
 
 # Increment this to trigger a full rebuild.
-ENV DC_BASE_VERSION 'CentOS-7-1.0.1'
+ENV DC_BASE_VERSION 'CentOS-7-1.0.2'
 
-RUN yum -y --setopt=tsflags=nodocs update 
+RUN yum -y --setopt=tsflags=nodocs update
 
 # Install delta RPM first to allow delta downloads.
 RUN yum -y install deltarpm
@@ -27,8 +27,7 @@ RUN yum -y install epel-release \
  git \
  vim \
  file \
- unzip 
- 
+ unzip
 
 # These need dependencies from above and can't run as part of the same command
 # for some reason.
@@ -41,7 +40,7 @@ RUN unlink /etc/localtime && ln -s /usr/share/zoneinfo/Australia/Sydney /etc/loc
 RUN mkdir -p /var/log/supervisor/
 RUN easy_install \
 		'supervisor == 3.3.2' \
-		'supervisor-stdout == 0.1.1' 
+		'supervisor-stdout == 0.1.1'
 
 # Startup settings.
 COPY ./conf/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
