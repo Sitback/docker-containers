@@ -98,7 +98,7 @@ shared_context 'soe' do
 
   describe 'Working Drush command' do
     describe command('which drush') do
-      its(:stdout) { should match "/root/.composer/vendor/bin/drush" }
+      its(:stdout) { should match "/usr/local/bin/drush" }
     end
   end
 

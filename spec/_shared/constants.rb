@@ -3,7 +3,7 @@
 ##
 
 module Constants
-  IMAGE_PREFIX = 'sitback/'
+  IMAGE_PREFIX = 'dockerdepot/'
   OS_FAMILY = :debian
   OS_FAMILY_CENTOS = :redhat
   SUPERVISORD_SERVICE_TIMEOUT = 30
@@ -62,6 +62,20 @@ module Constants
     'php7.1-dev',
     'php7.1-curl',
     'php7.1-mysql',
+    'php-memcached',
+    'php-soap',
+    'php-pear'
+  ]
+  PHP72_PACKAGES = [
+    'apache2',
+    'php7.2',
+    'php7.2-cli',
+    'mysql-client',
+    'memcached',
+    'php7.2-gd',
+    'php7.2-dev',
+    'php7.2-curl',
+    'php7.2-mysql',
     'php-memcached',
     'php-soap',
     'php-pear'

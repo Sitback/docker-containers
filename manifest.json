@@ -1,156 +1,180 @@
 {
   "base:ubuntu-14.04": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "base",
     "tag": "ubuntu-14.04",
     "path": "base/ubuntu-14.04"
   },
   "base:ubuntu-16.04": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "base",
     "tag": "ubuntu-16.04",
     "path": "base/ubuntu-16.04"
   },
   "base:centos-7": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "base",
     "tag": "centos-7",
     "path": "base/centos-7"
   },
   "base:latest": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "base",
     "tag": "latest",
     "path": "base/ubuntu-16.04"
   },
+  "php:5.4": {
+    "user": "dockerdepot",
+    "repository": "php",
+    "tag": "5.4",
+    "path": "php/5.4"
+  },
   "php:5.5": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "php",
     "tag": "5.5",
     "path": "php/5.5"
   },
   "php:5.6": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "php",
     "tag": "5.6",
     "path": "php/5.6"
   },
   "php:7.0": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "php",
     "tag": "7.0",
     "path": "php/7.0"
   },
   "php:7.1": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "php",
     "tag": "7.1",
     "path": "php/7.1"
   },
+  "php:7.2": {
+    "user": "dockerdepot",
+    "repository": "php",
+    "tag": "7.2",
+    "path": "php/7.2"
+  },
   "php:latest": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "php",
     "tag": "latest",
-    "path": "php/7.1"
+    "path": "php/7.2"
   },
   "soe:php5.5": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "soe",
     "tag": "php5.5",
     "path": "soe/php5.5"
   },
   "soe:php5.6": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "soe",
     "tag": "php5.6",
     "path": "soe/php5.6"
   },
   "soe:php7.0": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "soe",
     "tag": "php7.0",
     "path": "soe/php7.0"
   },
   "soe:php7.1": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "soe",
     "tag": "php7.1",
     "path": "soe/php7.1"
   },
+  "soe:php7.2": {
+    "user": "dockerdepot",
+    "repository": "soe",
+    "tag": "php7.2",
+    "path": "soe/php7.2"
+  },
   "soe:latest": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "soe",
     "tag": "latest",
-    "path": "soe/php5.6"
+    "path": "soe/php7.2"
+  },
+  "ci:php7.2": {
+    "user": "dockerdepot",
+    "repository": "ci",
+    "tag": "php7.2",
+    "path": "ci/php7.2"
   },
   "ci:php7.1": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "ci",
     "tag": "php7.1",
     "path": "ci/php7.1"
   },
   "ci:php7.0": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "ci",
     "tag": "php7.0",
     "path": "ci/php7.0"
   },
   "ci:php5.6": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "ci",
     "tag": "php5.6",
     "path": "ci/php5.6"
   },
   "ci:php5.5": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "ci",
     "tag": "php5.5",
     "path": "ci/php5.5"
   },
   "ci:latest": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "ci",
     "tag": "latest",
-    "path": "ci/php7.1"
+    "path": "ci/php7.2"
   },
   "proxy:nginx": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "proxy",
     "tag": "nginx",
     "path": "proxy/nginx"
   },
   "proxy:nginx-node": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "proxy",
     "tag": "nginx-node",
     "path": "proxy/nginx-node"
   },
   "proxy:haproxy-node": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "proxy",
     "tag": "haproxy-node",
     "path": "proxy/haproxy-node"
   },
   "node:base": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "node",
     "tag": "base",
     "path": "node/base"
   },
   "node:ember": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "node",
     "tag": "ember",
     "path": "node/ember"
   },
   "solr:5.3": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "solr",
     "tag": "5.3",
     "path": "solr/5.3"
   },
   "elasticsearch:2.4-dev": {
-    "user": "sitback",
+    "user": "dockerdepot",
     "repository": "elasticsearch",
     "tag": "2.4-dev",
     "path": "elasticsearch/2.4-dev"

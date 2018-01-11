@@ -1,5 +1,5 @@
 # Standard Operating Environment running off PHP 7.1.
-FROM sitback/php:7.1
+FROM dockerdepot/php:7.1
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
