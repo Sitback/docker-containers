@@ -1,6 +1,5 @@
 # Standard Operating Environment running off PHP 5.6.
 FROM sitback/php:5.6
-MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update

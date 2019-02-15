@@ -1,6 +1,5 @@
 # PHP 7.0 container.
 FROM sitback/base:ubuntu-16.04
-MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update
