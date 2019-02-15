@@ -2,6 +2,11 @@
 FROM sitback/soe:php5.6
 MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
+# Install all required packages.
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y php5.6-mbstring \
+        && rm -rf /var/lib/apt/lists/*
+
 # Install all packages.
 RUN apt-get update
 
