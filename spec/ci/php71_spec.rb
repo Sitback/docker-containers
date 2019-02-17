@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'PHP 7.1 CI' do
   include_context 'ci' do
     let(:php_version) { '7.1' }
-    let(:soe_packages) { Constants::PHP71_SOE_PACKAGES }
+    let(:soe_packages) { Constants::PHP70_SOE_PACKAGES }
     let(:php_packages) { [
       'apache2',
       'php7.1',
