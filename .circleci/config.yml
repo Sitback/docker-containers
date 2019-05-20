@@ -36,11 +36,11 @@ jobs:
           destination: test-results
 
       # deploy if master
-      - deploy:
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              bundle exec rake docker:publish
-            fi
+      #- deploy:
+      #    command: |
+      #      if [ "${CIRCLE_BRANCH}" == "master" ]; then
+      #        bundle exec rake docker:publish
+      #      fi
 
 # workflows:
 #   version: 2
