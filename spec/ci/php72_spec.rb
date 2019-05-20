@@ -1,19 +1,24 @@
 require 'spec_helper'
 
-describe 'PHP 7.1 CI' do
+describe 'PHP 7.2 CI' do
   include_context 'ci' do
-    let(:php_version) { '7.1' }
-    let(:soe_packages) { Constants::PHP70_SOE_PACKAGES }
+    let(:php_version) { '7.2' }
+    # @TODO: Replace with Constants::PHP70_SOE_PACKAGES once xdebug is
+    # installed via apt-get.
+    let(:soe_packages) { [
+      'socat',
+      'ssmtp'
+    ] }
     let(:php_packages) { [
       'apache2',
-      'php7.1',
-      'php7.1-cli',
+      'php7.2',
+      'php7.2-cli',
       'mariadb-client-10.2',
       'memcached',
-      'php7.1-gd',
-      'php7.1-dev',
-      'php7.1-curl',
-      'php7.1-mysql',
+      'php7.2-gd',
+      'php7.2-dev',
+      'php7.2-curl',
+      'php7.2-mysql',
       'php-memcached',
       'php-soap',
       'php-pear'
@@ -25,7 +30,7 @@ describe 'PHP 7.1 CI' do
   end
 
   before(:all) do
-    image_name = "#{Constants::IMAGE_PREFIX}ci:php7.1"
+    image_name = "#{Constants::IMAGE_PREFIX}ci:php7.2"
     set :os, family: Constants::OS_FAMILY
     set :docker_image, get_docker_image_id(image_name)
   end

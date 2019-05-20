@@ -1,0 +1,52 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+
+version: 2
+jobs:
+  build:
+    machine: true
+    parallelism: 4
+    steps:
+      - checkout
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install
+
+      - run:
+          name: build containers
+          command: |
+            bundle exec rake docker:ci_build
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir -p /tmp/test-results
+            ./_scripts/circleci-test.sh
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+      # deploy if master
+      #- deploy:
+      #    command: |
+      #      if [ "${CIRCLE_BRANCH}" == "master" ]; then
+      #        bundle exec rake docker:publish
+      #      fi
+
+# workflows:
+#   version: 2
+#   build_and_test:
+#     jobs:
+#       - build
+#       - test:
+#           requires:
+#             - build

@@ -1,6 +1,5 @@
 # PHP 5.6 container.
 FROM sitback/base:ubuntu-14.04
-MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update
