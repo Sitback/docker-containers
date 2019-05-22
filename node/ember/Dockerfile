@@ -1,6 +1,6 @@
 # Container for running/testing EmberJS applications.
-FROM sitbackdeployer/node:base-v2
-MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
+FROM sitback/node:base
+
 
 # Google's stable Chrome repos.
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
