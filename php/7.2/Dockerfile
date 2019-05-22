@@ -1,5 +1,8 @@
-# PHP 7.0 container.
+# PHP 7.2 container.
 FROM sitback/base:ubuntu-16.04
+
+# Increment this to trigger a full rebuild.
+ENV DC_PHP_VERSION 'php-7.2-0.0.0'
 
 # Install all packages.
 RUN apt-get update
@@ -19,25 +22,26 @@ RUN mkdir -p /var/run/apache2
 RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
-  php7.0 \
-  php7.0-cli \
-  php7.0-gd \
-  php7.0-dev \
-  php7.0-curl \
-  php7.0-mysql \
-  php7.0-xml \
+  php7.2 \
+  php7.2-cli \
+  php7.2-gd \
+  php7.2-dev \
+  php7.2-curl \
+  php7.2-mysql \
+  php7.2-xml \
   php-memcached \
   php-soap \
   php-pear
 
 # Configure PHP.
-ADD ./conf/php/30-overrides.ini /etc/php/7.0/apache2/conf.d/30-overrides.ini
+ADD ./conf/php/30-overrides.ini /etc/php/7.2/apache2/conf.d/30-overrides.ini
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install drush.
-RUN composer global require drush/drush:8.*
+RUN curl -s -L https://github.com/drush-ops/drush/releases/latest | egrep -o '/drush-ops/drush/releases/download/[v.0-8]*/drush.phar' | wget --base=http://github.com/ -i - -O /usr/local/bin/drush
+RUN chmod +x /usr/local/bin/drush
 
 # Update PATH to include Composer's bin (also add into /etc/profile so that our
 # tests pick it up too).

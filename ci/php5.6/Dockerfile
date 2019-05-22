@@ -1,6 +1,10 @@
 # PHP 5.6 container, optimised for Continuous Integration.
 FROM sitback/soe:php5.6
-MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
+
+# Install all required packages.
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y php5.6-mbstring \
+        && rm -rf /var/lib/apt/lists/*
 
 # Install all packages.
 RUN apt-get update
@@ -9,7 +13,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 
 # Configure MySQL (installed with user:root and no password).
-RUN mysql_install_db
+# RUN mysql_install_db
 ADD ./conf/mysql/ci_overrides.cnf /etc/mysql/conf.d/ci_overrides.cnf
 
 # Log to stdout/stderr.

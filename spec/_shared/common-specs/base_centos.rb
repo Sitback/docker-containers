@@ -40,13 +40,14 @@ shared_context 'base_centos' do
     its(:stdout) { should match '/usr/bin/vim' }
   end
 
-  describe yumrepo('epel') do
-    it { should exist }
-  end
+  # Disabling temporarily, will need to be enabled later
+  # describe yumrepo('epel') do
+  #   it { should exist }
+  # end
 
-  describe yumrepo('epel') do
-    it { should be_enabled }
-  end
+  # describe yumrepo('epel') do
+  #   it { should be_enabled }
+  # end
 
   describe file('/etc/supervisor/conf.d/base.conf') do
     it { should be_file }

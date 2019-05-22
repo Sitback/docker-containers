@@ -9,7 +9,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 
 # Configure MySQL (installed with user:root and no password).
-RUN mysql_install_db
+#RUN mysql_install_db
 ADD ./conf/mysql/ci_overrides.cnf /etc/mysql/conf.d/ci_overrides.cnf
 
 # Log to stdout/stderr.

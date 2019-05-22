@@ -1,8 +1,7 @@
 FROM centos:7
-MAINTAINER tarun.bhargav@sitback.com.au
 
 # Increment this to trigger a full rebuild.
-ENV DC_BASE_VERSION 'CentOS-7-1.0.1'
+ENV DC_BASE_VERSION 'CentOS-7-1.0.5'
 
 RUN yum -y --setopt=tsflags=nodocs update 
 
@@ -29,7 +28,6 @@ RUN yum -y install epel-release \
  file \
  unzip 
  
-
 # These need dependencies from above and can't run as part of the same command
 # for some reason.
 RUN yum -y install python-pip python-setuptools && yum clean all
