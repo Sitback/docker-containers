@@ -1,10 +1,15 @@
 # PHP 7.1 container, optimised for Continuous Integration.
 FROM sitback/soe:php7.1
-MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
+MAINTAINER Sitback <technical@sitback.com.au>
+
+# Install all required packages.
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y php7.1-mbstring \
+        && rm -rf /var/lib/apt/lists/*
 
 ## MariaDB.
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8 && \
-  add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://mirror.aarnet.edu.au/pub/MariaDB/repo/10.1/ubuntu xenial main' && \
+  add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.2/ubuntu xenial main' && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get remove -y mysql-client && \
   DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \

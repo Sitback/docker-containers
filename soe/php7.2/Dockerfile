@@ -1,5 +1,6 @@
-# Standard Operating Environment running off PHP 5.6.
-FROM sitback/php:5.6
+# Standard Operating Environment running off PHP 7.2.
+FROM sitback/php:7.2
+MAINTAINER Sitback <technical@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update
@@ -18,10 +19,10 @@ COPY ./conf/apache2/ssl-vhost.conf /etc/apache2/sites-available/ssl.conf
 RUN a2ensite ssl
 
 # Configure PHP.
-ADD ./conf/php/30-overrides.ini /etc/php/5.6/apache2/conf.d/30-overrides.ini
+ADD ./conf/php/30-overrides.ini /etc/php/7.2/apache2/conf.d/30-overrides.ini
 
 # Setup Xdebug.
-ADD ./conf/php/30-xdebug-conf.ini /etc/php/5.6/apache2/conf.d/30-xdebug-conf.ini
+ADD ./conf/php/30-xdebug.ini /etc/php/7.2/apache2/conf.d/30-xdebug.ini
 
 # Install PimpMyLog.
 RUN mkdir -p /server/pimpmylog && \
