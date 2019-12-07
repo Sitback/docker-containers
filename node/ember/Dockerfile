@@ -1,6 +1,6 @@
 # Container for running/testing EmberJS applications.
 FROM sitback/node:base
-MAINTAINER Chinthaka Godawita <chin@sitback.com.au>
+
 
 # Google's stable Chrome repos.
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -12,6 +12,9 @@ RUN apt-get update && \
 
 # Ember global requirements.
 RUN npm install -g bower ember-cli
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install yarn
 
 # Setup XVFB daemon.
 # ENV DISPLAY :99
