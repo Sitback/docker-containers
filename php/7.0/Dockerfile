@@ -1,6 +1,9 @@
 # PHP 7.0 container.
 FROM sitback/base:ubuntu-16.04
 
+# Increment this to trigger a full rebuild.
+ENV DC_PHP_VERSION 'php-7.0-0.0.1'
+
 # Install all packages.
 RUN apt-get update
 

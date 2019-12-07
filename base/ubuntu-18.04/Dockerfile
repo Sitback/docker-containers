@@ -29,6 +29,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor \
   telnet \
   rsync \
   wget \
+  curl \
   nano \
   vim \
   net-tools \

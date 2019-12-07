@@ -2,11 +2,11 @@
 FROM dockerdepot/ubuntu:16.04
 
 # Increment this to trigger a full rebuild.
-ENV DC_BASE_VERSION 'ubuntu-16.04-1.0.13'
+ENV DC_BASE_VERSION 'ubuntu-16.04-1.0.14'
 
 # Update repositories and make sure we're on the latest 16.04 release.
 RUN apt-get -y update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade -o Dpkg::Options::="--force-confdef"
 
 # Set timezone to be AEST/AEDT.
 # @see https://bugs.launchpad.net/ubuntu/+source/tzdata/+bug/1554806

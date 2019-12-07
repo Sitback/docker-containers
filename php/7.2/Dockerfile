@@ -2,7 +2,7 @@
 FROM sitback/base:ubuntu-16.04
 
 # Increment this to trigger a full rebuild.
-ENV DC_PHP_VERSION 'php-7.2-0.0.0'
+ENV DC_PHP_VERSION 'php-7.2-0.0.1'
 
 # Install all packages.
 RUN apt-get update
@@ -40,8 +40,7 @@ ADD ./conf/php/30-overrides.ini /etc/php/7.2/apache2/conf.d/30-overrides.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install drush.
-RUN curl -s -L https://github.com/drush-ops/drush/releases/latest | egrep -o '/drush-ops/drush/releases/download/[v.0-8]*/drush.phar' | wget --base=http://github.com/ -i - -O /usr/local/bin/drush
-RUN chmod +x /usr/local/bin/drush
+RUN composer global require drush/drush:8.*
 
 # Update PATH to include Composer's bin (also add into /etc/profile so that our
 # tests pick it up too).
