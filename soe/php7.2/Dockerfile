@@ -1,6 +1,5 @@
 # Standard Operating Environment running off PHP 7.2.
 FROM sitback/php:7.2
-MAINTAINER Sitback <technical@sitback.com.au>
 
 # Install all packages.
 RUN apt-get update
