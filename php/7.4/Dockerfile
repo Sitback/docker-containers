@@ -1,5 +1,5 @@
 # PHP 7.4 container.
-FROM sitback/base:ubuntu-18.04
+FROM sitback/base:ubuntu-22.04
 
 # Increment this to trigger a full rebuild.
 ENV DC_PHP_VERSION 'php-7.4-0.0.0'
@@ -34,6 +34,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
   php7.4-curl \
   php7.4-mysql \
   php7.4-xml \
+  php7.4-imagick \
+  php7.4-zip \
   php-memcached \
   php-soap \
   php-pear
