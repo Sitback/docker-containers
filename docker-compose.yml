@@ -1,0 +1,4 @@
+services:
+  app:
+#    image: php:7.4-apache
+    build: php/7.4
